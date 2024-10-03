@@ -1,0 +1,23 @@
+{
+    "metadata": {
+      "name": "scripts-sears",
+      "description": "Widget que muestra un iframe pasando informacion de una interaccion como url parameters",
+      "tags": "aaadev, webcomponent, newux, screenpop",
+      "version": "1.0",
+      "date": "2020-01-24T12:01:51.684Z",
+      "id": "7f76fe1c-6b6a-480d-9dc3-aaae917d040d"
+    },
+    "configuration": {
+      "external": true,
+      "enabled": true,
+      "name": "7f76fe1c-6b6a-480d-9dc3-aaae917d040d",
+      "icon": "aoc-home",
+      "element": "<scripts-sears></scripts-sears>",
+      "permissions": [],
+      "shortcuts": [],
+      "localisation": [],
+      "files": [
+        "scripts-sears/scripts-sears.js"
+      ]
+    }
+  }

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cliente</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./autotal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-container">
+        <main class="container mt-3 main-content">
+            <div id="initialView">
+                <h6 class="mb-3">Buenas Tardes, ¿Hablo con el Sr/Srta. LIZBETH MARIZA ROBLES RAMIREZ?</h6>
+                <form>
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <label for="nombreCliente" class="form-label">Nombre Cliente:</label>
+                            <input type="text" class="form-control" id="nombreCliente"
+                                value="LIZBETH MARIZA ROBLES RAMIREZ" readonly>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    <div class="row g-2 mt-1">
+                        <div class="col-md-4">
+                            <label for="noCliente" class="form-label">No. de Cliente:</label>
+                            <input type="text" class="form-control" id="noCliente" value="9617027665?" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="central" class="form-label">Central:</label>
+                            <input type="text" class="form-control" id="central" value="EM83" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fechaCotizacion" class="form-label">Fecha de Cotización:</label>
+                            <input type="text" class="form-control" id="fechaCotizacion" value="2023-11-13" readonly>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-1">
+                        <div class="col-md-4">
+                            <label for="telCasa" class="form-label">Tel. Casa:</label>
+                            <input type="tel" class="form-control" id="telCasa" value="7719995570" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="telOficina" class="form-label">Tel. Oficina:</label>
+                            <input type="tel" class="form-control" id="telOficina" value="7717921544" readonly>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+
+                    <div id="communicationButtons"
+                        class="m-4 d-flex flex-column justify-content-center align-items-center">
+                        <label class="form-label"><b>¿Con quién se establece la comunicación?</b></label>
+                        <div class="m-2">
+                            <button type="button" class="btn btn-success btn-sm me-1" id="btnCliente">ES EL
+                                CLIENTE</button>
+                            <button type="button" class="btn btn-warning btn-sm me-1" id="btnNoEncuentro">NO SE
+                                ENCUENTRA</button>
+                            <button type="button" class="btn btn-danger btn-sm" id="btnNoContacto">NO ES EL
+                                CONTACTO</button>
+                        </div>
+                    </div>
+
+                    <div id="clientMessage"
+                        class="m-4 d-none d-flex flex-column justify-content-center align-items-center">
+                        <p><b>Mucho gusto Sr./Srita. LIZBETH MARIZA ROBLES RAMIREZ, mi nombre es ABIGAIL NAJERA de
+                                Sears. Me
+                                comunico para brindarle asesoría sobre la contratación de su seguro de Auto, usted
+                                realizó
+                                una cotización en línea del seguro AUTOTAL con Sears.</b></p>
+                        <div class="mt-2">
+                            <button type="button" class="btn btn-success btn-sm me-1" id="btnSiLeInteresa">SI LE
+                                INTERESA</button>
+                            <button type="button" class="btn btn-danger btn-sm" id="btnNoInteresa3">NO LE
+                                INTERESA</button>
+                        </div>
+                    </div>
+
+                    <div id="noContactoMessage"
+                        class="m-4 d-none d-flex flex-column justify-content-center align-items-center">
+                        <p><b>Mucho gusto Sr./Srita., mi nombre es ABIGAIL NAJERA de Sears. El motivo de mi llamada es
+                                para
+                                apoyarle con la contratación del seguro de su Auto en seguimiento a la cotización que
+                                realizó. ¿En qué horario se le puede localizar?</b></p>
+                        <div class="mt-2">
+                            <button type="button" class="btn btn-warning btn-sm me-1">AGENDAR CITA</button>
+                            <button type="button" class="btn btn-danger btn-sm" id="btnNoInteresa2">NO LE
+                                INTERESA</button>
+                        </div>
+                    </div>
+
+                    <div id="noContactoOptions" class="m-4 d-none">
+                        <label for="motivoNoContacto" class="form-label"><b>Elige motivo NO CONTACTO</b></label>
+                        <select class="form-select" id="motivoNoContacto">
+                            <option selected>Fuera de Servicio</option>
+                            <option>Teléfono no existe</option>
+                            <option>No vive ahí</option>
+                            <option>Cliente RIP</option>
+                            <option>Incontactable</option>
+                        </select>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="btn btn-primary" id="btnFinalizarNoContacto">FINALIZAR</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="confirmationView" class="d-none">
+                <h4 class="text-center mb-3">Nombre cliente: LIZBETH MARIZA ROBLES RAMIREZ</h4>
+                <p class="text-center">Núm. Cuenta: 9617027589?? - Central: HG83 - Fecha Cotización: 2023-11-13</p>
+                <p class="text-center">Tel. Casa: 7716990570 - Tel. Oficina: 7717107544</p>
+                <h5 class="mt-4 mb-3">Se requiere confirmar o solicitar la siguiente información:</h5>
+                <ul>
+                    <li>Marca, modelo y características del vehículo.</li>
+                    <li>Número de TDC SEARS.</li>
+                    <li>Número de serie.</li>
+                    <li>Número de motor.</li>
+                    <li>Número de placas.</li>
+                    <li>Datos del propietario.</li>
+                    <li>RFC.</li>
+                    <li>Teléfono celular.</li>
+                    <li>Calle.</li>
+                    <li>Número interior.</li>
+                    <li>Número exterior.</li>
+                </ul>
+                <div class="d-flex justify-content-center mt-4">
+                    <h5 class="me-3">¿Le Interesa concluir la contratación de su Póliza?</h5>
+                    <button type="button" class="btn btn-success me-2" id="btnContratar">CONTRATAR</button>
+                    <button type="button" class="btn btn-danger" id="btnNoInteresa">NO INTERESA</button>
+                </div>
+
+                <div id="acceptanceConfirmation" class="mt-4 d-none">
+                    <h5 class="text-center mb-3">CONFIRMAR ACEPTACIÓN</h5>
+                    <p>Confirmo que se realiza la emisión de póliza en cobertura XXXXXX con un costo anual de $ ________
+                        y
+                        una prima mensual (confirmar 1o recibo y subsecuentes).</p>
+                    <p>Forma de pago Anual/Mensual con renovación automática y cobro a su TDC Sears en su cuenta
+                        revolvente.
+                        El cargo está sujeto a disponibilidad de saldo de su TDC Sears.</p>
+                    <p>Puede consultar el aviso de privacidad en www.inbursa.com</p>
+                    <p>Informo que su caratula de póliza y confirmación de contratación será recibida en el correo
+                        electrónico proporcionado (confirmar correo).</p>
+                    <p>Sondear si necesita alguna asesoría adicional o información de la póliza.</p>
+                    <p>Solicitar horario y día (manejar cita para segunda llamada).</p>
+                    <p>Agradezco haber tomado la llamada, mi nombre es ABIGAIL NAJERA de Sears. Que tenga una Excelente
+                        Tarde.</p>
+                    <h6 class="mt-4 mb-3">Puntos a considerar:</h6>
+                    <ul>
+                        <li>La contratación es para vehículos de uso particular menores a 20 años de antigüedad.</li>
+                        <li>La contratación del seguro es con renovación automática anual. El derecho de póliza se cobra
+                            en
+                            el primer recibo.</li>
+                        <li>En caso de error en fecha de nacimiento (RFC) realizar actualización con base en
+                            procedimientos
+                            de actualización establecidos por SEARS.</li>
+                    </ul>
+                    <div class="d-flex justify-content-center mt-4">
+                        <button type="button" class="btn btn-primary" id="btnFinalizar">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="noInteresaView" class="d-none">
+                <h5 class="mt-4 mb-3">Elige motivo por el que NO LE INTERESA</h5>
+                <select class="form-select mb-3" id="motivoNoInteresa">
+                    <option selected>Costo elevado</option>
+                    <option>Menos beneficios que en otras aseguradoras ( auto sustituto, cobertura por llantas).
+                    </option>
+                    <option>La contratación es más rápida en otra aseguradora (demasiados requisitos).</option>
+                    <option>Ya cuenta con seguro, nuestro seguro no cumple con sus expectativas.</option>
+                    <option>Otro</option>
+                </select>
+                <p class="text-center">Agradezco su atención y que tenga buenas tardes.</p>
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="button" class="btn btn-primary" id="btnFinalizarNoInteresa">FINALIZAR</button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>CTAS L SEARS</h2>
+                <i class="bi bi-telephone-fill ms-2"></i>
+            </div>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
+            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+
+            <div class="sidebar-buttons">
+                <button id="inicio" class="sidebar-button">
+                    <i class="bi bi-house-door-fill"></i> INICIO
+                </button>
+                <button id="tips" class="sidebar-button">
+                    <i class="bi bi-lightbulb-fill"></i> TIPS
+                </button>
+                <button id="agenda" class="sidebar-button">
+                    <i class="bi bi-calendar-event-fill"></i> Agenda
+                </button>
+            </div>
+
+            <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
+            <div class="call-actions">
+                <button class="btn btn-success"><i class="bi bi-telephone-fill"></i></button>
+                <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <p class="mt-2 text-muted">Sin Promociones</p>
+        </aside>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnCliente = document.getElementById('btnCliente');
+            const btnNoEncuentro = document.getElementById('btnNoEncuentro');
+            const btnNoContacto = document.getElementById('btnNoContacto');
+            const communicationButtons = document.getElementById('communicationButtons');
+            const clientMessage = document.getElementById('clientMessage');
+            const noContactoMessage = document.getElementById('noContactoMessage');
+            const noContactoOptions = document.getElementById('noContactoOptions');
+            const btnSiLeInteresa = document.getElementById('btnSiLeInteresa');
+            const btnContratar = document.getElementById('btnContratar');
+            const btnNoInteresa = document.getElementById('btnNoInteresa');
+            const btnNoInteresa2 = document.getElementById('btnNoInteresa2');
+            const btnNoInteresa3 = document.getElementById('btnNoInteresa3');
+            const btnFinalizar = document.getElementById('btnFinalizar');
+            const btnFinalizarNoInteresa = document.getElementById('btnFinalizarNoInteresa');
+            const btnFinalizarNoContacto = document.getElementById('btnFinalizarNoContacto');
+            const initialView = document.getElementById('initialView');
+            const confirmationView = document.getElementById('confirmationView');
+            const acceptanceConfirmation = document.getElementById('acceptanceConfirmation');
+            const noInteresaView = document.getElementById('noInteresaView');
+
+            btnCliente.addEventListener('click', function () {
+                communicationButtons.classList.add('d-none');
+                clientMessage.classList.remove('d-none');
+            });
+
+            btnNoEncuentro.addEventListener('click', function () {
+                communicationButtons.classList.add('d-none');
+                noContactoMessage.classList.remove('d-none');
+            });
+
+            btnNoContacto.addEventListener('click', function () {
+                communicationButtons.classList.add('d-none');
+                noContactoOptions.classList.remove('d-none');
+            });
+
+            btnSiLeInteresa.addEventListener('click', function () {
+                initialView.classList.add('d-none');
+                confirmationView.classList.remove('d-none');
+            });
+
+            btnContratar.addEventListener('click', function () {
+                acceptanceConfirmation.classList.remove('d-none');
+            });
+
+            btnNoInteresa.addEventListener('click', function () {
+                confirmationView.classList.add('d-none');
+                noInteresaView.classList.remove('d-none');
+            });
+
+            btnNoInteresa2.addEventListener('click', function () {
+                noContactoMessage.classList.add('d-none');
+                noInteresaView.classList.remove('d-none');
+            });
+
+            btnNoInteresa3.addEventListener('click', function () {
+                clientMessage.classList.add('d-none');
+                noInteresaView.classList.remove('d-none');
+            });
+
+            btnFinalizar.addEventListener('click', function () {
+                alert('Proceso finalizado. Gracias por su tiempo.');
+            });
+
+            btnFinalizarNoInteresa.addEventListener('click', function () {
+                alert('Proceso finalizado. Gracias por su tiempo.');
+            });
+
+            btnFinalizarNoContacto.addEventListener('click', function () {
+                alert('Proceso finalizado. Gracias por su tiempo.');
+            });
+        });
+    </script>
+</body>
+
+</html>

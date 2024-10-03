@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Information Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./inbursa-pps.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-container">
+        <main class="container mt-3 main-content">
+            <div id="mainView" class="container my-5">
+                <div class="card">
+                    <div class="card-body">
+                        <p>Buenas Tardes, me podría comunicar con el Sr./Srita. <b> OMAR ALEJANDRO BALLEZA GONZALEZ</b>.
+                        </p>
+                        <p class="mb-4"> Mi nombre es ABIGAIL NAJERA y estoy llamando de SEARS</p>
+
+                        <form>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="nombre" class="form-label">Nombre Titular:</label>
+                                    <input type="text" class="form-control" id="nombre" value="OMAR ALEJANDRO" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="paterno" class="form-label">Paterno:</label>
+                                    <input type="text" class="form-control" id="paterno" value="BALLEZA" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="materno" class="form-label">Materno:</label>
+                                    <input type="text" class="form-control" id="materno" value="GONZALEZ" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="cuenta" class="form-label">No. de Cuenta:</label>
+                                    <input type="text" class="form-control" id="cuenta" value="31170542982" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="apertura" class="form-label">Fecha de Apertura:</label>
+                                    <input type="text" class="form-control" id="apertura" value="2022-11-28" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="corte" class="form-label">Fecha de Corte:</label>
+                                    <input type="text" class="form-control" id="corte" value="09" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="empleo" class="form-label">Empleo:</label>
+                                    <input type="text" class="form-control" id="empleo" value="SANBORGIO" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="rfc" class="form-label">RFC:</label>
+                                    <input type="text" class="form-control" id="rfc" value="BAGO681231" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="sexo" class="form-label">Sexo:</label>
+                                    <input type="text" class="form-control" id="sexo" value="M" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="direccion" class="form-label">Dirección:</label>
+                                    <input type="text" class="form-control" id="direccion" value="OCTAVIO PAZ 124"
+                                        readonly>
+                                </div>
+                                <div class="col">
+                                    <label for="colonia" class="form-label">Colonia:</label>
+                                    <input type="text" class="form-control" id="colonia" value="ASTURIAS" readonly>
+                                </div>
+                                <div class="col">
+                                    <label for="ciudad" class="form-label">Ciudad:</label>
+                                    <input type="text" class="form-control" id="ciudad" value="APODACA" readonly>
+                                </div>
+                                <div class="col">
+                                    <label for="cp" class="form-label">CP:</label>
+                                    <input type="text" class="form-control" id="cp" value="66620" readonly>
+                                </div>
+                                <div class="col">
+                                    <label for="estado" class="form-label">Estado:</label>
+                                    <input type="text" class="form-control" id="estado" value="NL" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="tel-casa" class="form-label">Tel. Casa:</label>
+                                    <input type="text" class="form-control" id="tel-casa" value="8129427363" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="tel-oficina" class="form-label">Tel. Oficina:</label>
+                                    <input type="text" class="form-control" id="tel-oficina" value="8180131432"
+                                        readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="tel-celular" class="form-label">Tel. C/Ref:</label>
+                                    <input type="text" class="form-control" id="tel-celular" value="8111132509"
+                                        readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="tel-o" class="form-label">Tel. O/Ref:</label>
+                                    <input type="text" class="form-control" id="tel-o" value="8111132509" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <label for="nombre-adicional" class="form-label">Nombre Adicional:</label>
+                                    <input type="text" class="form-control" id="nombre-adicional" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="paterno-adicional" class="form-label">Paterno:</label>
+                                    <input type="text" class="form-control" id="paterno-adicional" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="materno-adicional" class="form-label">Materno:</label>
+                                    <input type="text" class="form-control" id="materno-adicional" readonly>
+                                </div>
+                            </div>
+
+                            <div id="buttonSection" class="mt-4">
+                                <div id="initialButtons" class="d-flex justify-content-end mt-3">
+                                    <button type="button" class="btn btn-success me-2" id="contactBtn">Contacto</button>
+                                    <button type="button" class="btn btn-danger" id="noContactBtn">No Contacto</button>
+                                </div>
+
+                                <div id="contactOptions" class="d-none mt-4">
+                                    <h4 class="mb-3">¿Con quién se establece la comunicación?</h4>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-success me-2"
+                                            id="titularBtn">Titular/Cónyuge</button>
+                                        <button type="button" class="btn btn-warning me-2" id="otraPersonaBtn">Otra
+                                            Persona</button>
+                                        <button type="button" class="btn btn-outline-info" id="noTieneTiempoBtn">No
+                                            tiene
+                                            Tiempo</button>
+                                    </div>
+                                </div>
+
+                                <div id="noContactView" class="d-none mt-4">
+                                    <h4 class="mb-3">Motivo de NO CONTACTO</h4>
+                                    <select class="form-select mb-3" id="noContactReason">
+                                        <option selected>Seleccione una opción</option>
+                                        <option value="no-contesta">No Contesta</option>
+                                        <option value="contestadora">Contestadora</option>
+                                        <option value="fax">Fax</option>
+                                        <option value="fuera-de-servicio">Fuera de Servicio</option>
+                                        <option value="telefono-no-existe">Teléfono no existe</option>
+                                        <option value="otros-nc">Otros NC</option>
+                                    </select>
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <button type="button" class="btn btn-primary"
+                                            id="finalizarNoContactoBtn">Finalizar</button>
+                                    </div>
+                                </div>
+
+                                <div id="otraPersonaOptions" class="d-none mt-4">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-success me-2" id="noViveAhiBtn">No vive
+                                            ahí</button>
+                                        <button type="button" class="btn btn-info" id="noSeEncuentraBtn">No se
+                                            encuentra</button>
+                                    </div>
+                                </div>
+
+                                <div id="loConoceOptions" class="d-none mt-4">
+                                    <h4 class="mb-3">¿Lo Conoce?</h4>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-success me-2" id="siConoceBtn">Si</button>
+                                        <button type="button" class="btn btn-info" id="noConoceBtn">No</button>
+                                    </div>
+                                </div>
+
+                                <div id="siConoceOptions" class="d-none mt-4">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-success me-2" id="otroTelefonoBtn">Otro
+                                            teléfono
+                                            donde localizarlo</button>
+                                        <button type="button" class="btn btn-info" id="dejarRecadoBtn">Dejar
+                                            recado</button>
+                                    </div>
+                                </div>
+
+                                <div id="noConoceView" class="d-none mt-4">
+                                    <div class="alert alert-info" role="alert">
+                                        <p>Perdón Sr(a)., una disculpa y que tenga una Excelente Tarde</p>
+                                    </div>
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <button type="button" class="btn btn-primary"
+                                            id="finalizarBtn">Finalizar</button>
+                                    </div>
+                                </div>
+
+                                <div id="dejarRecadoView" class="d-none mt-4">
+                                    <div class="alert alert-info" role="alert">
+                                        <p>Podría informarle por favor que le llamamos de Crédito SEARS / INBURSA, si
+                                            fuese tan
+                                            amable de regresarnos una llamada, tenemos algo importante que comunicarle.
+                                        </p>
+                                        <p>Nos encontramos en el 01 800 900 21 23 LADA sin costo para el interior de la
+                                            República o en el 52630306 para el D.F. y área metropolitana.</p>
+                                        <p>Muchas Gracias Sr(a). Hasta pronto, que tenga una Excelente Tarde</p>
+                                    </div>
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <button type="button" class="btn btn-primary"
+                                            id="finalizarBtn">Finalizar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="agendarView" class="container my-5 d-none">
+                <h4 class="mb-3">Agendación</h4>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="ciclo" class="form-label">Ciclo:</label>
+                        <input type="text" class="form-control" id="ciclo" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="cuenta" class="form-label">Cuenta:</label>
+                        <input type="text" class="form-control" id="cuenta" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fecha" class="form-label">Fecha:</label>
+                        <input type="date" class="form-control" id="fecha">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="sinInformacion" class="form-label">Sin Información:</label>
+                    <input type="text" class="form-control" id="sinInformacion">
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="numeroTelefonico" class="form-label">Número telefónico:</label>
+                        <input type="tel" class="form-control" id="numeroTelefonico">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Tipo teléfono:</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tipoTelefono" id="telCasa"
+                                    value="casa">
+                                <label class="form-check-label" for="telCasa">TelCasa</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tipoTelefono" id="telOficina"
+                                    value="oficina">
+                                <label class="form-check-label" for="telOficina">TelOficina</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="agendar" class="form-label">Agendar:</label>
+                    <input type="datetime-local" class="form-control" id="agendar">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="agendarParaNajera">
+                    <label class="form-check-label" for="agendarParaNajera">¿Agendar para NAJERA?</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="reemplazarTelefono">
+                    <label class="form-check-label" for="reemplazarTelefono">¿Reemplazar teléfono
+                        actual?</label>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="button" class="btn btn-success me-2" id="agendarBtn">Agendar</button>
+                    <button type="button" class="btn btn-secondary" id="finalizarBtn">Finalizar</button>
+                </div>
+            </div>
+
+            <div id="insuranceView" class="container my-5 d-none">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">OMAR ALEJANDRO BALLEZA GONZALEZ</h5>
+                        <p>Protección Personal SEARS el cual se está ofreciendo a través de su tarjeta de crédito SEARS.
+                        </p>
+                        <p>Este seguro le brinda tranquilidad en situaciones difíciles por solo $40.50 mensual o $50.50
+                            en plan
+                            conyugal, así en caso de que usted llegara a padecer una enfermedad o accidente le
+                            asistiremos
+                            enviándole una ambulancia totalmente equipada para el traslado a un hospital, además también
+                            le
+                            ofrecemos auxiliarlo en caso de que su automóvil se avería o requiera auxilio vial
+                            inmediatamente le
+                            enviaremos asistencia, y lo más importante le apoyaremos en brindar tranquilidad a sus seres
+                            queridos, ya que incluimos el pago de $100,000 en caso de fallecimiento accidental,
+                            adicionalmente
+                            ofrecemos un paquete funerario muy completo.</p>
+                        <p class="info-text text-info">¿Desea que le tome sus datos para suscribirlo al seguro o
+                            requiere
+                            información más amplia sobre
+                            alguna cobertura en especial?</p>
+
+                        <div class="mb-3">
+                            <label for="coberturasSeguro" class="form-label">Información de Coberturas del
+                                Seguro:</label>
+                            <select class="form-select" id="coberturasSeguro">
+                                <option selected>Seleccione una cobertura</option>
+                                <option>Servicios Funerarios</option>
+                                <option>Muerte Accidental</option>
+                                <option>Emergencia Médica</option>
+                                <option>Asistencia Vial</option>
+                                <option>Planes y Costos</option>
+                            </select>
+
+                            <label for="autorizador" class="form-label">Persona que lo autoriza</label>
+                            <select class="form-select" id="autorizador">
+                                <option selected>titular</option>
+                                <option>Conyugue</option>
+                                <option>Adicional</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="button" class="btn btn-success me-2" id="acceptInsuranceBtn">Acepta</button>
+                            <button type="button" class="btn btn-danger me-2" id="declineInsuranceBtn">No
+                                Acepta</button>
+                            <button type="button" class="btn btn-primary" id="NecesitaPensarloBtn">Necesita
+                                Pensarlo</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="customerDataView" class="container my-5 d-none">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sr./Srita OMAR ALEJANDRO GONZALEZ GONZALEZ podría darme sus datos para
+                            efectuar
+                            el alta por favor?</h5>
+                        <form id="customerForm">
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="ci" class="form-label">Ciclo:</label>
+                                    <input type="text" class="form-control" id="ci" value="31" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="cuenta" class="form-label">Cuenta:</label>
+                                    <input type="text" class="form-control" id="cuenta" value="170564392" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="rfc" class="form-label">RFC:</label>
+                                    <input type="text" class="form-control" id="rfc" value="BAGO681231" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="telefono" class="form-label">Teléfono:</label>
+                                    <input type="text" class="form-control" id="telefono" value="8180131432" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="nombre" class="form-label">Nombre Titular:</label>
+                                    <input type="text" class="form-control" id="nombre" value="OMAR ALEJANDRO" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="paterno" class="form-label">Paterno:</label>
+                                    <input type="text" class="form-control" id="paterno" value="BALLEZA" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="materno" class="form-label">Materno:</label>
+                                    <input type="text" class="form-control" id="materno" value="GONZALEZ" readonly>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <h6>Asegurados</h6>
+                                <table class="table table-bordered" id="aseguradosTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Asegurados</th>
+                                            <th>Nacimiento</th>
+                                            <th>Plan</th>
+                                            <th>Tipo de Pago</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Existing entries will be added here -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    <label for="titulo" class="form-label">Título:</label>
+                                    <select class="form-select" id="titulo">
+                                        <option value="SR">SR</option>
+                                        <option value="SRA">SRA</option>
+                                        <option value="SRITA">SRITA</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="nombre2" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre2">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="paterno2" class="form-label">Paterno:</label>
+                                    <input type="text" class="form-control" id="paterno2">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="materno2" class="form-label">Materno:</label>
+                                    <input type="text" class="form-control" id="materno2">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="fechaNac" class="form-label">Fecha Nac:</label>
+                                    <input type="date" class="form-control" id="fechaNac">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="folio" class="form-label">Folio:</label>
+                                    <input type="text" class="form-control" id="folio">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="tipoPago" class="form-label">Tipo de Pago:</label>
+                                    <select class="form-select" id="tipoPago">
+                                        <option value="MENSUAL" selected>MENSUAL</option>
+                                        <option value="ANUAL">ANUAL</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="plan" class="form-label">Plan:</label>
+                                    <select class="form-select" id="plan">
+                                        <option value="INDIVIDUAL" selected>INDIVIDUAL</option>
+                                        <option value="PAQUETE">PAQUETE</option>
+                                        <option value="INDIVIDUAL PLUS">INDIVIDUAL PLUS</option>
+                                        <option value="PAQUETE PLUS">PAQUETE PLUS</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="button" class="btn btn-primary me-2" id="agregarBtn">Agregar</button>
+                                <button type="button" class="btn btn-success" id="continuarBtn">Continuar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="confirmationView" class="container my-5 d-none">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sr(a) OMAR ALEJANDRO BALLEZA GONZALEZ, lo felicito por la decisión que
+                            acaba de
+                            tomar, usted está asegurado a partir de este momento.</h5>
+                        <p>Para hacer uso de las coberturas de Emergencia Médica, Servicios Funerarios y Asistencia Vial
+                            estamos
+                            para servirle en el teléfono 01 800 713 2020 y para la cobertura de Muerte accidental,
+                            diríjase a la
+                            oficina de Seguros Inbursa más cercana.</p>
+                        <p>Gracias por recibir nuestra llamada, le atendió ABIGAIL NAJERA de Seguros Inbursa.</p>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="button" class="btn btn-primary" id="finalizarBtn">Finalizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="declineInsuranceView" class="container my-5 p-2 d-none">
+                <div class="card m-3">
+                    <div class="m-3">
+                        <label for="motivoRechazo" class="form-label">Motivo por el cual el cliente No Acepta el
+                            seguro:</label>
+                        <select class="form-select" id="motivoRechazo">
+                            <option selected>Seleccione una opción</option>
+                            <option value="costo">Costo</option>
+                            <option value="no-cubre-necesidades">No cubre sus Necesidades</option>
+                            <option value="no-interesa">No le interesa</option>
+                            <option value="ya-tiene-seguro">Ya Tiene Seguro</option>
+                            <option value="edad">Edad</option>
+                            <option value="no-acepta-cotizacion">NO ACEPTA SE ENVIO COTIZACION</option>
+                            <option value="otros">Otros NA</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-primary m-3" id="finalizarRechazoBtn">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>CTAS L SEARS</h2>
+                <i class="bi bi-telephone-fill ms-2"></i>
+            </div>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
+            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+
+            <div class="sidebar-buttons">
+                <button id="inicio" class="sidebar-button">
+                    <i class="bi bi-house-door-fill"></i> INICIO
+                </button>
+                <button id="tips" class="sidebar-button">
+                    <i class="bi bi-lightbulb-fill"></i> TIPS
+                </button>
+                <button id="agenda" class="sidebar-button">
+                    <i class="bi bi-calendar-event-fill"></i> Agenda
+                </button>
+            </div>
+
+            <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
+            <div class="call-actions">
+                <button class="btn btn-success"><i class="bi bi-telephone-fill"></i></button>
+                <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <p class="mt-2 text-muted">Sin Promociones</p>
+        </aside>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainView = document.getElementById('mainView');
+            const insuranceView = document.getElementById('insuranceView');
+            const customerDataView = document.getElementById('customerDataView');
+            const confirmationView = document.getElementById('confirmationView');
+            const initialButtons = document.getElementById('initialButtons');
+            const contactOptions = document.getElementById('contactOptions');
+            const noContactView = document.getElementById('noContactView');
+            const otraPersonaOptions = document.getElementById('otraPersonaOptions');
+            const loConoceOptions = document.getElementById('loConoceOptions');
+            const siConoceOptions = document.getElementById('siConoceOptions');
+            const noConoceView = document.getElementById('noConoceView');
+            const dejarRecadoView = document.getElementById('dejarRecadoView');
+            const agendarView = document.getElementById('agendarView');
+            const aseguradosTable = document.getElementById('aseguradosTable').getElementsByTagName('tbody')[0];
+            const declineInsuranceView = document.getElementById('declineInsuranceView');
+            const contactBtn = document.getElementById('contactBtn');
+            const noContactBtn = document.getElementById('noContactBtn');
+            const contactSection = document.getElementById('contactSection');
+            const conyugeBtn = document.getElementById('conyugeBtn');
+            const agregarBtn = document.getElementById('agregarBtn');
+            const continuarBtn = document.getElementById('continuarBtn');
+            const finalizarBtn = document.getElementById('finalizarBtn');
+
+
+            document.getElementById('contactBtn').addEventListener('click', function () {
+                initialButtons.classList.add('d-none');
+                contactOptions.classList.remove('d-none');
+            });
+
+            document.getElementById('noContactBtn').addEventListener('click', function () {
+                initialButtons.classList.add('d-none');
+                noContactView.classList.remove('d-none');
+            });
+
+            document.getElementById('finalizarNoContactoBtn').addEventListener('click', function () {
+                alert('No contacto registrado. Gracias por su tiempo.');
+                resetForm();
+            });
+
+            document.getElementById('otraPersonaBtn').addEventListener('click', function () {
+                contactOptions.classList.add('d-none');
+                otraPersonaOptions.classList.remove('d-none');
+            });
+
+            document.getElementById('noViveAhiBtn').addEventListener('click', function () {
+                otraPersonaOptions.classList.add('d-none');
+                loConoceOptions.classList.remove('d-none');
+            });
+
+            document.getElementById('noSeEncuentraBtn').addEventListener('click', function () {
+                otraPersonaOptions.classList.add('d-none');
+                siConoceOptions.classList.remove('d-none');
+            });
+
+            document.getElementById('siConoceBtn').addEventListener('click', function () {
+                loConoceOptions.classList.add('d-none');
+                siConoceOptions.classList.remove('d-none');
+            });
+
+            document.getElementById('noConoceBtn').addEventListener('click', function () {
+                loConoceOptions.classList.add('d-none');
+                noConoceView.classList.remove('d-none');
+            });
+
+            document.getElementById('dejarRecadoBtn').addEventListener('click', function () {
+                siConoceOptions.classList.add('d-none');
+                dejarRecadoView.classList.remove('d-none');
+            });
+
+            document.getElementById('otroTelefonoBtn').addEventListener('click', function () {
+                siConoceOptions.classList.add('d-none');
+                agendarView.classList.remove('d-none');
+            });
+
+            document.getElementById('noTieneTiempoBtn').addEventListener('click', function () {
+                contactOptions.classList.add('d-none');
+                agendarView.classList.remove('d-none');
+            });
+
+            document.getElementById('titularBtn').addEventListener('click', function () {
+                mainView.classList.add('d-none');
+                insuranceView.classList.remove('d-none');
+            });
+
+            document.getElementById('acceptInsuranceBtn').addEventListener('click', function () {
+                insuranceView.classList.add('d-none');
+                customerDataView.classList.remove('d-none');
+            });
+
+            document.getElementById('agregarBtn').addEventListener('click', function () {
+                const titulo = document.getElementById('titulo').value;
+                const nombre = document.getElementById('nombre2').value;
+                const paterno = document.getElementById('paterno2').value;
+                const materno = document.getElementById('materno2').value;
+                const fechaNac = document.getElementById('fechaNac').value;
+                const tipoPago = document.getElementById('tipoPago').value;
+                const plan = document.getElementById('plan').value;
+
+                if (nombre && paterno && materno && fechaNac) {
+                    const newRow = aseguradosTable.insertRow();
+                    newRow.innerHTML = `
+                <td>${titulo} ${nombre} ${paterno} ${materno}</td>
+                <td>${fechaNac}</td>
+                <td>${plan}</td>
+                <td>${tipoPago}</td>
+                <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
+            `;
+
+                    // Clear input fields after adding
+                    document.getElementById('nombre2').value = '';
+                    document.getElementById('paterno2').value = '';
+                    document.getElementById('materno2').value = '';
+                    document.getElementById('fechaNac').value = '';
+
+                    // Add event listener to the new "Eliminar" button
+                    newRow.querySelector('.eliminar').addEventListener('click', function () {
+                        aseguradosTable.removeChild(newRow);
+                    });
+                } else {
+                    alert('Por favor, complete todos los campos obligatorios.');
+                }
+            });
+
+            document.getElementById('continuarBtn').addEventListener('click', function () {
+                customerDataView.classList.add('d-none');
+                confirmationView.classList.remove('d-none');
+            });
+
+            document.querySelectorAll('.finalizarBtn').forEach(button => {
+                button.addEventListener('click', function () {
+                    alert('Proceso finalizado. Gracias por su tiempo.');
+                    resetForm();
+                });
+            });
+
+            document.getElementById('agendarBtn').addEventListener('click', function () {
+                alert('Cita agendada. Gracias por su tiempo.');
+                resetForm();
+            });
+
+            document.getElementById('declineInsuranceBtn').addEventListener('click', function () {
+                insuranceView.querySelector('.d-flex.justify-content-end').classList.add('d-none');
+                declineInsuranceView.classList.remove('d-none');
+            });
+
+            document.getElementById('finalizarRechazoBtn').addEventListener('click', function () {
+                const motivo = document.getElementById('motivoRechazo').value;
+                if (motivo === 'Seleccione una opción') {
+                    alert('Por favor, seleccione un motivo de rechazo.');
+                } else {
+                    alert('Seguro rechazado. Motivo: ' + motivo);
+                    resetForm();
+                }
+            });
+
+            document.getElementById('NecesitaPensarloBtn').addEventListener('click', function () {
+                insuranceView.classList.add('d-none');
+                agendarView.classList.remove('d-none');
+
+                // Pre-fill some fields in the agendarView
+                document.getElementById('ciclo').value = document.getElementById('ci').value;
+                document.getElementById('cuenta').value = document.getElementById('cuenta').value;
+                document.getElementById('fecha').valueAsDate = new Date();
+            });
+
+            function resetForm() {
+                // Hide all views
+                [
+                    mainView, insuranceView, customerDataView, confirmationView, contactOptions,
+                    noContactView, otraPersonaOptions, loConoceOptions, siConoceOptions,
+                    noConoceView, dejarRecadoView, agendarView, declineInsuranceView
+                ].forEach(view => {
+                    if (view) {
+                        view.classList.add('d-none');
+                    }
+                });
+
+                // Show initial view
+                if (mainView) {
+                    mainView.classList.remove('d-none');
+                }
+                if (initialButtons) {
+                    initialButtons.classList.remove('d-none');
+                }
+
+                // Clear all input fields
+                document.querySelectorAll('input').forEach(input => {
+                    switch (input.type) {
+                        case 'text':
+                        case 'email':
+                        case 'tel':
+                        case 'number':
+                        case 'date':
+                            input.value = '';
+                            break;
+                        case 'checkbox':
+                        case 'radio':
+                            input.checked = false;
+                            break;
+                    }
+                });
+
+                // Reset all select elements
+                document.querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
+
+                // Clear asegurados table
+                if (aseguradosTable) {
+                    aseguradosTable.innerHTML = '';
+                }
+
+                // Reset any custom styles or classes
+                document.querySelectorAll('.is-invalid, .is-valid').forEach(el => {
+                    el.classList.remove('is-invalid', 'is-valid');
+                });
+
+                // Clear any error messages
+                document.querySelectorAll('.invalid-feedback, .valid-feedback').forEach(el => {
+                    el.textContent = '';
+                });
+
+                // Reset any disabled buttons
+                document.querySelectorAll('button[disabled]').forEach(button => {
+                    button.disabled = false;
+                });
+
+                // Clear any dynamically added content
+                const dynamicContents = document.querySelectorAll('.dynamic-content');
+                dynamicContents.forEach(content => {
+                    content.innerHTML = '';
+                });
+
+                // Reset any progress indicators
+                const progressBars = document.querySelectorAll('.progress-bar');
+                progressBars.forEach(bar => {
+                    bar.style.width = '0%';
+                    bar.setAttribute('aria-valuenow', '0');
+                });
+
+                console.log('Form has been reset to its initial state');
+            }
+        });
+    </script>
+</body>
+
+</html>

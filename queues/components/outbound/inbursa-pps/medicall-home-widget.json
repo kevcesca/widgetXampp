@@ -1,0 +1,8 @@
+{
+  "id": "unique-widget-id",
+  "name": "Inbursa PPS",
+  "version": "1.0.0",
+  "description": "Widget para mostrar los detalles del cliente en SEARS",
+  "tags": ["inbursa", "pps", "sears"],
+  "element": "inbursa-pps"
+}

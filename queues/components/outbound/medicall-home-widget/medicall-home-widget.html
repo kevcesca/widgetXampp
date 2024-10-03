@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Información Personal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./medicall-home-widget.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-container">
+        <main class="container mt-3 main-content">
+            <p>Buenas Tardes, me podría comunicar con el Sr./Srita. <b> OMAR ALEJANDRO BALLEZA GONZALEZ</b>.</p>
+            <p class="mb-4"> Mi nombre es ABIGAIL NAJERA y estoy llamando de SEARS</p>
+            <form>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="nombreTitular" class="form-label">Nombre Titular:</label>
+                        <input type="text" class="form-control" id="nombreTitular">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="paterno" class="form-label">Paterno:</label>
+                        <input type="text" class="form-control" id="paterno">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="materno" class="form-label">Materno:</label>
+                        <input type="text" class="form-control" id="materno">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="noCuenta" class="form-label">No. de Cuenta:</label>
+                        <input type="text" class="form-control" id="noCuenta">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fechaApertura" class="form-label">Fecha de Apertura:</label>
+                        <input type="date" class="form-control" id="fechaApertura">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fechaCorte" class="form-label">Fecha de Corte:</label>
+                        <input type="date" class="form-control" id="fechaCorte">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="empleo" class="form-label">Empleo:</label>
+                        <input type="text" class="form-control" id="empleo">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="rfc" class="form-label">RFC:</label>
+                        <input type="text" class="form-control" id="rfc">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sexo" class="form-label">Sexo:</label>
+                        <input type="text" class="form-control" id="sexo">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="direccion" class="form-label">Dirección:</label>
+                        <input type="text" class="form-control" id="direccion">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="colonia" class="form-label">Colonia:</label>
+                        <input type="text" class="form-control" id="colonia">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="ciudad" class="form-label">Ciudad:</label>
+                        <input type="text" class="form-control" id="ciudad">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="cp" class="form-label">CP:</label>
+                        <input type="text" class="form-control" id="cp">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="estado" class="form-label">Estado:</label>
+                        <input type="text" class="form-control" id="estado">
+                    </div>
+                </div>
+
+                <div class="row p-2 border">
+                    <div class="col-md-3">
+                        <label for="telCasa" class="form-label">Tel. Casa:</label>
+                        <input type="tel" class="form-control" id="telCasa">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="telOficina" class="form-label">Tel. Oficina:</label>
+                        <input type="tel" class="form-control" id="telOficina">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="telCelular" class="form-label">Tel. C/Ref:</label>
+                        <input type="tel" class="form-control" id="telCelular">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="telOtro" class="form-label">Tel. O/Ref:</label>
+                        <input type="tel" class="form-control" id="telOtro">
+                    </div>
+                </div>
+
+                <div class="row p-2 border">
+                    <div class="col-md-4">
+                        <label for="nombreAdicional" class="form-label">Nombre Adicional:</label>
+                        <input type="text" class="form-control" id="nombreAdicional">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="paternoAdicional" class="form-label">Paterno:</label>
+                        <input type="text" class="form-control" id="paternoAdicional">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="maternoAdicional" class="form-label">Materno:</label>
+                        <input type="text" class="form-control" id="maternoAdicional">
+                    </div>
+                </div>
+
+                <div class="row p-2 border">
+                    <div class="col-md-6">
+                        <label for="numeroFolio" class="form-label">Número de folio captura:</label>
+                        <input type="text" class="form-control" id="numeroFolio">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="codigoRespuesta1" class="form-label">Código de respuesta Nivel 1:</label>
+                        <select class="form-select" id="codigoRespuesta1">
+                            <option selected>Seleccione una opción</option>
+                            <option value="acepta">ACEPTA</option>
+                            <option value="no_acepta">NO ACEPTA</option>
+                            <option value="no_contacto">NO CONTACTO</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-2 p-2 border">
+                    <div class="col-md-6">
+                        <label for="observaciones" class="form-label">Observaciones:</label>
+                        <textarea class="form-control" id="observaciones" rows="3"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="codigoRespuesta2" class="form-label">Código de respuesta Nivel 2:</label>
+                        <select class="form-select" id="codigoRespuesta2">
+                            <option selected>Seleccione una opción</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-success">Finalizar</button>
+                    </div>
+                </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>CTAS L SEARS</h2>
+                <i class="bi bi-telephone-fill ms-2"></i>
+            </div>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
+            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+
+            <div class="sidebar-buttons">
+                <button id="inicio" class="sidebar-button">
+                    <i class="bi bi-house-door-fill"></i> INICIO
+                </button>
+                <button id="tips" class="sidebar-button">
+                    <i class="bi bi-lightbulb-fill"></i> TIPS
+                </button>
+                <button id="agenda" class="sidebar-button">
+                    <i class="bi bi-calendar-event-fill"></i> Agenda
+                </button>
+            </div>
+
+            <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
+            <div class="call-actions">
+                <button class="btn btn-success"><i class="bi bi-telephone-fill"></i></button>
+                <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <p class="mt-2 text-muted">Sin Promociones</p>
+        </aside>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const codigoRespuesta1 = document.getElementById('codigoRespuesta1');
+            const codigoRespuesta2 = document.getElementById('codigoRespuesta2');
+            const observaciones = document.getElementById('observaciones');
+
+            const opcionesAcepta = ['ANUAL', 'MENSUAL'];
+            const opcionesNoAcepta = ['COSTO', 'NO CUBRE NECESIDADES', 'NO LE INTERESA', 'YA TIENE SERVICIO', 'No ha tenido Tiempo', 'OTROS NA'];
+            const opcionesNoContacto = ['NO VIVE AHÍ', 'NO SE ENCUENTRA', "No Contesta", "CONTESTADORA", "Teléfono Ocupado", "Fuera de Servicio", "CLIENTE RIP", "OTROS NC", "Datos no Corresponden Req/Tel"];
+
+            codigoRespuesta1.addEventListener('change', function () {
+                codigoRespuesta2.innerHTML = '<option selected>Seleccione una opción</option>';
+
+                if (this.value === 'acepta') {
+                    opcionesAcepta.forEach(opcion => {
+                        const option = document.createElement('option');
+                        option.value = opcion.toLowerCase();
+                        option.textContent = opcion;
+                        codigoRespuesta2.appendChild(option);
+                    });
+                    codigoRespuesta2.style.display = 'block';
+                    observaciones.style.display = 'none';
+                } else if (this.value === 'no_acepta') {
+                    opcionesNoAcepta.forEach(opcion => {
+                        const option = document.createElement('option');
+                        option.value = opcion.toLowerCase().replace(/ /g, '_');
+                        option.textContent = opcion;
+                        codigoRespuesta2.appendChild(option);
+                    });
+                    codigoRespuesta2.style.display = 'block';
+                    observaciones.style.display = 'block';
+
+                } else if (this.value === 'no_contacto') {
+                    opcionesNoContacto.forEach(opcion => {
+                        const option = document.createElement('option');
+                        option.value = opcion.toLowerCase().replace(/ /g, '_');
+                        option.textContent = opcion;
+                        codigoRespuesta2.appendChild(option);
+                    });
+                    codigoRespuesta2.style.display = 'block';
+                    observaciones.style.display = 'block';
+                } else {
+                    codigoRespuesta2.style.display = 'none';
+                    observaciones.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

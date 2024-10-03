@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal con Parámetros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .menu-container {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .menu-item {
+            transition: opacity 0.2s;
+        }
+        .menu-item:hover {
+            opacity: 0.8;
+        }
+    </style>
+    <script>
+        // Función para obtener los parámetros de la URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            const cuenta = params.get('cuenta') || 'N/A';
+            const tarjeta = params.get('tarjeta') || 'N/A';
+            const motivo = params.get('motivo') || 'N/A';
+            const nombre = params.get('nombre') || 'N/A';
+            const queue = params.get('queue') || 'N/A';
+            const telefono = params.get('telefono') || 'N/A';
+
+            // Mostrar los valores en el HTML
+            document.getElementById('cuenta').textContent = cuenta;
+            document.getElementById('tarjeta').textContent = tarjeta;
+            document.getElementById('motivo').textContent = motivo;
+            document.getElementById('nombre').textContent = nombre;
+            document.getElementById('telefono').textContent = telefono;
+
+            // Redirigir si el parámetro "queue" está presente
+            if (queue !== 'N/A') {
+                redirectToQueue(queue);
+            }
+        }
+
+        // Función para redirigir a la URL según el valor del parámetro "queue"
+        function redirectToQueue(queue) {
+            const params = new URLSearchParams(window.location.search);
+            let targetUrl = '';
+
+            // Definir la URL de redirección según el valor de queue
+            switch (queue) {
+                case 'sears':
+                    targetUrl = './components/inbound/sears/sears.html';
+                    break;
+                case 'sanborns':
+                    targetUrl = './components/inbound/sanborns/sanborns.html';
+                    break;
+                case 'mixup':
+                    targetUrl = './components/inbound/mixup/mixup.html';
+                    break;
+                case 'robo':
+                    targetUrl = './components/inbound/robo/robo.html';
+                    break;
+                default:
+                    console.log('Queue no válida, permaneciendo en la página actual.');
+                    return;
+            }
+
+            // Redirigir manteniendo los parámetros originales
+            window.location.href = `${targetUrl}?${params.toString()}`;
+        }
+
+        // Función para redirigir manteniendo los parámetros actuales
+        function redirectWithParams(url) {
+            const params = new URLSearchParams(window.location.search);
+            window.location.href = `${url}?${params.toString()}`;
+        }
+
+        window.onload = getQueryParams;
+    </script>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="menu-container p-4 p-md-5">
+            <h1 class="text-center mb-5">Bienvenido al Demo de widgets</h1>
+
+            <!-- Mostrar parámetros recibidos desde la URL -->
+            <div class="mb-4">
+                <h3>Parámetros recibidos</h3>
+                <ul>
+                    <li><strong>Cuenta:</strong> <span id="cuenta"></span></li>
+                    <li><strong>Tarjeta:</strong> <span id="tarjeta"></span></li>
+                    <li><strong>Motivo:</strong> <span id="motivo"></span></li>
+                    <li><strong>Nombre:</strong> <span id="nombre"></span></li>
+                    <li><strong>Teléfono:</strong> <span id="telefono"></span></li>
+                </ul>
+            </div>
+
+            <!-- Botones originales -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h2 class="mb-3">Inbound</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/inbound/sears/sears.html')" class="btn btn-warning w-100 menu-item">SEARS</button>
+                        </li>
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/inbound/sanborns/sanborns.html')" class="btn btn-primary w-100 menu-item">Sanborns</button>
+                        </li>
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/inbound/mixup/mixup.html')" class="btn btn-success w-100 menu-item">Mixup</button>
+                        </li>
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/inbound/robo/robo.html')" class="btn btn-danger w-100 menu-item">Robo</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <h2 class="mb-3">Outbound</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/outbound/autotal/autotal.html')" class="btn btn-warning w-100 menu-item">Autotal</button>
+                        </li>
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/outbound/autotal-linea/autotal.html')" class="btn btn-primary w-100 menu-item">Autotal en línea</button>
+                        </li>
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/outbound/bienestar/bienestar.html')" class="btn btn-success w-100 menu-item">Bienestar</button>
+                        </li>
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/outbound/inbursa-pps/inbursa-pps.html')" class="btn btn-danger w-100 menu-item">Inbursa PPS</button>
+                        </li>
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/outbound/medicall-home-widget/medicall-home-widget.html')" class="btn btn-info w-100 menu-item">Medicall</button>
+                        </li>
+                        <li class="mb-2">
+                            <button onclick="redirectWithParams('./components/outbound/promociones/autotal.html')" class="btn btn-outline-primary w-100 menu-item">Promociones</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

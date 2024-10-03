@@ -1,0 +1,8 @@
+{
+  "id": "1b4e28ba-2fa1-4f5c-b77c-4e9bb5704c1e",
+  "name": "mi-widget",
+  "version": "1.0.0",
+  "description": "Un ejemplo de Web Component para Avaya Workspaces.",
+  "tags": ["widget", "custom"],
+  "element": "mi-widget"
+}

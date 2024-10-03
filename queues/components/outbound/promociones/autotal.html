@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Contacto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./autotal.css">
+</head>
+
+<body>
+    <div class="page-container">
+        <main class="container mt-3 main-content">
+            <div id="seccion1">
+                <p class="mb-3"><b>Buenas Tardes. Habla ABIGAIL NAJERA de crédito SEARS.</b> </p>
+                <p><b>Me gustaría hablar con el Sr.(a) HORACIO MACIEL HERNANDEZ.</b></p>
+
+                <div class="m-4 d-flex flex-column justify-content-center align-items-end">
+                    <div class="m-2">
+                        <button type="button" id="contactoExitoso" class="btn btn-success btn-sm me-1"> Contacto
+                            Exitoso</button>
+                        <button type="button" id="contactoNoExitoso" class="btn btn-danger btn-sm"> Contacto No
+                            Exitoso</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seccionNoExitoso" class="hidden">
+                <h6 class="mb-3">Preguntar: ¿Con quién tengo el gusto?</h6>
+                <input type="text" class="form-control mb-3" placeholder="Persona en el teléfono...">
+                <p>Sra. ¿Es usted familiar del Sr(a) HORACIO MACIEL HERNANDEZ?</p>
+                <p>Por favor, le puede informar que le llamamos del departamento de Promociones SEARS, le dejo el número
+                    telefónico para que se comunique con nosotros, nuestros horarios son de lunes a viernes de 9 a 6 de
+                    la tarde y los sábados de 9 a 2 de la tarde. Gracias.</p>
+                <p class="text-primary"><b>NOTA:</b> Siempre tenga a la mano papel y lápiz para tomar nota de todo lo
+                    que el cliente diga. Esta es la mejor manera de enriquecer este programa.</p>
+                <div class="d-flex justify-content-end">
+                    <button id="despedida" class="btn btn-primary">Despedida</button>
+                </div>
+            </div>
+
+            <div id="seccionDespedida" class="hidden">
+                <h6 class="mb-3">Preguntar: ¿Con quién tengo el gusto?</h6>
+                <input type="text" class="form-control mb-3" placeholder="Persona en el teléfono...">
+                <p>Sra. ¿Es usted familiar del Sr(a) HORACIO MACIEL HERNANDEZ?</p>
+                <p>Por favor, le puede informar que le llamamos del departamento de Promociones SEARS, le dejo el número
+                    telefónico para que se comunique con nosotros, nuestros horarios son de lunes a viernes de 9 a 6 de
+                    la tarde y los sábados de 9 a 2 de la tarde. Gracias.</p>
+                <p class="text-primary"><b>NOTA:</b> Siempre tenga a la mano papel y lápiz para tomar nota de todo lo
+                    que el cliente diga. Esta es la mejor manera de enriquecer este programa.</p>
+                <p><b>Esperamos tener el placer de atenderlo próximamente.</b></p>
+                <h6 class="mt-4 mb-2">Código de Respuesta</h6>
+                <select class="form-select mb-3" id="codigoRespuestaDespedida">
+                    <option selected>PROMESA DE COMPRA</option>
+                    <option>Referencia</option>
+                    <option>Envío de Tarjeta</option>
+                    <option>No Realizará Compra</option>
+                    <option>No vive Ahí</option>
+                    <option>Buzón</option>
+                    <option>Recado Otros</option>
+                    <option>Recado Familiar Indirecto</option>
+                    <option>Datos no Corresponden Req./Tel</option>
+                    <option>No Contestan</option>
+                    <option>Riesgo alto, se mantiene bloqueo</option>
+                    <option>Riesgo bajo, desbloqueo cuenta</option>
+                    <option>Contacto con Familiar o Titular 2</option>
+                    <option>Cliente RIP</option>
+                </select>
+                <div class="d-flex justify-content-end">
+                    <button id="finalizarLlamadaDespedida" class="btn btn-primary">Finalizar llamada</button>
+                </div>
+            </div>
+
+            <div id="seccion2" class="hidden">
+                <h6 class="mb-3">¿Tiene su tarjeta de crédito?</h6>
+                <div class="m-4 d-flex flex-column justify-content-center align-items-end">
+                    <div class="m-2">
+                        <button id="siTieneTarjeta" class="btn btn-success btn-sm me-1">Si Tiene Tarjeta</button>
+                        <button id="noTieneTarjeta" class="btn btn-danger btn-sm">NO Tiene Tarjeta</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seccion3" class="hidden">
+                <h6 class="mb-3">Sr(a):HORACIO Hemos notado que no ha hecho uso de su tarjeta de Crédito SEARS
+                    últimamente,
+                    por lo que el motivo de mi llamada es hacerle una cordial invitación a pasar por nuestras tiendas ya
+                    que
+                    contamos con promociones exclusivas para nuestros tarjetahabientes.</h6>
+                <p class="text-primary">* MENCIONAR LAS PROMOCIONES VIGENTES *</p>
+                <p class="text-info">En caso de no existir promociones vigentes al momento de la llamada...</p>
+                <h6 class="mt-3">MENCIONAR LOS BENEFICIOS DEL CRÉDITO SEARS:</h6>
+                <ul class="benefits-list">
+                    <li>Aceptada en Hoteles Calinda como forma de pago, además de obtener hasta un 25% de Descuentos y
+                        Promociones en establecimientos de prestigio a nivel nacional (puede consultarlos en nuestra
+                        página
+                        de internet www.sears.com.mx)</li>
+                    <li>Seguros Inbursa con cargo mensual a su tarjeta, tales como: Autotal, Protección Personal Sears
+                        que
+                        con solo $21.00 mensuales le ofrece Servicios Funerarios, Auxilio Vial, Emergencia Médica y
+                        Muerte
+                        Accidental.</li>
+                    <li>Mensualmente contamos con promociones exclusivas para tarjetahabientes.</li>
+                    <li>Hasta 30 meses para pagar.</li>
+                    <li>Todas sus compras con crédito revolvente Sears le dan puntos que puede cambiar por cualquier
+                        artículo o servicio en Sears.</li>
+                    <li>No tiene costo por apertura de cuenta, manejo de cuenta ni anualidad.</li>
+                    <li>Tarjetas Adicionales sin costo.</li>
+                    <li>20% de descuento en su primera compra con el cupón vigente</li>
+                    <li>25 días después de su fecha de corte para liquidar el saldo, sin generar intereses</li>
+                </ul>
+                <div class="d-flex justify-content-end">
+                    <button id="continuar" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+
+            <div id="seccion4" class="hidden">
+                <h6 class="mb-3">Preguntar motivo por el que no ha utilizado la tarjeta.</h6>
+                <select class="form-select mb-3" id="motivoNoUso">
+                    <option selected>Otros</option>
+                    <option>No ha tenido Tiempo</option>
+                    <option>No le gusta la Tienda o Mercancía</option>
+                    <option>Mal Servicio</option>
+                    <option>Paga con otras Tarjetas</option>
+                    <option>Paga con Efectivo</option>
+                    <option>No hay Promociones</option>
+                    <option>Línea de Crédito Insuficiente</option>
+                    <option>No Tiene Tarjeta</option>
+                    <option>Buzón</option>
+                    <option>No le interesa la Tarjeta</option>
+                </select>
+                <div class="d-flex justify-content-end">
+                    <button id="siguiente" class="btn btn-primary">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="seccion5" class="hidden">
+                <h6 class="mb-3">Esperamos tener el placer de atenderlo próximamente.</h6>
+                <h6 class="mb-3">Código de Respuesta</h6>
+                <select class="form-select mb-3" id="codigoRespuesta">
+                    <option selected>PROMESA DE COMPRA</option>
+                    <option>Referencia</option>
+                    <option>Envío de Tarjeta</option>
+                    <option>No Realizará Compra</option>
+                    <option>No vive Ahí</option>
+                    <option>Buzón</option>
+                    <option>Recado Otros</option>
+                    <option>Recado Familiar Indirecto</option>
+                    <option>Datos no Corresponden Req./Tel</option>
+                    <option>No Contestan</option>
+                    <option>Riesgo alto, se mantiene bloqueo</option>
+                    <option>Riesgo bajo, desbloqueo cuenta</option>
+                    <option>Contacto con Familiar o Titular 2</option>
+                    <option>Cliente RIP</option>
+                </select>
+                <div class="d-flex justify-content-end">
+                    <button id="finalizarLlamada" class="btn btn-primary">Finalizar llamada</button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>CTAS L SEARS</h2>
+                <i class="bi bi-telephone-fill ms-2"></i>
+            </div>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
+            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+
+            <div class="sidebar-buttons">
+                <button id="inicio" class="sidebar-button">
+                    <i class="bi bi-house-door-fill"></i> INICIO
+                </button>
+                <button id="tips" class="sidebar-button">
+                    <i class="bi bi-lightbulb-fill"></i> TIPS
+                </button>
+                <button id="agenda" class="sidebar-button">
+                    <i class="bi bi-calendar-event-fill"></i> Agenda
+                </button>
+            </div>
+
+            <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
+            <div class="call-actions">
+                <button class="btn btn-success"><i class="bi bi-telephone-fill"></i></button>
+                <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <p class="mt-2 text-muted">Sin Promociones</p>
+        </aside>
+
+    </div>
+
+    <script>
+        document.getElementById('contactoExitoso').addEventListener('click', function () {
+            document.getElementById('seccion1').classList.add('hidden');
+            document.getElementById('seccion2').classList.remove('hidden');
+        });
+
+        document.getElementById('contactoNoExitoso').addEventListener('click', function () {
+            document.getElementById('seccion1').classList.add('hidden');
+            document.getElementById('seccionNoExitoso').classList.remove('hidden');
+        });
+
+        document.getElementById('siTieneTarjeta').addEventListener('click', function () {
+            document.getElementById('seccion2').classList.add('hidden');
+            document.getElementById('seccion3').classList.remove('hidden');
+        });
+
+        document.getElementById('noTieneTarjeta').addEventListener('click', function () {
+            alert('El cliente no tiene tarjeta');
+        });
+
+        document.getElementById('continuar').addEventListener('click', function () {
+            document.getElementById('seccion3').classList.add('hidden');
+            document.getElementById('seccion4').classList.remove('hidden');
+        });
+
+        document.getElementById('siguiente').addEventListener('click', function () {
+            document.getElementById('seccion4').classList.add('hidden');
+            document.getElementById('seccion5').classList.remove('hidden');
+        });
+
+        document.getElementById('finalizarLlamada').addEventListener('click', function () {
+            alert('Llamada finalizada');
+            // Reset to first section
+            document.querySelectorAll('.container > div').forEach(function (el) {
+                el.classList.add('hidden');
+            });
+            document.getElementById('seccion1').classList.remove('hidden');
+        });
+
+        document.getElementById('despedida').addEventListener('click', function () {
+            document.getElementById('seccionNoExitoso').classList.add('hidden');
+            document.getElementById('seccionDespedida').classList.remove('hidden');
+        });
+
+        document.getElementById('finalizarLlamadaDespedida').addEventListener('click', function () {
+            alert('Llamada finalizada');
+            // Reset to first section
+            document.querySelectorAll('.container > div').forEach(function (el) {
+                el.classList.add('hidden');
+            });
+            document.getElementById('seccion1').classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>

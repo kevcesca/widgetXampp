@@ -1,0 +1,260 @@
+.customer-info {
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    margin-top: 10px;
+}
+
+.card-custom {
+    margin: 15px 0;
+}
+
+.info-text {
+    color: #333;
+    font-weight: bold;
+}
+
+.status-labels .badge {
+    margin: 5px 0;
+}
+
+.btn-finish {
+    margin-bottom: 10px;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table-motivos {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table-motivos thead th {
+    background-color: #f0f0f0; /* Color gris igual que la tabla de tiendas */
+    padding: 12px;
+    border: none;
+    
+}
+
+.table-motivos tbody td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.table-stores thead th {
+    background-color: #f0f0f0; /* Color gris */
+    border: none;
+    padding: 12px;
+}
+
+.table-stores tbody td {
+    border: none;
+    padding: 10px;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.formrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: last baseline;
+    margin-bottom: 20px;
+}
+
+.formrow .neo-form-group {
+    margin-right: 10px;
+}
+
+/* Colores personalizados para los botones */
+.neo-button.btn-primary {
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+    color: white !important;
+    padding: .2rem;
+}
+
+.neo-button.btn-success {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    color: white !important;
+    padding: .2rem;
+}
+
+/* Efectos hover para los botones */
+.neo-button.btn-primary:hover {
+    background-color: #138496 !important;
+    border-color: #117a8b !important;
+}
+
+.neo-button.btn-success:hover {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+}
+
+/* Estilos del layout del Web Component */
+.widget-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Ahora el sidebar está a la derecha */
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+/* Ajustes del sidebar */
+.sidebar-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.neo-container {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos adicionales de botones */
+.neo-button {
+    margin-left: 10px;
+}
+
+.neo-form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.neo-form-control {
+    padding: .3rem;
+}
+
+/* Estilos para los botones personalizados */
+.custom-primary {
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+    color: white !important;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+}
+
+.custom-success {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    color: white !important;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+}
+
+.custom-primary:hover {
+    background-color: #138496 !important;
+    border-color: #117a8b !important;
+}
+
+.custom-success:hover {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+}
+
+/* Contenedor de la barra lateral */
+.sidebar-container {
+    width: 100%;
+    max-width: 280px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    padding: 15px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.sidebar-header h5 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.sidebar-header p {
+    margin-bottom: 5px;
+}
+
+.sidebar-card p {
+    margin-bottom: 5px;
+}
+
+.sidebar-buttons .btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.sidebar-buttons .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: black;
+}
+
+.sidebar-buttons .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.sidebar-buttons .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Asegúrate de que las tablas ocupen todo el ancho del contenedor */
+.neo-table {
+    width: 100%; /* Forzar que la tabla use el ancho completo */
+    margin-top: 20px;
+    table-layout: fixed; /* Distribuye las columnas equitativamente */
+    word-wrap: break-word; /* Evita que las palabras se desborden */
+}
+
+.neo-table th, .neo-table td {
+    padding: 12px; /* Espaciado adecuado en las celdas */
+    text-align: center; /* Centrar texto en celdas */
+}
+
+/* Si necesitas que se ajuste mejor a la estructura, aplica el tamaño del contenedor */
+.motivos-contacto {
+    width: 100%;
+}
+
+/* Asegurar que la tabla también tenga suficiente espacio en la parte responsive */
+.neo-table-responsive {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+
+
+/* Responsive: ocultar barra en pantallas pequeñas */
+@media (max-width: 768px) {
+    .widget-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-container {
+        display: none;
+    }
+}
