@@ -19,7 +19,7 @@ class CentroAtencionSanborns extends HTMLElement {
         <link rel="stylesheet" href="../css/neo/neon.css">
         <div class="widget-layout">
             <!-- Contenido principal del Web Component -->
-            <div class="neo-container container">
+            <div id="main-content" class="neo-container container">
                 <h5>Centro de Atención Telefónica SANBORNS.</h5>
                 <p><span class="customer-info">Buenas Tardes, le atiende: <b>ABIGAIL NAJERA</b>.</span></p>
                 <p>¿Tengo el gusto con el Sr./Sra. <b>${nombre}</b>? ¿En qué puedo servirle?</p>
@@ -41,7 +41,7 @@ class CentroAtencionSanborns extends HTMLElement {
                             <!-- Las opciones se llenarán dinámicamente con JavaScript -->
                         </select>
                     </div>
-                    <button class="btn custom-primary">Agregar</button>
+                    <button id="agregar-btn" class="btn custom-primary">Agregar</button>
                 </div>
 
                 <!-- Tabla de Motivos de Contacto -->
@@ -55,8 +55,8 @@ class CentroAtencionSanborns extends HTMLElement {
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="motivos-body">
+                            <tr id="no-info-row">
                                 <td colspan="3">Sin Información</td>
                             </tr>
                         </tbody>
@@ -102,6 +102,65 @@ class CentroAtencionSanborns extends HTMLElement {
                 </div>
             </div>
 
+            <!-- Formulario de Estado de Cuenta (inicialmente oculto) -->
+            <div id="estado-cuenta-form" class="estado-cuenta-form" style="display: none;">
+                <h2>Envío de Estado de Cuenta</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" class="form-control" value="${this.nombre || ''}">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tipo-cuenta">Tipo de Cuenta:</label>
+                            <select id="tipo-cuenta" class="form-control">
+                                <option>Publica</option>
+                                <!-- Agregar más opciones si es necesario -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="periodo-inicial">Periodo Inicial:</label>
+                            <select id="periodo-inicial" class="form-control">
+                                <option>02-2024</option>
+                                <!-- Agregar más opciones si es necesario -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="periodo-final">Periodo Final:</label>
+                            <select id="periodo-final" class="form-control">
+                                <option>02-2024</option>
+                                <!-- Agregar más opciones si es necesario -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="forma-envio">Forma de Envío:</label>
+                            <select id="forma-envio" class="form-control">
+                                <option>Correo</option>
+                                <!-- Agregar más opciones si es necesario -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo:</label>
+                            <div class="input-group">
+                                <input type="email" id="correo" class="form-control">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn-refresh">↻</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-enviar">Enviar</button>
+                </form>
+                <div class="info-container">
+                    <span class="info-text">Favor de solicitar el No. de Fax o la Dirección de Email.</span>
+                    <span class="info-text">Para enviar un Fax el Cliente debe dejar su Fax en Automático.</span>
+                    <span class="info-text">El Fax o Email llegará en un Periodo de de 30 a 45 Minutos.</span>
+                </div>
+                
+            </div>
+
             <!-- Sidebar -->
             <div class="sidebar-container">
                 <div class="sidebar-content">
@@ -123,9 +182,9 @@ class CentroAtencionSanborns extends HTMLElement {
                     </div>
                     <!-- Botones de acciones -->
                     <div class="sidebar-buttons">
-                        <button class="btn btn-warning btn-block mb-2">🏠 Inicio</button>
-                        <button class="btn btn-info btn-block mb-2">💡 Tips</button>
-                        <button class="btn btn-danger btn-block mb-2">📊 Edo. Cuenta</button>
+                        <button id="btn-inicio" class="btn btn-warning btn-block mb-2">🏠 Inicio</button>
+                        <button id="btn-tips" class="btn btn-info btn-block mb-2">💡 Tips</button>
+                        <button id="btn-edo-cuenta" class="btn btn-danger btn-block mb-2">📊 Edo. Cuenta</button>
                     </div>
                 </div>
             </div>
@@ -134,6 +193,52 @@ class CentroAtencionSanborns extends HTMLElement {
 
         // Llamamos a los métodos después de que el HTML ha sido renderizado
         this.setupDropdownLogic();
+        this.setupAddButton();
+        this.setupEdoCuentaButton();
+    }
+
+    // Función para manejar la lógica del botón "Agregar"
+    setupAddButton() {
+        const addButton = this.shadowRoot.getElementById('agregar-btn');
+        const grupoSelect = this.shadowRoot.getElementById('grupo');
+        const servicioSelect = this.shadowRoot.getElementById('servicio');
+        const motivosBody = this.shadowRoot.getElementById('motivos-body');
+        const noInfoRow = this.shadowRoot.getElementById('no-info-row');
+
+        addButton.addEventListener('click', () => {
+            const grupo = grupoSelect.value;
+            const servicio = servicioSelect.value;
+
+            // Eliminar la fila "Sin Información" si es necesario
+            if (noInfoRow) {
+                noInfoRow.remove();
+            }
+
+            // Crear una nueva fila en la tabla
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${grupo}</td>
+                <td>${servicio}</td>
+                <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
+            `;
+
+            // Añadir la nueva fila a la tabla de motivos
+            motivosBody.appendChild(newRow);
+
+            // Agregar funcionalidad al botón "Eliminar"
+            const eliminarBtn = newRow.querySelector('.eliminar-btn');
+            eliminarBtn.addEventListener('click', () => {
+                newRow.remove();
+
+                // Si no hay más filas en la tabla, mostrar el mensaje "Sin Información"
+                if (motivosBody.children.length === 0) {
+                    const emptyRow = document.createElement('tr');
+                    emptyRow.id = 'no-info-row';
+                    emptyRow.innerHTML = `<td colspan="3">Sin Información</td>`;
+                    motivosBody.appendChild(emptyRow);
+                }
+            });
+        });
     }
 
     // Lógica para actualizar el dropdown de servicios
@@ -146,11 +251,13 @@ class CentroAtencionSanborns extends HTMLElement {
                 "Transferencia a Aprobaciones", "Activación de NIP", "Cambios Demográficos", "Cancelación de Adicional",
                 "Cancelación de Cuenta", "Carta Referencia", "Cliente RIP", "Directorio de tiendas",
                 "Envío de Estados de Cuenta", "Envío de Placa", "Problemas Internet", "Queja de Servicio Tienda",
-                "Registro de Adicional", "Reporte de Estados de Cuenta", "Status de Solicitud", "Tarjeta Robada", "Transferencia (Conmutador o algún Agente)",
-                "Transferencia a Cobranza", "Transferencia a Promociones", "Transferencias a Seguros", "Viajes Sears"
+                "Registro de Adicional", "Reporte de Estados de Cuenta", "Status de Solicitud", "Tarjeta Robada",
+                "Transferencia (Conmutador o algún Agente)", "Transferencia a Cobranza", "Transferencia a Promociones",
+                "Transferencias a Seguros", "Viajes Sears"
             ]
         };
 
+        
         const grupoSelect = this.shadowRoot.getElementById("grupo");
         const servicioSelect = this.shadowRoot.getElementById("servicio");
 
@@ -169,6 +276,22 @@ class CentroAtencionSanborns extends HTMLElement {
         grupoSelect.addEventListener("change", updateServicios);
         updateServicios();
     }
+
+    setupEdoCuentaButton() {
+        const edoCuentaBtn = this.shadowRoot.getElementById('btn-edo-cuenta');
+        const mainContent = this.shadowRoot.getElementById('main-content');
+        const estadoCuentaForm = this.shadowRoot.getElementById('estado-cuenta-form');
+
+        edoCuentaBtn.addEventListener('click', () => {
+            if (mainContent.style.display !== 'none') {
+                mainContent.style.display = 'none';
+                estadoCuentaForm.style.display = 'block';
+            } else {
+                mainContent.style.display = 'block';
+                estadoCuentaForm.style.display = 'none';
+            }
+        });
+    };
 }
 
 // Definir el nuevo custom element

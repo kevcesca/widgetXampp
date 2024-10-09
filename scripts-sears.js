@@ -55,81 +55,81 @@ class scriptsSears extends HTMLElement {
 
         } else {
 
-        _API.onDataEvent('onInteractionEvent', function (data) {
-            //console.log(`[${scriptsSears._WIDGETNAME}] onInteractionEvent`, data);
+            _API.onDataEvent('onInteractionEvent', function (data) {
+                //console.log(`[${scriptsSears._WIDGETNAME}] onInteractionEvent`, data);
 
-            if(data.state=="ALERTING"){
-                console.log(`[${scriptsSears._WIDGETNAME}] onInteractionEvent`, data);    
-            let phone = data.originatingAddress.replace('+', '');
-            
-            //Read P-Intrinsics from POM server
-            let engagements = data.intrinsics.ENGAGEMENT_PARAMETERS;
-            console.log(`[${scriptsSears._WIDGETNAME}] ENGAGEMENT CUENTA`, engagements);
-            //console.log(`[${scriptsSears._WIDGETNAME}] ENGAGEMENT CUENTA`, engagements.CUENTA);
-            //TOPIC_NAME; Si lee el QUEUE
-            //ENGAGEMENT_PARAMETERS.CUENTA; Regresa undefined
-            
-            //Read agent Id
-            let ClientDet = _API.getClientDetails();
-            console.log(`[${scriptsSears._WIDGETNAME}] ClientDet`, ClientDet);
-            let agentid =  ClientDet.agentId;
-            let indAT = agentid.indexOf("@");
-            let agentsub = agentid.substring(0, (indAT));
-            
-            //ACCESS API CONTEXT
-            async function getToken(resptok){
-            const options = {
-                method: 'POST',
-                headers: {
-                  accept: 'application/json',
-                  'content-type': 'application/x-www-form-urlencoded'
-                },
-                    body: new URLSearchParams({
-                    grant_type: 'client_credentials',
-                    client_id: 'Client_CUWKGO',
-                    client_secret: 'WxQVnLmMmNpIsqGnNPlZXq7FN03LmUBz'
-                })
-              };
-              try{
-              const response = await fetch('https://na.api.avayacloud.com/api/auth/v1/CUWKGO/protocol/openid-connect/token', options);
-              const resptok = await response.json();
-              console.log(resptok);
-                return resptok;
-             } catch (e) {
-                return e;
-              }
-            }
+                if (data.state == "ALERTING") {
+                    console.log(`[${scriptsSears._WIDGETNAME}] onInteractionEvent`, data);
+                    let phone = data.originatingAddress.replace('+', '');
 
-            getToken().then(resptok => getEng(resptok.access_token)); 
-            
+                    //Read P-Intrinsics from POM server
+                    let engagements = data.intrinsics.ENGAGEMENT_PARAMETERS;
+                    console.log(`[${scriptsSears._WIDGETNAME}] ENGAGEMENT CUENTA`, engagements);
+                    //console.log(`[${scriptsSears._WIDGETNAME}] ENGAGEMENT CUENTA`, engagements.CUENTA);
+                    //TOPIC_NAME; Si lee el QUEUE
+                    //ENGAGEMENT_PARAMETERS.CUENTA; Regresa undefined
 
-            // API CUSTOMER JOURNEY GET ENGAGEMENT
-            async function getEng(tokenr){
-            const optAPI = {method: 'GET', headers: {accept: 'application/json', authorization: `Bearer ${tokenr}`, appkey: '3d5e4921f6cc44b594f5aa94930e346e' }};
-            try{    
-            const respAPI = await fetch(`https://na.api.avayacloud.com/api/journey/v1/accounts/CUWKGO/engagements/${data.workRequestId}`, optAPI);
-            const respident = await respAPI.json();
-            console.log(respident);
-            console.log(respident.identifiers.cuenta);
-            return respident;    
-            
-            } catch (e) {
-                return e;
-              }
-            }
+                    //Read agent Id
+                    let ClientDet = _API.getClientDetails();
+                    console.log(`[${scriptsSears._WIDGETNAME}] ClientDet`, ClientDet);
+                    let agentid = ClientDet.agentId;
+                    let indAT = agentid.indexOf("@");
+                    let agentsub = agentid.substring(0, (indAT));
 
-            
-            $container.find('#SCRIPTS-IFRAME').attr('src', `https://127.0.0.1/widgets/scripts-sears/queues/index.html?cuenta=123456&tarjeta=987654321&motivo=Pago&nombre=Juan%20Perez&telefono=5512345678&queue=sears`);
-            
+                    //ACCESS API CONTEXT
+                    async function getToken(resptok) {
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                accept: 'application/json',
+                                'content-type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({
+                                grant_type: 'client_credentials',
+                                client_id: 'Client_CUWKGO',
+                                client_secret: 'WxQVnLmMmNpIsqGnNPlZXq7FN03LmUBz'
+                            })
+                        };
+                        try {
+                            const response = await fetch('https://na.api.avayacloud.com/api/auth/v1/CUWKGO/protocol/openid-connect/token', options);
+                            const resptok = await response.json();
+                            console.log(resptok);
+                            return resptok;
+                        } catch (e) {
+                            return e;
+                        }
                     }
-           
 
-        });
-        //No hay evento de Contexto para llamadas de voz 
-        //_API.onDataEvent('onContextDataEvent', function contD (data1) { 
-        //    console.log(`[${scriptsSears._WIDGETNAME}] onContextDataEvent`, data1);
-        //}); 
-    } 
+                    getToken().then(resptok => getEng(resptok.access_token));
+
+
+                    // API CUSTOMER JOURNEY GET ENGAGEMENT
+                    async function getEng(tokenr) {
+                        const optAPI = { method: 'GET', headers: { accept: 'application/json', authorization: `Bearer ${tokenr}`, appkey: '3d5e4921f6cc44b594f5aa94930e346e' } };
+                        try {
+                            const respAPI = await fetch(`https://na.api.avayacloud.com/api/journey/v1/accounts/CUWKGO/engagements/${data.workRequestId}`, optAPI); // data es el objeto que se obtiene desde wl widget
+                            const respident = await respAPI.json();
+                            console.log(respident);
+                            console.log(respident.identifiers.cuenta);
+                            return respident;
+
+                        } catch (e) {
+                            return e;
+                        }
+                    }
+
+
+                    $container.find('#SCRIPTS-IFRAME').attr('src', `https://127.0.0.1/widgets/scripts-sears/queues/index.html?cuenta=123456&tarjeta=987654321&motivo=Pago&nombre=Juan%20Perez&telefono=5512345678&queue=sears`);
+
+                }
+
+
+            });
+            //No hay evento de Contexto para llamadas de voz 
+            //_API.onDataEvent('onContextDataEvent', function contD (data1) { 
+            //    console.log(`[${scriptsSears._WIDGETNAME}] onContextDataEvent`, data1);
+            //}); 
+        }
     }
 }
 
