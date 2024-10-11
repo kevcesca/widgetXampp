@@ -16,7 +16,6 @@ class CentroAtencionTelefonica extends HTMLElement {
         // Contenido HTML del Web Component con el sidebar incluido
         this.shadowRoot.innerHTML = `
         <link rel="stylesheet" href="sears.css">
-        <link rel="stylesheet" href="../../../css/neo/neon.css">
         <div class="widget-layout">
             <!-- Contenido principal del Web Component -->
             <div id="main-content" class="neo-container container">
@@ -115,21 +114,18 @@ class CentroAtencionTelefonica extends HTMLElement {
                             <label for="tipo-cuenta">Tipo de Cuenta:</label>
                             <select id="tipo-cuenta" class="form-control">
                                 <option>Publica</option>
-                                <!-- Agregar más opciones si es necesario -->
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="periodo-inicial">Periodo Inicial:</label>
                             <select id="periodo-inicial" class="form-control">
                                 <option>02-2024</option>
-                                <!-- Agregar más opciones si es necesario -->
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="periodo-final">Periodo Final:</label>
                             <select id="periodo-final" class="form-control">
                                 <option>02-2024</option>
-                                <!-- Agregar más opciones si es necesario -->
                             </select>
                         </div>
                     </div>
@@ -138,7 +134,6 @@ class CentroAtencionTelefonica extends HTMLElement {
                             <label for="forma-envio">Forma de Envío:</label>
                             <select id="forma-envio" class="form-control">
                                 <option>Correo</option>
-                                <!-- Agregar más opciones si es necesario -->
                             </select>
                         </div>
                         <div class="form-group">
@@ -156,9 +151,8 @@ class CentroAtencionTelefonica extends HTMLElement {
                 <div class="info-container">
                     <span class="info-text">Favor de solicitar el No. de Fax o la Dirección de Email.</span>
                     <span class="info-text">Para enviar un Fax el Cliente debe dejar su Fax en Automático.</span>
-                    <span class="info-text">El Fax o Email llegará en un Periodo de de 30 a 45 Minutos.</span>
+                    <span class="info-text">El Fax o Email llegará en un Periodo de 30 a 45 Minutos.</span>
                 </div>
-                
             </div>
 
             <!-- Sidebar -->
@@ -185,18 +179,27 @@ class CentroAtencionTelefonica extends HTMLElement {
                         <button id="btn-inicio" class="btn btn-warning btn-block mb-2">🏠 Inicio</button>
                         <button id="btn-tips" class="btn btn-info btn-block mb-2">💡 Tips</button>
                         <button id="btn-edo-cuenta" class="btn btn-danger btn-block mb-2">📊 Edo. Cuenta</button>
+                        <button id="btn-activar-nip" class="btn btn-success btn-block mb-2">🔑 Activar NIP</button>
                     </div>
                 </div>
             </div>
-        </div>
         `;
 
-        // Llamamos a los métodos después de que el HTML ha sido renderizado
+        // Llamar a los métodos de inicialización
         this.setupDropdownLogic();
         this.setupAddButton();
         this.setupEdoCuentaButton();
+
+        // Agregar funcionalidad para el botón de Inicio
+        const inicioBtn = this.shadowRoot.getElementById('btn-inicio');
+        inicioBtn.addEventListener('click', () => {
+            // Recargar la página actual con los mismos parámetros
+            const currentUrl = window.location.href; // Obtener la URL actual
+            window.location.href = currentUrl; // Recargar la página
+        });
     }
 
+    // Función para manejar la lógica del botón "Agregar"
     // Función para manejar la lógica del botón "Agregar"
     setupAddButton() {
         const addButton = this.shadowRoot.getElementById('agregar-btn');
@@ -207,7 +210,7 @@ class CentroAtencionTelefonica extends HTMLElement {
 
         addButton.addEventListener('click', () => {
             const grupo = grupoSelect.value;
-            const servicio = servicioSelect.value;
+            const codigoMotivo = servicioSelect.value; // El valor es el código del servicio
 
             // Eliminar la fila "Sin Información" si es necesario
             if (noInfoRow) {
@@ -217,10 +220,10 @@ class CentroAtencionTelefonica extends HTMLElement {
             // Crear una nueva fila en la tabla
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td>${grupo}</td>
-                <td>${servicio}</td>
-                <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
-            `;
+            <td>${grupo}</td>
+            <td>${codigoMotivo}</td>
+            <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
+        `;
 
             // Añadir la nueva fila a la tabla de motivos
             motivosBody.appendChild(newRow);
@@ -238,26 +241,61 @@ class CentroAtencionTelefonica extends HTMLElement {
                     motivosBody.appendChild(emptyRow);
                 }
             });
+
+            // Verificar si se está enviando el mensaje correctamente
+            console.log(`Enviando mensaje desde el iframe con motivo: ${codigoMotivo}`);
+
+            // Enviar el código del motivo seleccionado al widget principal
+            window.parent.postMessage({ motivo: codigoMotivo }, "*");
         });
     }
 
-    // Lógica para actualizar el dropdown de servicios
+
     setupDropdownLogic() {
+        // Mapa de servicios con sus respectivos códigos según la lista
         const servicios = {
-            "ACLARACIÓN": ["Bonificación de CXF", "Fraudes", "Cheques Devueltos", "Traspaso de Pago", "Traspaso de Venta", "Pagos Internet"],
-            "CAJEROS SANBORNS": ["DUDAS Y/O COMENTARIOS", "EFECTIVO RETENIDO", "RECHAZO DE RETIRO", "TARJETA RETENIDA"],
-            "LINEA DE CRÉDITO": ["Consulta de Saldo", "Traspaso CR a Reserva"],
+            "ACLARACIÓN": [
+                { nombre: "Bonificación de CXF", codigo: "FCTC" },
+                { nombre: "Fraudes", codigo: "FRTC" },
+                { nombre: "Cheques Devueltos", codigo: "NSTC" },
+                { nombre: "Traspaso de Pago", codigo: "BTTC" },
+                { nombre: "Pagos Internet", codigo: "MPTC" }
+            ],
+            "CAJEROS SEARS": [
+                { nombre: "DUDAS Y/O COMENTARIOS", codigo: "CAJDYC" },
+                { nombre: "EFECTIVO RETENIDO", codigo: "CAJEFRE" },
+                { nombre: "RECHAZO DE RETIRO", codigo: "CAJRERE" },
+                { nombre: "TARJETA RETENIDA", codigo: "CAJTARE" }
+            ],
+            "LINEA DE CRÉDITO": [
+                { nombre: "Consulta de Saldo", codigo: "CBTC" },
+                { nombre: "Traspaso CR a Reserva", codigo: "CRTC" }
+            ],
             "SERVICIO": [
-                "Transferencia a Aprobaciones", "Activación de NIP", "Cambios Demográficos", "Cancelación de Adicional",
-                "Cancelación de Cuenta", "Carta Referencia", "Cliente RIP", "Directorio de tiendas",
-                "Envío de Estados de Cuenta", "Envío de Placa", "Problemas Internet", "Queja de Servicio Tienda",
-                "Registro de Adicional", "Reporte de Estados de Cuenta", "Status de Solicitud", "Tarjeta Robada",
-                "Transferencia (Conmutador o algún Agente)", "Transferencia a Cobranza", "Transferencia a Promociones",
-                "Transferencias a Seguros", "Viajes Sears"
+                { nombre: "Transferencia a Aprobaciones", codigo: "TRAPP" },
+                { nombre: "Activación de NIP", codigo: "ANIP" },
+                { nombre: "Cambios Demográficos", codigo: "ODTC" },
+                { nombre: "Cancelación de Adicional", codigo: "CADIC" },
+                { nombre: "Cancelación de Cuenta", codigo: "ITTC" },
+                { nombre: "Carta Referencia", codigo: "MREF" },
+                { nombre: "Cliente RIP", codigo: "CRIP" },
+                { nombre: "Directorio de tiendas", codigo: "DTDA" },
+                { nombre: "Envío de Estados de Cuenta", codigo: "ECTA" },
+                { nombre: "Envío de Placa", codigo: "ENPL" },
+                { nombre: "Problemas Internet", codigo: "XINT" },
+                { nombre: "Queja de Servicio Tienda", codigo: "QST" },
+                { nombre: "Registro de Adicional", codigo: "ENAD" },
+                { nombre: "Reporte de Estados de Cuenta", codigo: "REECT" },
+                { nombre: "Status de Solicitud", codigo: "STSL" },
+                { nombre: "Tarjeta Robada", codigo: "SRTC" },
+                { nombre: "Transferencia (Conmutador o algún Agente)", codigo: "TRCON" },
+                { nombre: "Transferencia a Cobranza", codigo: "TRCOB" },
+                { nombre: "Transferencia a Promociones", codigo: "TRREA" },
+                { nombre: "Transferencias a Seguros", codigo: "TRSEG" },
+                { nombre: "Viajes Sears", codigo: "VJSEA" }
             ]
         };
 
-        
         const grupoSelect = this.shadowRoot.getElementById("grupo");
         const servicioSelect = this.shadowRoot.getElementById("servicio");
 
@@ -265,18 +303,21 @@ class CentroAtencionTelefonica extends HTMLElement {
             const selectedGrupo = grupoSelect.value;
             servicioSelect.innerHTML = "";
 
+            // Llenar el dropdown de servicios con los nombres del mapa
             servicios[selectedGrupo].forEach(servicio => {
                 const option = document.createElement("option");
-                option.text = servicio;
-                option.value = servicio;
+                option.text = servicio.nombre;
+                option.value = servicio.codigo;  // El valor ahora es el código del servicio
                 servicioSelect.add(option);
             });
         };
 
         grupoSelect.addEventListener("change", updateServicios);
-        updateServicios();
+        updateServicios();  // Inicializar con las opciones por defecto
     }
 
+
+    // Lógica para el botón "Estado de Cuenta"
     setupEdoCuentaButton() {
         const edoCuentaBtn = this.shadowRoot.getElementById('btn-edo-cuenta');
         const mainContent = this.shadowRoot.getElementById('main-content');
@@ -291,56 +332,8 @@ class CentroAtencionTelefonica extends HTMLElement {
                 estadoCuentaForm.style.display = 'none';
             }
         });
-    };
-
-        // Función para manejar la lógica del botón "Agregar"
-        setupAddButton() {
-            const addButton = this.shadowRoot.getElementById('agregar-btn');
-            const grupoSelect = this.shadowRoot.getElementById('grupo');
-            const servicioSelect = this.shadowRoot.getElementById('servicio');
-            const motivosBody = this.shadowRoot.getElementById('motivos-body');
-            const noInfoRow = this.shadowRoot.getElementById('no-info-row');
-    
-            addButton.addEventListener('click', () => {
-                const grupo = grupoSelect.value;
-                const servicio = servicioSelect.value;
-    
-                // Eliminar la fila "Sin Información" si es necesario
-                if (noInfoRow) {
-                    noInfoRow.remove();
-                }
-    
-                // Crear una nueva fila en la tabla
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `
-                    <td>${grupo}</td>
-                    <td>${servicio}</td>
-                    <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
-                `;
-    
-                // Añadir la nueva fila a la tabla de motivos
-                motivosBody.appendChild(newRow);
-    
-                // Agregar funcionalidad al botón "Eliminar"
-                const eliminarBtn = newRow.querySelector('.eliminar-btn');
-                eliminarBtn.addEventListener('click', () => {
-                    newRow.remove();
-    
-                    // Si no hay más filas en la tabla, mostrar el mensaje "Sin Información"
-                    if (motivosBody.children.length === 0) {
-                        const emptyRow = document.createElement('tr');
-                        emptyRow.id = 'no-info-row';
-                        emptyRow.innerHTML = `<td colspan="3">Sin Información</td>`;
-                        motivosBody.appendChild(emptyRow);
-                    }
-                });
-    
-                // Enviar el motivo seleccionado al widget contenedor
-                window.parent.postMessage({ motivo: servicio }, "*");
-            });
-        }    
+    }
 }
-
 
 // Definir el nuevo custom element
 customElements.define('centro-atencion-telefonica', CentroAtencionTelefonica);

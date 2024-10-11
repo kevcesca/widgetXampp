@@ -98,6 +98,7 @@ button#agregar-btn {
     font-size: 14px;
 }
 
+/* Estilos de los botones */
 .sidebar-buttons .btn-warning {
     background-color: #ffc107;
     border-color: #ffc107;
@@ -112,6 +113,33 @@ button#agregar-btn {
     background-color: #dc3545;
     border-color: #dc3545;
 }
+
+.sidebar-buttons .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Estilos para el hover de los botones */
+.sidebar-buttons .btn-warning:hover {
+    background-color: #e0a800;  /* Un poco más oscuro */
+    border-color: #d39e00;
+}
+
+.sidebar-buttons .btn-info:hover {
+    background-color: #138496;  /* Un poco más oscuro */
+    border-color: #117a8b;
+}
+
+.sidebar-buttons .btn-danger:hover {
+    background-color: #c82333;  /* Un poco más oscuro */
+    border-color: #bd2130;
+}
+
+.sidebar-buttons .btn-success:hover {
+    background-color: #218838;  /* Un poco más oscuro */
+    border-color: #1e7e34;
+}
+
 
 .btn-block{
     margin: .5rem;

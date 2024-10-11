@@ -177,16 +177,13 @@
                 <button id="tips" class="sidebar-button">
                     <i class="bi bi-lightbulb-fill"></i> TIPS
                 </button>
-                <button id="agenda" class="sidebar-button">
-                    <i class="bi bi-calendar-event-fill"></i> Agenda
-                </button>
             </div>
 
-            <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
+            <!-- <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
             <div class="call-actions">
                 <button class="btn btn-success"><i class="bi bi-telephone-fill"></i></button>
                 <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
-            </div>
+            </div> -->
             <p class="mt-2 text-muted">Sin Promociones</p>
         </aside>
 
@@ -243,6 +240,12 @@
                 el.classList.add('hidden');
             });
             document.getElementById('seccion1').classList.remove('hidden');
+        });
+
+        // Evento para regresar a la página inicial
+        document.getElementById('inicio').addEventListener('click', function () {
+            // Recargar la página manteniendo la URL y sus parámetros
+            window.location.href = window.location.href;
         });
     </script>
 </body>

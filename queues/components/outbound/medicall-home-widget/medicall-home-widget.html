@@ -170,16 +170,13 @@
                 <button id="tips" class="sidebar-button">
                     <i class="bi bi-lightbulb-fill"></i> TIPS
                 </button>
-                <button id="agenda" class="sidebar-button">
-                    <i class="bi bi-calendar-event-fill"></i> Agenda
-                </button>
             </div>
 
-            <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
+            <!-- <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
             <div class="call-actions">
                 <button class="btn btn-success"><i class="bi bi-telephone-fill"></i></button>
                 <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
-            </div>
+            </div> -->
             <p class="mt-2 text-muted">Sin Promociones</p>
         </aside>
     </div>
@@ -196,8 +193,15 @@
             const opcionesNoAcepta = ['COSTO', 'NO CUBRE NECESIDADES', 'NO LE INTERESA', 'YA TIENE SERVICIO', 'No ha tenido Tiempo', 'OTROS NA'];
             const opcionesNoContacto = ['NO VIVE AHÍ', 'NO SE ENCUENTRA', "No Contesta", "CONTESTADORA", "Teléfono Ocupado", "Fuera de Servicio", "CLIENTE RIP", "OTROS NC", "Datos no Corresponden Req/Tel"];
 
+            // Evento para regresar a la página inicial
+            document.getElementById('inicio').addEventListener('click', function () {
+                // Recargar la página manteniendo la URL y sus parámetros
+                window.location.href = window.location.href;
+            });
+
             codigoRespuesta1.addEventListener('change', function () {
                 codigoRespuesta2.innerHTML = '<option selected>Seleccione una opción</option>';
+                
 
                 if (this.value === 'acepta') {
                     opcionesAcepta.forEach(opcion => {

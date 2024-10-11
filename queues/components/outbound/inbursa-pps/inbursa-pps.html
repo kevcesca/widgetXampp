@@ -286,7 +286,7 @@
                         <h5 class="card-title">OMAR ALEJANDRO BALLEZA GONZALEZ</h5>
                         <p>Protección Personal SEARS el cual se está ofreciendo a través de su tarjeta de crédito SEARS.
                         </p>
-                        <p>Este seguro le brinda tranquilidad en situaciones difíciles por solo $40.50 mensual o $50.50
+                        <p>Este seguro le brinda tranquilidad en situaciones difíciles por solo $49 mensual o $69
                             en plan
                             conyugal, así en caso de que usted llegara a padecer una enfermedad o accidente le
                             asistiremos
@@ -304,22 +304,9 @@
                             alguna cobertura en especial?</p>
 
                         <div class="mb-3">
-                            <label for="coberturasSeguro" class="form-label">Información de Coberturas del
-                                Seguro:</label>
-                            <select class="form-select" id="coberturasSeguro">
-                                <option selected>Seleccione una cobertura</option>
-                                <option>Servicios Funerarios</option>
-                                <option>Muerte Accidental</option>
-                                <option>Emergencia Médica</option>
-                                <option>Asistencia Vial</option>
-                                <option>Planes y Costos</option>
-                            </select>
-
                             <label for="autorizador" class="form-label">Persona que lo autoriza</label>
                             <select class="form-select" id="autorizador">
                                 <option selected>titular</option>
-                                <option>Conyugue</option>
-                                <option>Adicional</option>
                             </select>
                         </div>
 
@@ -498,7 +485,7 @@
 
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2>CTAS L SEARS</h2>
+                <h2>PPS</h2>
                 <i class="bi bi-telephone-fill ms-2"></i>
             </div>
             <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
@@ -512,16 +499,13 @@
                 <button id="tips" class="sidebar-button">
                     <i class="bi bi-lightbulb-fill"></i> TIPS
                 </button>
-                <button id="agenda" class="sidebar-button">
-                    <i class="bi bi-calendar-event-fill"></i> Agenda
-                </button>
             </div>
 
-            <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
+            <!-- <input type="text" class="form-control sidebar-input" placeholder="Número telefónico a marcar">
             <div class="call-actions">
                 <button class="btn btn-success"><i class="bi bi-telephone-fill"></i></button>
                 <button class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
-            </div>
+            </div> -->
             <p class="mt-2 text-muted">Sin Promociones</p>
         </aside>
     </div>
@@ -691,6 +675,12 @@
                 document.getElementById('ciclo').value = document.getElementById('ci').value;
                 document.getElementById('cuenta').value = document.getElementById('cuenta').value;
                 document.getElementById('fecha').valueAsDate = new Date();
+            });
+
+            // Evento para regresar a la página inicial
+            document.getElementById('inicio').addEventListener('click', function () {
+                // Recargar la página manteniendo la URL y sus parámetros
+                window.location.href = window.location.href;
             });
 
             function resetForm() {
