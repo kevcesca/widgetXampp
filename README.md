@@ -1,10 +1,5 @@
 ## Versión: 0.6.0
 
-### Descripción del Proyecto
-
-Este proyecto tiene como objetivo la implementación de una plataforma para la gestión de campañas inbound y outbound, integrando funcionalidades para la generación de estados de cuenta y mejoras en la experiencia del usuario. La plataforma permite obtener datos de llamadas a través de AXP y se están realizando constantes mejoras en la interfaz de usuario.
-
-
 ### Cambios en la versión 0.6.0
 
 #### Inbound:
