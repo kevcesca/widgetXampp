@@ -1,3 +1,5 @@
+import { EstadoCuenta } from '../estadosCuenta/estadoCuenta.js';
+
 class CentroAtencionSanborns extends HTMLElement {
     constructor() {
         super();
@@ -185,21 +187,35 @@ class CentroAtencionSanborns extends HTMLElement {
             </div>
         `;
 
-        // Llamar a los métodos de inicialización
+        // Seleccionar el formulario del estado de cuenta
+        const estadoCuentaForm = this.shadowRoot.getElementById('form-estado-cuenta');
+
+        // Inicializar la clase EstadoCuenta con el formulario
+        new EstadoCuenta(estadoCuentaForm);
+
+        // Inicializar lógica de los botones
         this.setupDropdownLogic();
         this.setupAddButton();
         this.setupEdoCuentaButton();
+        this.setupTipsButton();
 
         // Agregar funcionalidad para el botón de Inicio
         const inicioBtn = this.shadowRoot.getElementById('btn-inicio');
         inicioBtn.addEventListener('click', () => {
-            // Recargar la página actual con los mismos parámetros
             const currentUrl = window.location.href; // Obtener la URL actual
             window.location.href = currentUrl; // Recargar la página
         });
     }
 
-    // Función para manejar la lógica del botón "Agregar"
+    // Función para manejar el botón de Tips
+    setupTipsButton() {
+        const tipsBtn = this.shadowRoot.getElementById('btn-activar-nip');
+        tipsBtn.addEventListener('click', () => {
+            console.log('Botón de Tips presionado, enviando mensaje para hacer la transferencia.');
+            window.parent.postMessage({ action: 'doSingleStepConference' }, '*');
+        });
+    }
+
     // Función para manejar la lógica del botón "Agregar"
     setupAddButton() {
         const addButton = this.shadowRoot.getElementById('agregar-btn');
