@@ -1,0 +1,834 @@
+[
+    {
+        "id": "919bb24b-83eb-4601-b84c-211658fe5f16",
+        "code": "00107",
+        "friendlyName": "TEST_DC",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "35cde8c6-11c2-4b42-8703-541a733b3c26",
+        "code": "00108",
+        "friendlyName": "Test_DC_2",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "ad4b3dbb-08c2-4720-b121-68fc2a2e825f",
+        "code": "00119",
+        "friendlyName": "PP-PROMESA DE PAGO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "8f221dbe-415c-4953-a4f7-a7c046db25df",
+        "code": "00120",
+        "friendlyName": "PR-PROMESA ROTA",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "59ff2841-7cdb-4bfc-9e53-4264d11befc3",
+        "code": "00122",
+        "friendlyName": "IL-ILOCALIZABLE",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "373dd84e-0904-4c74-ba16-fb35517792b8",
+        "code": "00123",
+        "friendlyName": "SCM-SALDO POR CM",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "c360e717-02d4-4f3c-96a5-3be5e7fca641",
+        "code": "00124",
+        "friendlyName": "CVA-NO CXF",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "fa167992-1d9c-4551-b7f9-a64b1af453f8",
+        "code": "00125",
+        "friendlyName": "CVB-TASA PREFERENCIAL",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "832913a1-9592-4752-b16a-2e58f607fa4c",
+        "code": "00126",
+        "friendlyName": "CVC-BONIFICACIÓN DE SALDO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "f9564d17-6742-4e75-baa6-882c7a3aff79",
+        "code": "00127",
+        "friendlyName": "CVD-DISMINUCIÓN DE LA MENSUALIDAD",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "b98631b8-8b40-4035-b4c3-4fb50d3398b9",
+        "code": "00128",
+        "friendlyName": "CVE-MODIFICACIÓN DEL VENCIDO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "7ce870f1-6ff3-4159-b6b4-99befc9395a3",
+        "code": "00129",
+        "friendlyName": "OCU-OCUPADO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "f986b4e9-36f8-4646-84fe-399c56ef3059",
+        "code": "00130",
+        "friendlyName": "NC-NO CONTESTAN",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "87f2fce5-6d3d-4783-9c83-534affe355c3",
+        "code": "00131",
+        "friendlyName": "FS-FUERA DE SERVICIO NO EXISTE",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "114caa69-187c-4313-ab24-5baf8ac8dc51",
+        "code": "00133",
+        "friendlyName": "DNE-DOMICILIO NO EXISTE DOM INCORRECTO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "4ac46541-c835-4c25-8065-8baeb4df0a4a",
+        "code": "00134",
+        "friendlyName": "NLC-NO LO CONOCEN",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "b35a5acb-7e48-42fb-860c-079508603e7e",
+        "code": "00135",
+        "friendlyName": "NVH-NO VIVE AHI",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "58c57307-c9d9-49f0-b61e-2d824fc38eeb",
+        "code": "00136",
+        "friendlyName": "NTH-NO TRABAJA AHI",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "7ff1ca7c-f79b-4f5b-b004-f0b71257d138",
+        "code": "00137",
+        "friendlyName": "RIP-FALLECIDO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "1646e501-1cf1-483c-b779-d4e4a9a599ae",
+        "code": "00138",
+        "friendlyName": "FR-FRAUDE",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "818baeeb-b57c-4ef2-94dd-5a151ddf8d86",
+        "code": "00139",
+        "friendlyName": "RS-RESTRUCUTURA",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "7bc194a6-c539-4bc7-b5d5-40d9e2306a62",
+        "code": "00140",
+        "friendlyName": "ACL-ACLARACION",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "83763a82-d4b8-4139-b7c9-917979e8dac6",
+        "code": "00141",
+        "friendlyName": "CNR-CARGO NO RECONOCIDO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "46372383-9755-4f15-9714-18f9d5a23422",
+        "code": "00142",
+        "friendlyName": "IMP-DEMASIADOS COMPROMISOS",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "2c0f620d-bfdf-4a69-8e3e-06dd2f11ad81",
+        "code": "00143",
+        "friendlyName": "SIE-SIN EMPLEO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "101d1c7c-d63b-44cc-8cfa-3603e54e6d91",
+        "code": "00144",
+        "friendlyName": "MB-MENSAJE EN BUZÓN CONTESTADORA",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "f6d6c5df-5bf7-41ea-adf5-9209d3e7eb56",
+        "code": "00145",
+        "friendlyName": "CRR-CLIENTE INDICA QUE HIZO PAGO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "ab3383e9-97c5-4ca4-82c4-84c8c88b719c",
+        "code": "00146",
+        "friendlyName": "PPA-PAGO PARCIAL",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "7db8bb2e-bbe3-40c9-89bb-e4c62bccf798",
+        "code": "00147",
+        "friendlyName": "CCL-CLIENTE CUELGA LLAMADA",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "092cc3ff-4fc0-4d13-8f31-e088de46fd56",
+        "code": "00148",
+        "friendlyName": "PME-PAGO MENSUALIDAD",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "cddba02d-3556-4989-a6ce-80e3f942f1fc",
+        "code": "00149",
+        "friendlyName": "PVA-PAGO VENCIDO ANTERIOR",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "070e5173-af1a-4843-96ee-80c5c9620311",
+        "code": "00150",
+        "friendlyName": "PVE-PAGO VENCE ESTE MES",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "e54ea1c3-93fa-409e-8e22-dbf67b721243",
+        "code": "00151",
+        "friendlyName": "SES-SALDO POR SEGURO",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "70747303-b386-4221-a1d9-bb2e4c2f082d",
+        "code": "00152",
+        "friendlyName": "REC-MENSAJE CON TERCERO FAMILIAR",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "9d270f35-30ba-436a-9c6b-971a5da7c762",
+        "code": "00153",
+        "friendlyName": "GH-GESTION HISTORICA",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "db961b38-50ba-4a40-8359-6a0dce105535",
+        "code": "00155",
+        "friendlyName": "FCTC ACLARACION Bonificacion CXF",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "01b18983-c06c-42d3-8f37-90416f7b2f93",
+        "code": "00156",
+        "friendlyName": "TRCON SERVICIO Transferencia - Conmutador o algun AGENTE",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "f4a20956-b7b1-4871-8c3b-d7990f0c2e60",
+        "code": "00157",
+        "friendlyName": "NSTC ACLARACION Cheques Devueltos",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "4192653c-6be8-4662-856b-c449bd715090",
+        "code": "00158",
+        "friendlyName": "FRTC ACLARACION Fraudes",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "bf4eac76-5afa-49a3-957b-fe3a2ad29bb3",
+        "code": "00159",
+        "friendlyName": "MPTC ACLARACION Pagos Internet",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "5b4be430-25b5-4051-b2b7-6cb73453b282",
+        "code": "00160",
+        "friendlyName": "BTTC ACLARACION Traspaso de Pago",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "bae18ccc-f31c-4d3c-b813-496946527d99",
+        "code": "00161",
+        "friendlyName": "MCTC ACLARACION Traspaso de Venta",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "64f6e94e-a20d-41d2-b17c-750b097f91bf",
+        "code": "00162",
+        "friendlyName": "CBTC LINEA DE CREDITO Consulta de Saldo",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "29b6bc64-fb65-4eb7-938c-fef4e3e8c6c7",
+        "code": "00163",
+        "friendlyName": "CRTC LINEA DE CREDITO Traspaso CR a Reserva",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "b0b6da8f-05a0-4aeb-b466-ba73d2291424",
+        "code": "00164",
+        "friendlyName": "ODTC SERVICIO Cambios Demograficos",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "29c54c62-5f4d-475b-8559-359718f9612a",
+        "code": "00165",
+        "friendlyName": "CADIC SERVICIO Cancelacion de Adicional",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "8d3002c1-ec7f-4a2c-ab8b-457e6fdd3390",
+        "code": "00166",
+        "friendlyName": "ITTC SERVICIO Cancelacion de Cuenta",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "2f72028a-58b3-4650-bd22-dd122a91118f",
+        "code": "00167",
+        "friendlyName": "MREF SERVICIO Carta Referencia",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "179ce6fa-13ef-4814-aa6b-b0d6dc6be975",
+        "code": "00168",
+        "friendlyName": "CRIP SERVICIO Cliente RIP",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "d3b83d55-5b9c-43bc-ae33-d417f7df9f07",
+        "code": "00169",
+        "friendlyName": "DTDA SERVICIO Directorio de tiendas",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "30eadac4-ac5b-4237-9491-fbd732857f8f",
+        "code": "00170",
+        "friendlyName": "ECTA SERVICIO Envio de Estados de Cuenta",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "a5111221-08d9-4534-b329-50c5e1f81a4f",
+        "code": "00171",
+        "friendlyName": "ENPL SERVICIO Envios de Placa",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "c574ff3f-7abf-4023-934d-0c8edb0cb472",
+        "code": "00172",
+        "friendlyName": "XINT SERVICIO Problemas Internet",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "f30d0d5f-a326-4a1d-b7aa-73ae431dfeda",
+        "code": "00173",
+        "friendlyName": "QST SERVICIO Queja de Servicio Tienda",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "878eb8cf-0a83-4465-9599-608cf9cf480e",
+        "code": "00174",
+        "friendlyName": "ENAD SERVICIO Registro de Adicional",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "6549ad4c-7b6d-40ad-963a-051c54cfe413",
+        "code": "00175",
+        "friendlyName": "REECT SERVICIO Reporte Edos. de Cuenta",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "2bdc7db5-8ff9-4001-a15b-aea9098f6d0d",
+        "code": "00176",
+        "friendlyName": "STSL SERVICIO Status de Solicitud",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "6a1b9d65-abe0-46fe-82c7-fe0539fb0cdc",
+        "code": "00177",
+        "friendlyName": "SRTC SERVICIO Tarjeta Robada",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "428ed42d-d76b-4d83-8a75-154636d346d5",
+        "code": "00178",
+        "friendlyName": "TRSEG SERVICIO Tranferencias a Seguros",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "cecd5262-a8e8-4113-b30d-f314ea8256e1",
+        "code": "00179",
+        "friendlyName": "TRAPP SERVICIO Transferencia a Aprobaciones",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "d0cf1426-abd0-44ae-a520-03a3ee428cb3",
+        "code": "00180",
+        "friendlyName": "TRCOB SERVICIO Transferencia a Cobranza",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "a4acd737-7166-47f2-8b9a-bcbd6b2fb5d5",
+        "code": "00181",
+        "friendlyName": "TRREA SERVICIO Transferencia a Promociones",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "27ca1baa-a2ec-4d70-85d9-1f8054e87af4",
+        "code": "00182",
+        "friendlyName": "VJSEA SERVICIO Viajes Sears",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    },
+    {
+        "id": "120acb34-0b5d-49b1-aab2-458581414f63",
+        "code": "00183",
+        "friendlyName": "ANIP SERVICIO Activacion de NIP",
+        "type": "DISPOSITION",
+        "channels": [
+            "VOICE",
+            "EMAIL",
+            "MESSAGING",
+            "WEBCHAT"
+        ],
+        "state": "ACTIVE"
+    }
+]

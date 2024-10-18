@@ -1,9 +1,3 @@
-## Versión: 0.5.0
-
-### Descripción del Proyecto
-
-Este proyecto tiene como objetivo la implementación de una plataforma para la generación de estados de cuenta en campañas inbound. Actualmente, el proyecto se encuentra en la fase de desarrollo del front-end y se prepara para la futura conexión con APIs. 
-
 ## Versión: 0.6.0
 
 ### Descripción del Proyecto

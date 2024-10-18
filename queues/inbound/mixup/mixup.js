@@ -1,4 +1,4 @@
-class CentroAtencionSears extends HTMLElement {
+class CentroAtencionMixup extends HTMLElement {
     constructor() {
         super();
 
@@ -15,7 +15,7 @@ class CentroAtencionSears extends HTMLElement {
 
         // Contenido HTML del Web Component con el sidebar incluido
         this.shadowRoot.innerHTML = `
-        <link rel="stylesheet" href="robo.css">
+        <link rel="stylesheet" href="mixup.css">
         <div class="widget-layout">
             <!-- Contenido principal del Web Component -->
             <div id="main-content" class="neo-container container">
@@ -160,7 +160,7 @@ class CentroAtencionSears extends HTMLElement {
                 <div class="sidebar-content">
                     <!-- Información básica -->
                     <div class="sidebar-header">
-                        <h5>CEAT: SEARS 📞</h5>
+                        <h5>CEAT: MIXUP 📞</h5>
                         <p class="text-danger">MOTIVO: ${motivo} - ${telefono}</p>
                         <p>Cuenta: ${cuenta}</p>
                     </div>
@@ -179,7 +179,6 @@ class CentroAtencionSears extends HTMLElement {
                         <button id="btn-inicio" class="btn btn-warning btn-block mb-2">🏠 Inicio</button>
                         <button id="btn-tips" class="btn btn-info btn-block mb-2">💡 Tips</button>
                         <button id="btn-edo-cuenta" class="btn btn-danger btn-block mb-2">📊 Edo. Cuenta</button>
-                        <button id="btn-activar-nip" class="btn btn-success btn-block mb-2">🔑 Activar NIP</button>
                     </div>
                 </div>
             </div>
@@ -336,4 +335,4 @@ class CentroAtencionSears extends HTMLElement {
 }
 
 // Definir el nuevo custom element
-customElements.define('centro-atencion-sears', CentroAtencionSears);
+customElements.define('centro-atencion-mixup', CentroAtencionMixup);

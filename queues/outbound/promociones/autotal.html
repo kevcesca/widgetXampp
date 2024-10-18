@@ -83,6 +83,45 @@
                 </div>
             </div>
 
+            <div id="seccionNoTieneTarjeta" class="hidden">
+                <h6 class="mb-3">Permítame actualizar su domicilio para tramitarle su reenvío.</h6>
+                <h6 class="mb-3">Cambio de Domicilio (exclusivo con titular)</h6>
+                <p>Corroborar domicilio completo, RFC, Empresa donde labora.... Si la respuesta del cliente corresponde a los datos registrados en sistema, solicitar al cliente el domicilio actual completo (calle, número interior, exterior, colonia, estado, código postal) y confirmar si los números telefónicos siguen perteneciendo al cliente (especificar TC y TO), se efectuará el cambio de domicilio por parte de la promotora en sistema directamente.</p>
+                <p>Informarle al cliente que la tarjeta se le entregará durante los próximos 15 días hábiles en su domicilio y que solo se dejará al titular o a algún familiar directo que presente alguna identificación oficial, tales como: IFE, Cartilla, Pasaporte o Cédula Profesional, o que puede pasar a recogerla a la tienda (siempre y cuando sea de una plaza que cuente con este servicio)</p>
+                <h6 class="mb-3 text-primary">Si la respuesta del cliente no corresponde a los datos registrados en sistema...</h6>
+                <p>Informar al cliente, que puede pasar a cualquier tienda SEARS con una identificación oficial a solicitar el cambio de domicilio y solicitar el envío de la tarjeta.</p>
+                <div class="d-flex justify-content-end">
+                    <button id="despedidaNoTarjeta" class="btn btn-primary">Despedida</button>
+                </div>
+            </div>
+
+            <!-- New section for the final view -->
+            <div id="seccionFinal" class="hidden">
+                <h6 class="mb-3">Esperamos tener el placer de atenderlo próximamente.</h6>
+                <div class="mb-3">
+                    <label for="codigoRespuesta" class="form-label">Código de Respuesta</label>
+                    <select class="form-select" id="codigoRespuesta">
+                        <option selected>PROMESA DE COMPRA</option>
+                        <option>Referencia</option>
+                        <option>Envío de Tarjeta</option>
+                        <option>No Realizará Compra</option>
+                        <option>No vive Ahí</option>
+                        <option>Buzón</option>
+                        <option>Recado Otros</option>
+                        <option>Recado Familiar Indirecto</option>
+                        <option>Datos no Corresponden Req./Tel</option>
+                        <option>No Contestan</option>
+                        <option>Riesgo alto, se mantiene bloqueo</option>
+                        <option>Riesgo bajo, desbloqueo cuenta</option>
+                        <option>Contacto con Familiar o Titular 2</option>
+                        <option>Cliente RIP</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button id="finalizarLlamada" class="btn btn-primary">Finalizar</button>
+                </div>
+            </div>
+
             <div id="seccion3" class="hidden">
                 <h6 class="mb-3">Sr(a):HORACIO Hemos notado que no ha hecho uso de su tarjeta de Crédito SEARS
                     últimamente,
@@ -234,6 +273,25 @@
         });
 
         document.getElementById('finalizarLlamadaDespedida').addEventListener('click', function () {
+            alert('Llamada finalizada');
+            // Reset to first section
+            document.querySelectorAll('.container > div').forEach(function (el) {
+                el.classList.add('hidden');
+            });
+            document.getElementById('seccion1').classList.remove('hidden');
+        });
+
+        document.getElementById('noTieneTarjeta').addEventListener('click', function () {
+            document.getElementById('seccion2').classList.add('hidden');
+            document.getElementById('seccionNoTieneTarjeta').classList.remove('hidden');
+        });
+
+        document.getElementById('despedidaNoTarjeta').addEventListener('click', function () {
+            document.getElementById('seccionNoTieneTarjeta').classList.add('hidden');
+            document.getElementById('seccionFinal').classList.remove('hidden');
+        });
+
+        document.getElementById('finalizarLlamada').addEventListener('click', function () {
             alert('Llamada finalizada');
             // Reset to first section
             document.querySelectorAll('.container > div').forEach(function (el) {

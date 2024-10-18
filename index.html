@@ -53,16 +53,16 @@
             // Definir la URL de redirección según el valor de queue
             switch (queue) {
                 case 'sears':
-                    targetUrl = './components/inbound/sears/sears.html';
+                    targetUrl = './queues/inbound/sears/sears.html';
                     break;
                 case 'sanborns':
-                    targetUrl = './components/inbound/sanborns/sanborns.html';
+                    targetUrl = './queues/inbound/sanborns/sanborns.html';
                     break;
                 case 'mixup':
-                    targetUrl = './components/inbound/mixup/mixup.html';
+                    targetUrl = './queues/inbound/mixup/mixup.html';
                     break;
                 case 'robo':
-                    targetUrl = './components/inbound/robo/robo.html';
+                    targetUrl = './queues/inbound/robo/robo.html';
                     break;
                 default:
                     console.log('Queue no válida, permaneciendo en la página actual.');
@@ -105,16 +105,16 @@
                     <h2 class="mb-3">Inbound</h2>
                     <ul class="list-unstyled">
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/inbound/sears/sears.html')" class="btn btn-warning w-100 menu-item">SEARS</button>
+                            <button onclick="redirectWithParams('./queues/inbound/sears/sears.html')" class="btn btn-warning w-100 menu-item">SEARS</button>
                         </li>
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/inbound/sanborns/sanborns.html')" class="btn btn-primary w-100 menu-item">Sanborns</button>
+                            <button onclick="redirectWithParams('./queues/inbound/sanborns/sanborns.html')" class="btn btn-primary w-100 menu-item">Sanborns</button>
                         </li>
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/inbound/mixup/mixup.html')" class="btn btn-success w-100 menu-item">Mixup</button>
+                            <button onclick="redirectWithParams('./queues/inbound/mixup/mixup.html')" class="btn btn-success w-100 menu-item">Mixup</button>
                         </li>
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/inbound/robo/robo.html')" class="btn btn-danger w-100 menu-item">Robo</button>
+                            <button onclick="redirectWithParams('./queues/inbound/robo/robo.html')" class="btn btn-danger w-100 menu-item">Robo</button>
                         </li>
                     </ul>
                 </div>
@@ -123,27 +123,27 @@
                     <h2 class="mb-3">Outbound</h2>
                     <ul class="list-unstyled">
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/outbound/autotal/autotal.html')" class="btn btn-warning w-100 menu-item">Autotal</button>
+                            <button onclick="redirectWithParams('./queues/outbound/autotal/autotal.html')" class="btn btn-warning w-100 menu-item">Autotal</button>
                         </li>
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/outbound/autotal-linea/autotal.html')" class="btn btn-primary w-100 menu-item">Autotal en línea</button>
+                            <button onclick="redirectWithParams('./queues/outbound/autotal-linea/autotal.html')" class="btn btn-primary w-100 menu-item">Autotal en línea</button>
                         </li>
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/outbound/bienestar/bienestar.html')" class="btn btn-success w-100 menu-item">Bienestar</button>
+                            <button onclick="redirectWithParams('./queues/outbound/bienestar/bienestar.html')" class="btn btn-success w-100 menu-item">Bienestar</button>
                         </li>
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/outbound/inbursa-pps/inbursa-pps.html')" class="btn btn-danger w-100 menu-item">Inbursa PPS</button>
+                            <button onclick="redirectWithParams('./queues/outbound/inbursa-pps/inbursa-pps.html')" class="btn btn-danger w-100 menu-item">Inbursa PPS</button>
                         </li>
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/outbound/medicall-home-widget/medicall-home-widget.html')" class="btn btn-info w-100 menu-item">Medicall</button>
+                            <button onclick="redirectWithParams('./queues/outbound/medicall-home-widget/medicall-home-widget.html')" class="btn btn-info w-100 menu-item">Medicall</button>
                         </li>
                         <li class="mb-2">
-                            <button onclick="redirectWithParams('./components/outbound/promociones/autotal.html')" class="btn btn-outline-primary w-100 menu-item">Promociones</button>
+                            <button onclick="redirectWithParams('./queues/outbound/promociones/autotal.html')" class="btn btn-outline-primary w-100 menu-item">Promociones</button>
                         </li>
                     </ul>
                 </div>
             </div>
-            <span><b>v 0.5.0</b></span>
+            <span><b>v 0.6.1</b></span>
         </div>
         
     </div>

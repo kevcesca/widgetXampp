@@ -1,3 +1,5 @@
+import { EstadoCuenta } from '../estadosCuenta/estadoCuenta.js';
+
 class CentroAtencionTelefonica extends HTMLElement {
     constructor() {
         super();
@@ -5,7 +7,6 @@ class CentroAtencionTelefonica extends HTMLElement {
         // Extraer los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
         const cuenta = params.get('cuenta') || 'No especificada';
-        const tarjeta = params.get('tarjeta') || 'No especificada';
         const motivo = params.get('motivo') || 'No especificado';
         const nombre = params.get('nombre') || 'Cliente';
         const telefono = params.get('telefono') || 'No especificado';
@@ -36,9 +37,7 @@ class CentroAtencionTelefonica extends HTMLElement {
                     </div>
                     <div class="neo-form-group neo-col neo-col--6">
                         <label for="servicio">Servicio:</label>
-                        <select id="servicio" class="neo-form-control">
-                            <!-- Las opciones se llenarán dinámicamente con JavaScript -->
-                        </select>
+                        <select id="servicio" class="neo-form-control"></select>
                     </div>
                     <button id="agregar-btn" class="btn custom-primary">Agregar</button>
                 </div>
@@ -104,29 +103,25 @@ class CentroAtencionTelefonica extends HTMLElement {
             <!-- Formulario de Estado de Cuenta (inicialmente oculto) -->
             <div id="estado-cuenta-form" class="estado-cuenta-form" style="display: none;">
                 <h2>Envío de Estado de Cuenta</h2>
-                <form>
+                <form id="form-estado-cuenta">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" class="form-control" value="${this.nombre || ''}">
+                        <input type="text" id="nombre" class="form-control" value="${nombre}">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="tipo-cuenta">Tipo de Cuenta:</label>
-                            <select id="tipo-cuenta" class="form-control">
-                                <option>Publica</option>
-                            </select>
+                            <label for="cuenta">Número de Cuenta:</label>
+                            <input type="text" id="cuenta" class="form-control" placeholder="Número de Cuenta">
                         </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="periodo-inicial">Periodo Inicial:</label>
-                            <select id="periodo-inicial" class="form-control">
-                                <option>02-2024</option>
-                            </select>
+                            <input type="date" id="periodo-inicial" class="form-control"> <!-- Date picker -->
                         </div>
                         <div class="form-group">
                             <label for="periodo-final">Periodo Final:</label>
-                            <select id="periodo-final" class="form-control">
-                                <option>02-2024</option>
-                            </select>
+                            <input type="date" id="periodo-final" class="form-control"> <!-- Date picker -->
                         </div>
                     </div>
                     <div class="form-row">
@@ -164,16 +159,18 @@ class CentroAtencionTelefonica extends HTMLElement {
                         <p class="text-danger">MOTIVO: ${motivo} - ${telefono}</p>
                         <p>Cuenta: ${cuenta}</p>
                     </div>
+
                     <!-- Tarjeta e icono -->
                     <div class="sidebar-card">
                         <p>Tarjeta:</p>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" value="${tarjeta}" aria-label="Tarjeta" disabled>
+                            <input type="text" class="form-control" value="${params.get('tarjeta') || 'No especificada'}" aria-label="Tarjeta" disabled>
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">💳</button>
                             </div>
                         </div>
                     </div>
+
                     <!-- Botones de acciones -->
                     <div class="sidebar-buttons">
                         <button id="btn-inicio" class="btn btn-warning btn-block mb-2">🏠 Inicio</button>
@@ -185,22 +182,36 @@ class CentroAtencionTelefonica extends HTMLElement {
             </div>
         `;
 
-        // Llamar a los métodos de inicialización
+        // Seleccionar el formulario del estado de cuenta
+        const estadoCuentaForm = this.shadowRoot.getElementById('form-estado-cuenta');
+
+        // Inicializar la clase EstadoCuenta con el formulario
+        new EstadoCuenta(estadoCuentaForm);
+
+        // Inicializar lógica de los botones
         this.setupDropdownLogic();
         this.setupAddButton();
         this.setupEdoCuentaButton();
+        this.setupTipsButton();
 
         // Agregar funcionalidad para el botón de Inicio
         const inicioBtn = this.shadowRoot.getElementById('btn-inicio');
         inicioBtn.addEventListener('click', () => {
-            // Recargar la página actual con los mismos parámetros
             const currentUrl = window.location.href; // Obtener la URL actual
             window.location.href = currentUrl; // Recargar la página
         });
     }
 
-    // Función para manejar la lógica del botón "Agregar"
-    // Función para manejar la lógica del botón "Agregar"
+    // Función para manejar el botón de Tips
+    setupTipsButton() {
+        const tipsBtn = this.shadowRoot.getElementById('btn-activar-nip');
+        tipsBtn.addEventListener('click', () => {
+            console.log('Botón de Tips presionado, enviando mensaje para hacer la transferencia.');
+            window.parent.postMessage({ action: 'doSingleStepConference' }, '*');
+        });
+    }
+
+    // Función para manejar el botón "Agregar"
     setupAddButton() {
         const addButton = this.shadowRoot.getElementById('agregar-btn');
         const grupoSelect = this.shadowRoot.getElementById('grupo');
@@ -210,30 +221,24 @@ class CentroAtencionTelefonica extends HTMLElement {
 
         addButton.addEventListener('click', () => {
             const grupo = grupoSelect.value;
-            const codigoMotivo = servicioSelect.value; // El valor es el código del servicio
+            const codigoMotivo = servicioSelect.value;
 
-            // Eliminar la fila "Sin Información" si es necesario
             if (noInfoRow) {
                 noInfoRow.remove();
             }
 
-            // Crear una nueva fila en la tabla
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
             <td>${grupo}</td>
             <td>${codigoMotivo}</td>
             <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
-        `;
-
-            // Añadir la nueva fila a la tabla de motivos
+            `;
             motivosBody.appendChild(newRow);
 
-            // Agregar funcionalidad al botón "Eliminar"
             const eliminarBtn = newRow.querySelector('.eliminar-btn');
             eliminarBtn.addEventListener('click', () => {
                 newRow.remove();
 
-                // Si no hay más filas en la tabla, mostrar el mensaje "Sin Información"
                 if (motivosBody.children.length === 0) {
                     const emptyRow = document.createElement('tr');
                     emptyRow.id = 'no-info-row';
@@ -242,59 +247,56 @@ class CentroAtencionTelefonica extends HTMLElement {
                 }
             });
 
-            // Verificar si se está enviando el mensaje correctamente
-            console.log(`Enviando mensaje desde el iframe con motivo: ${codigoMotivo}`);
-
-            // Enviar el código del motivo seleccionado al widget principal
+            // Enviar el motivo al widget principal
             window.parent.postMessage({ motivo: codigoMotivo }, "*");
         });
     }
 
-
+    // Lógica del dropdown de servicios según el grupo
     setupDropdownLogic() {
-        // Mapa de servicios con sus respectivos códigos según la lista
         const servicios = {
             "ACLARACIÓN": [
-                { nombre: "Bonificación de CXF", codigo: "FCTC" },
-                { nombre: "Fraudes", codigo: "FRTC" },
-                { nombre: "Cheques Devueltos", codigo: "NSTC" },
-                { nombre: "Traspaso de Pago", codigo: "BTTC" },
-                { nombre: "Pagos Internet", codigo: "MPTC" }
+                { nombre: "Bonificación de CXF", codigo: "00155" },
+                { nombre: "Fraudes", codigo: "00158" },
+                { nombre: "Cheques Devueltos", codigo: "00157" },
+                { nombre: "Traspaso de Pago", codigo: "00160" },
+                { nombre: "Pagos Internet", codigo: "00159" }
             ],
             "CAJEROS SEARS": [
-                { nombre: "DUDAS Y/O COMENTARIOS", codigo: "CAJDYC" },
-                { nombre: "EFECTIVO RETENIDO", codigo: "CAJEFRE" },
-                { nombre: "RECHAZO DE RETIRO", codigo: "CAJRERE" },
-                { nombre: "TARJETA RETENIDA", codigo: "CAJTARE" }
+                { nombre: "DUDAS Y/O COMENTARIOS", codigo: "00140" },
+                { nombre: "EFECTIVO RETENIDO", codigo: "00152" },
+                { nombre: "RECHAZO DE RETIRO", codigo: "00131" },
+                { nombre: "TARJETA RETENIDA", codigo: "00177" }
             ],
             "LINEA DE CRÉDITO": [
-                { nombre: "Consulta de Saldo", codigo: "CBTC" },
-                { nombre: "Traspaso CR a Reserva", codigo: "CRTC" }
+                { nombre: "Consulta de Saldo", codigo: "00162" },
+                { nombre: "Traspaso CR a Reserva", codigo: "00163" }
             ],
             "SERVICIO": [
-                { nombre: "Transferencia a Aprobaciones", codigo: "TRAPP" },
-                { nombre: "Activación de NIP", codigo: "ANIP" },
-                { nombre: "Cambios Demográficos", codigo: "ODTC" },
-                { nombre: "Cancelación de Adicional", codigo: "CADIC" },
-                { nombre: "Cancelación de Cuenta", codigo: "ITTC" },
-                { nombre: "Carta Referencia", codigo: "MREF" },
-                { nombre: "Cliente RIP", codigo: "CRIP" },
-                { nombre: "Directorio de tiendas", codigo: "DTDA" },
-                { nombre: "Envío de Estados de Cuenta", codigo: "ECTA" },
-                { nombre: "Envío de Placa", codigo: "ENPL" },
-                { nombre: "Problemas Internet", codigo: "XINT" },
-                { nombre: "Queja de Servicio Tienda", codigo: "QST" },
-                { nombre: "Registro de Adicional", codigo: "ENAD" },
-                { nombre: "Reporte de Estados de Cuenta", codigo: "REECT" },
-                { nombre: "Status de Solicitud", codigo: "STSL" },
-                { nombre: "Tarjeta Robada", codigo: "SRTC" },
-                { nombre: "Transferencia (Conmutador o algún Agente)", codigo: "TRCON" },
-                { nombre: "Transferencia a Cobranza", codigo: "TRCOB" },
-                { nombre: "Transferencia a Promociones", codigo: "TRREA" },
-                { nombre: "Transferencias a Seguros", codigo: "TRSEG" },
-                { nombre: "Viajes Sears", codigo: "VJSEA" }
+                { nombre: "Transferencia a Aprobaciones", codigo: "00179" },
+                { nombre: "Activación de NIP", codigo: "00183" },
+                { nombre: "Cambios Demográficos", codigo: "00164" },
+                { nombre: "Cancelación de Adicional", codigo: "00165" },
+                { nombre: "Cancelación de Cuenta", codigo: "00166" },
+                { nombre: "Carta Referencia", codigo: "00167" },
+                { nombre: "Cliente RIP", codigo: "00168" },
+                { nombre: "Directorio de tiendas", codigo: "00169" },
+                { nombre: "Envío de Estados de Cuenta", codigo: "00170" },
+                { nombre: "Envío de Placa", codigo: "00171" },
+                { nombre: "Problemas Internet", codigo: "00172" },
+                { nombre: "Queja de Servicio Tienda", codigo: "00173" },
+                { nombre: "Registro de Adicional", codigo: "00174" },
+                { nombre: "Reporte de Estados de Cuenta", codigo: "00175" },
+                { nombre: "Status de Solicitud", codigo: "00176" },
+                { nombre: "Tarjeta Robada", codigo: "00177" },
+                { nombre: "Transferencia (Conmutador o algún Agente)", codigo: "00156" },
+                { nombre: "Transferencia a Cobranza", codigo: "00180" },
+                { nombre: "Transferencia a Promociones", codigo: "00181" },
+                { nombre: "Transferencias a Seguros", codigo: "00178" },
+                { nombre: "Viajes Sears", codigo: "00182" }
             ]
         };
+
 
         const grupoSelect = this.shadowRoot.getElementById("grupo");
         const servicioSelect = this.shadowRoot.getElementById("servicio");
@@ -303,19 +305,18 @@ class CentroAtencionTelefonica extends HTMLElement {
             const selectedGrupo = grupoSelect.value;
             servicioSelect.innerHTML = "";
 
-            // Llenar el dropdown de servicios con los nombres del mapa
+            // Llenar el dropdown de servicios
             servicios[selectedGrupo].forEach(servicio => {
                 const option = document.createElement("option");
                 option.text = servicio.nombre;
-                option.value = servicio.codigo;  // El valor ahora es el código del servicio
+                option.value = servicio.codigo;
                 servicioSelect.add(option);
             });
         };
 
         grupoSelect.addEventListener("change", updateServicios);
-        updateServicios();  // Inicializar con las opciones por defecto
+        updateServicios();
     }
-
 
     // Lógica para el botón "Estado de Cuenta"
     setupEdoCuentaButton() {
@@ -337,3 +338,4 @@ class CentroAtencionTelefonica extends HTMLElement {
 
 // Definir el nuevo custom element
 customElements.define('centro-atencion-telefonica', CentroAtencionTelefonica);
+
