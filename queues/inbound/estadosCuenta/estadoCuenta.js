@@ -19,22 +19,38 @@ export class EstadoCuenta {
                     return;
                 }
 
-                // Validar que el rango de fechas no exceda los 4 meses
-                const diferenciaMeses = this.calcularDiferenciaMeses(periodoInicial, periodoFinal);
-                if (diferenciaMeses > 4) {
-                    alert("El rango de fechas no puede ser mayor a 4 meses.");
+                // Extraer solo el mes y año del periodo inicial y final
+                const mesInicial = periodoInicial.getUTCMonth(); // 0-11
+                const añoInicial = periodoInicial.getUTCFullYear();
+                const mesFinal = periodoFinal.getUTCMonth();
+                const añoFinal = periodoFinal.getUTCFullYear();
+
+                // Calcular la diferencia en meses entre el periodo inicial y final
+                const diferenciaMeses = this.calcularDiferenciaMeses(añoInicial, mesInicial, añoFinal, mesFinal);
+                if (diferenciaMeses > 3) {
+                    alert("El rango de fechas debe ser entre 1 y máximo 4 meses.");
                     return;
                 }
 
-                // Generar las solicitudes para cada mes en el rango
-                for (let i = 0; i <= diferenciaMeses; i++) {
-                    const fechaSolicitud = new Date(periodoInicial);
-                    fechaSolicitud.setMonth(fechaSolicitud.getMonth() + i);
-                    fechaSolicitud.setDate(15); // Establecer siempre el día 15 del mes
+                // Paso 1: Obtener el token y encriptar el PAN solo una vez
+                const token = await this.solicitarToken();
+                const panEncriptado = await this.encriptarPAN(token, cuenta);
 
-                    // Ejecutar el flujo completo para obtener el estado de cuenta
-                    const resultado = await this.obtenerEstadoCuenta(cuenta, fechaSolicitud);
-                    console.log(`Estado de cuenta para el mes ${fechaSolicitud.getMonth() + 1} obtenido:`, resultado);
+                // Generar solicitudes para el día 15 de cada mes en el rango
+                let mesActual = mesInicial;
+                let añoActual = añoInicial;
+
+                for (let i = 0; i <= diferenciaMeses; i++) {
+                    const fechaSolicitud = new Date(Date.UTC(añoActual, mesActual, 15)); // Día 15 del mes correspondiente en UTC
+                    const resultado = await this.solicitarEstadoCuenta(token, panEncriptado, fechaSolicitud);
+                    console.log(`Estado de cuenta para ${fechaSolicitud.getMonth() + 1}/${fechaSolicitud.getFullYear()} obtenido:`, resultado);
+
+                    // Incrementar el mes y manejar el cambio de año
+                    mesActual++;
+                    if (mesActual > 11) { // Si el mes supera diciembre, reiniciar a enero y aumentar el año
+                        mesActual = 0;
+                        añoActual++;
+                    }
                 }
 
             } catch (error) {
@@ -43,34 +59,11 @@ export class EstadoCuenta {
         });
     }
 
-    // Calcular la diferencia en meses entre dos fechas
-    calcularDiferenciaMeses(fechaInicial, fechaFinal) {
-        const años = fechaFinal.getFullYear() - fechaInicial.getFullYear();
-        const meses = fechaFinal.getMonth() - fechaInicial.getMonth();
+    // Calcular la diferencia en meses entre dos fechas (usando año y mes)
+    calcularDiferenciaMeses(añoInicial, mesInicial, añoFinal, mesFinal) {
+        const años = añoFinal - añoInicial;
+        const meses = mesFinal - mesInicial;
         return años * 12 + meses;
-    }
-
-    async obtenerEstadoCuenta(cuenta, fecha) {
-        try {
-            console.log("Iniciando flujo para obtener estado de cuenta...");
-
-            // Paso 1: Obtener el token
-            const token = await this.solicitarToken();
-            console.log("Token obtenido con éxito:", token);
-
-            // Paso 2: Encriptar el PAN (cuenta)
-            const panEncriptado = await this.encriptarPAN(token, cuenta);
-            console.log("PAN encriptado con éxito:", panEncriptado);
-
-            // Paso 3: Solicitar el estado de cuenta
-            const estadoCuenta = await this.solicitarEstadoCuenta(token, panEncriptado, fecha);
-            console.log("Estado de cuenta obtenido con éxito:", estadoCuenta);
-
-            return estadoCuenta;
-        } catch (error) {
-            console.error("Error en el flujo para obtener el estado de cuenta:", error);
-            throw error;
-        }
     }
 
     async solicitarToken() {
@@ -142,7 +135,7 @@ export class EstadoCuenta {
             email: this.form.querySelector('#correo').value,
             numTelefono: "5519013832",
             solicitadoPor: "5",
-            fechaEstadoCuenta: this.formatearFecha(fecha), // Utilizamos la fecha solicitada
+            fechaEstadoCuenta: this.formatearFecha(fecha), // Día 15 del mes correspondiente
             fechaTransaccion: this.formatearFecha(new Date()),
             horaTransaccion: this.formatearHora(new Date()),
             ipOrigen: "10.115.29.6"
@@ -167,16 +160,16 @@ export class EstadoCuenta {
     }
 
     formatearFecha(date) {
-        const dia = String(date.getDate()).padStart(2, "0");
-        const mes = String(date.getMonth() + 1).padStart(2, "0"); // Los meses empiezan en 0
-        const anio = date.getFullYear();
+        const dia = String(date.getUTCDate()).padStart(2, "0"); // Usar UTC
+        const mes = String(date.getUTCMonth() + 1).padStart(2, "0"); // Los meses empiezan en 0
+        const anio = date.getUTCFullYear();
         return `${dia}/${mes}/${anio}`;
     }
 
     formatearHora(date) {
-        const horas = String(date.getHours()).padStart(2, "0");
-        const minutos = String(date.getMinutes()).padStart(2, "0");
-        const segundos = String(date.getSeconds()).padStart(2, "0");
+        const horas = String(date.getUTCHours()).padStart(2, "0");
+        const minutos = String(date.getUTCMinutes()).padStart(2, "0");
+        const segundos = String(date.getUTCSeconds()).padStart(2, "0");
         return `${horas}:${minutos}:${segundos}`;
     }
 

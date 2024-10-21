@@ -86,16 +86,25 @@
             <div id="seccionNoTieneTarjeta" class="hidden">
                 <h6 class="mb-3">Permítame actualizar su domicilio para tramitarle su reenvío.</h6>
                 <h6 class="mb-3">Cambio de Domicilio (exclusivo con titular)</h6>
-                <p>Corroborar domicilio completo, RFC, Empresa donde labora.... Si la respuesta del cliente corresponde a los datos registrados en sistema, solicitar al cliente el domicilio actual completo (calle, número interior, exterior, colonia, estado, código postal) y confirmar si los números telefónicos siguen perteneciendo al cliente (especificar TC y TO), se efectuará el cambio de domicilio por parte de la promotora en sistema directamente.</p>
-                <p>Informarle al cliente que la tarjeta se le entregará durante los próximos 15 días hábiles en su domicilio y que solo se dejará al titular o a algún familiar directo que presente alguna identificación oficial, tales como: IFE, Cartilla, Pasaporte o Cédula Profesional, o que puede pasar a recogerla a la tienda (siempre y cuando sea de una plaza que cuente con este servicio)</p>
-                <h6 class="mb-3 text-primary">Si la respuesta del cliente no corresponde a los datos registrados en sistema...</h6>
-                <p>Informar al cliente, que puede pasar a cualquier tienda SEARS con una identificación oficial a solicitar el cambio de domicilio y solicitar el envío de la tarjeta.</p>
+                <p>Corroborar domicilio completo, RFC, Empresa donde labora.... Si la respuesta del cliente corresponde
+                    a los datos registrados en sistema, solicitar al cliente el domicilio actual completo (calle, número
+                    interior, exterior, colonia, estado, código postal) y confirmar si los números telefónicos siguen
+                    perteneciendo al cliente (especificar TC y TO), se efectuará el cambio de domicilio por parte de la
+                    promotora en sistema directamente.</p>
+                <p>Informarle al cliente que la tarjeta se le entregará durante los próximos 15 días hábiles en su
+                    domicilio y que solo se dejará al titular o a algún familiar directo que presente alguna
+                    identificación oficial, tales como: IFE, Cartilla, Pasaporte o Cédula Profesional, o que puede pasar
+                    a recogerla a la tienda (siempre y cuando sea de una plaza que cuente con este servicio)</p>
+                <h6 class="mb-3 text-primary">Si la respuesta del cliente no corresponde a los datos registrados en
+                    sistema...</h6>
+                <p>Informar al cliente, que puede pasar a cualquier tienda SEARS con una identificación oficial a
+                    solicitar el cambio de domicilio y solicitar el envío de la tarjeta.</p>
                 <div class="d-flex justify-content-end">
                     <button id="despedidaNoTarjeta" class="btn btn-primary">Despedida</button>
                 </div>
             </div>
 
-            <!-- New section for the final view -->
+            <!-- Seccion finalizar llamada -->
             <div id="seccionFinal" class="hidden">
                 <h6 class="mb-3">Esperamos tener el placer de atenderlo próximamente.</h6>
                 <div class="mb-3">
@@ -198,6 +207,25 @@
                     <button id="finalizarLlamada" class="btn btn-primary">Finalizar llamada</button>
                 </div>
             </div>
+            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger text-white">
+                            <h5 class="modal-title" id="confirmationModalLabel">Código de Respuesta</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>El código de respuesta seleccionado es: <strong id="selectedCode"></strong>. ¿Es
+                                correcto?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="confirmFinalize">Finalizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <aside class="sidebar">
@@ -225,8 +253,9 @@
             </div> -->
             <p class="mt-2 text-muted">Sin Promociones</p>
         </aside>
-
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         document.getElementById('contactoExitoso').addEventListener('click', function () {
@@ -244,10 +273,6 @@
             document.getElementById('seccion3').classList.remove('hidden');
         });
 
-        document.getElementById('noTieneTarjeta').addEventListener('click', function () {
-            alert('El cliente no tiene tarjeta');
-        });
-
         document.getElementById('continuar').addEventListener('click', function () {
             document.getElementById('seccion3').classList.add('hidden');
             document.getElementById('seccion4').classList.remove('hidden');
@@ -255,16 +280,33 @@
 
         document.getElementById('siguiente').addEventListener('click', function () {
             document.getElementById('seccion4').classList.add('hidden');
-            document.getElementById('seccion5').classList.remove('hidden');
+            document.getElementById('seccionFinal').classList.remove('hidden');
         });
 
         document.getElementById('finalizarLlamada').addEventListener('click', function () {
+            var selectedCode = document.getElementById('codigoRespuesta').value;
+            document.getElementById('selectedCode').textContent = selectedCode;
+            var modalElement = document.getElementById('confirmationModal');
+            var modal = new bootstrap.Modal(modalElement);
+            modalElement.style.display = 'block';
+            modal.show();
+        });
+
+        // Listener para el modal
+        document.getElementById('confirmFinalize').addEventListener('click', function () {
             alert('Llamada finalizada');
             // Reset to first section
             document.querySelectorAll('.container > div').forEach(function (el) {
                 el.classList.add('hidden');
             });
             document.getElementById('seccion1').classList.remove('hidden');
+            // Hide the modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+            modal.hide();
+        });
+
+        document.getElementById('confirmationModal').addEventListener('hidden.bs.modal', function () {
+            this.style.display = 'none';
         });
 
         document.getElementById('despedida').addEventListener('click', function () {
@@ -273,7 +315,6 @@
         });
 
         document.getElementById('finalizarLlamadaDespedida').addEventListener('click', function () {
-            alert('Llamada finalizada');
             // Reset to first section
             document.querySelectorAll('.container > div').forEach(function (el) {
                 el.classList.add('hidden');
@@ -291,14 +332,6 @@
             document.getElementById('seccionFinal').classList.remove('hidden');
         });
 
-        document.getElementById('finalizarLlamada').addEventListener('click', function () {
-            alert('Llamada finalizada');
-            // Reset to first section
-            document.querySelectorAll('.container > div').forEach(function (el) {
-                el.classList.add('hidden');
-            });
-            document.getElementById('seccion1').classList.remove('hidden');
-        });
 
         // Evento para regresar a la página inicial
         document.getElementById('inicio').addEventListener('click', function () {

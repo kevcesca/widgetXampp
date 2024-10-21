@@ -50,22 +50,24 @@
             const params = new URLSearchParams(window.location.search);
             let targetUrl = '';
 
+            console.log('Redireccionando a la URL según el valor del parámetro "queue"', queue);
+
             // Definir la URL de redirección según el valor de queue
             switch (queue) {
-                case 'sears':
+                case 'CEAT Sears':
                     targetUrl = './queues/inbound/sears/sears.html';
                     break;
-                case 'sanborns':
+                case 'CEAT Sanborns':
                     targetUrl = './queues/inbound/sanborns/sanborns.html';
                     break;
-                case 'mixup':
+                case 'CEAT Mix Up':
                     targetUrl = './queues/inbound/mixup/mixup.html';
                     break;
-                case 'robo':
+                case 'CEAT ROBO Sears':
                     targetUrl = './queues/inbound/robo/robo.html';
                     break;
                 default:
-                    console.log('Queue no válida, permaneciendo en la página actual.');
+                    console.log('Queue no válida, permaneciendo en la página actual.', queue);
                     return;
             }
 
@@ -143,7 +145,7 @@
                     </ul>
                 </div>
             </div>
-            <span><b>v 0.6.1</b></span>
+            <span><b>v 0.7.0</b></span>
         </div>
         
     </div>

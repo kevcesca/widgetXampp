@@ -1,6 +1,6 @@
 class scriptsSears extends HTMLElement {
     static _WIDGETNAME = 'scripts-sears';
-    static _WIDGTEURL = 'https://icobranza.sears.com.mx/widgets/';
+    static _WIDGTEURL = 'https://127.0.0.1/widgets/';
 
     constructor() {
         super();
@@ -78,7 +78,7 @@ class scriptsSears extends HTMLElement {
                         return;
                     }
 
-                    const url = `https://icobranza.sears.com.mx/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=987654321&motivo=${encodeURIComponent(motivo)}&nombre=${encodeURIComponent(nombre)}&telefono=${encodeURIComponent(telefono)}&queue=sears`;
+                    const url = `https://127.0.0.1/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=987654321&motivo=${encodeURIComponent(motivo)}&nombre=${encodeURIComponent(nombre)}&telefono=${encodeURIComponent(telefono)}&queue=CEAT%20Sears`;
 
                     iframe.attr('src', url);
                     console.log("URL generada para el iframe:", url);

@@ -219,26 +219,42 @@ class CentroAtencionTelefonica extends HTMLElement {
         const motivosBody = this.shadowRoot.getElementById('motivos-body');
         const noInfoRow = this.shadowRoot.getElementById('no-info-row');
 
+        // Variable para almacenar temporalmente el disposition
+        let currentDisposition = null;
+
         addButton.addEventListener('click', () => {
             const grupo = grupoSelect.value;
             const codigoMotivo = servicioSelect.value;
 
+            // Guardar el disposition actual de forma temporal
+            currentDisposition = { grupo, codigoMotivo };
+
+            // Limpiar la tabla si ya tiene un disposition anterior
+            if (motivosBody.children.length > 0) {
+                motivosBody.innerHTML = '';
+            }
+
+            // Eliminar la fila "Sin Información" si existe
             if (noInfoRow) {
                 noInfoRow.remove();
             }
 
+            // Agregar el nuevo disposition a la tabla
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
             <td>${grupo}</td>
             <td>${codigoMotivo}</td>
             <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
-            `;
+        `;
             motivosBody.appendChild(newRow);
 
+            // Agregar funcionalidad para eliminar la fila
             const eliminarBtn = newRow.querySelector('.eliminar-btn');
             eliminarBtn.addEventListener('click', () => {
                 newRow.remove();
+                currentDisposition = null; // Limpiar el disposition temporal
 
+                // Mostrar "Sin Información" si la tabla está vacía
                 if (motivosBody.children.length === 0) {
                     const emptyRow = document.createElement('tr');
                     emptyRow.id = 'no-info-row';
@@ -247,8 +263,20 @@ class CentroAtencionTelefonica extends HTMLElement {
                 }
             });
 
-            // Enviar el motivo al widget principal
-            window.parent.postMessage({ motivo: codigoMotivo }, "*");
+            // Mostrar un mensaje indicando que el disposition está listo para ser enviado
+            console.log('El motivo ha sido agregado a la tabla. Presione "Finalizar" para enviarlo.');
+        });
+
+        // Lógica para el botón "Finalizar"
+        const finalizarButton = this.shadowRoot.querySelector('.btn.custom-success');
+        finalizarButton.addEventListener('click', () => {
+            if (currentDisposition) {
+                // Enviar el motivo al widget principal al presionar "Finalizar"
+                window.parent.postMessage({ motivo: currentDisposition.codigoMotivo }, "*");
+                console.log('El motivo ha sido enviado exitosamente al finalizar la llamada.');
+            } else {
+                console.log('No hay motivos pendientes para enviar.');
+            }
         });
     }
 

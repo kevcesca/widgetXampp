@@ -1,8 +1,17 @@
-## Versión: 0.6.0
+## Versión: 0.7.0
 
-### Descripción del Proyecto
 
-Este proyecto tiene como objetivo la implementación de una plataforma para la gestión de campañas inbound y outbound, integrando funcionalidades para la generación de estados de cuenta y mejoras en la experiencia del usuario. La plataforma permite obtener datos de llamadas a través de AXP y se están realizando constantes mejoras en la interfaz de usuario.
+### Cambios en la versión 0.7.0
+
+#### Inbound:
+- **Obtención del token para solicitudes a la API**: Ahora se obtiene el token necesario para las solicitudes, mejorando la seguridad y autenticación de las llamadas a la API.
+- **Encriptación del PAN**: El PAN se encripta para asegurar la protección de los datos sensibles durante su transmisión y almacenamiento.
+- **Estados de cuenta**: Se ha agregado la funcionalidad para enviar estados de cuenta de hasta **4 meses** de antigüedad de manera satisfactoria.
+- **Cambio en el flujo de dispositions**: El flujo para establecer los dispositions se ha modificado para que ahora se envíen al presionar el botón de finalizar, mejorando la usabilidad y precisión del proceso.
+
+#### Outbound:
+- **Vistas faltantes en la campaña de promociones**: Se agregaron las vistas que faltaban para la campaña de promociones, completando la interfaz.
+- **Redirecciones al inicio de cada campaña**: Se han agregado redirecciones automáticas al inicio de cada campaña para mejorar la navegación y usabilidad.
 
 
 ### Cambios en la versión 0.6.0
