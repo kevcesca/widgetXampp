@@ -380,11 +380,41 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                            <div class="row mb-3">
+                            <div id="formularioBeneficiario1" class="row mb-3">
                                 <div class="col-md-2">
-                                    <label for="titulo" class="form-label">Título:</label>
-                                    <select class="form-select" id="titulo">
+                                    <label for="titulo1" class="form-label">Título:</label>
+                                    <select class="form-select" id="titulo1">
+                                        <option value="SR">SR</option>
+                                        <option value="SRA">SRA</option>
+                                        <option value="SRITA">SRITA</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="nombre1" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre1">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="paterno1" class="form-label">Paterno:</label>
+                                    <input type="text" class="form-control" id="paterno1">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="materno1" class="form-label">Materno:</label>
+                                    <input type="text" class="form-control" id="materno1">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="fechaNac1" class="form-label">Fecha Nac:</label>
+                                    <input type="date" class="form-control" id="fechaNac1">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="folio1" class="form-label">Folio:</label>
+                                    <input type="text" class="form-control" id="folio1">
+                                </div>
+                            </div>
+
+                            <div id="formularioBeneficiario2" class="row mb-3 d-none">
+                                <div class="col-md-2">
+                                    <label for="titulo2" class="form-label">Título:</label>
+                                    <select class="form-select" id="titulo2">
                                         <option value="SR">SR</option>
                                         <option value="SRA">SRA</option>
                                         <option value="SRITA">SRITA</option>
@@ -403,12 +433,12 @@
                                     <input type="text" class="form-control" id="materno2">
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="fechaNac" class="form-label">Fecha Nac:</label>
-                                    <input type="date" class="form-control" id="fechaNac">
+                                    <label for="fechaNac2" class="form-label">Fecha Nac:</label>
+                                    <input type="date" class="form-control" id="fechaNac2">
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="folio" class="form-label">Folio:</label>
-                                    <input type="text" class="form-control" id="folio">
+                                    <label for="folio2" class="form-label">Folio:</label>
+                                    <input type="text" class="form-control" id="folio2">
                                 </div>
                             </div>
 
@@ -534,6 +564,9 @@
             const agregarBtn = document.getElementById('agregarBtn');
             const continuarBtn = document.getElementById('continuarBtn');
             const finalizarBtn = document.getElementById('finalizarBtn');
+            const planSelect = document.getElementById('plan');
+            const formularioBeneficiario2 = document.getElementById('formularioBeneficiario2');
+
 
 
             document.getElementById('contactBtn').addEventListener('click', function () {
@@ -601,38 +634,69 @@
                 customerDataView.classList.remove('d-none');
             });
 
-            document.getElementById('agregarBtn').addEventListener('click', function () {
-                const titulo = document.getElementById('titulo').value;
-                const nombre = document.getElementById('nombre2').value;
-                const paterno = document.getElementById('paterno2').value;
-                const materno = document.getElementById('materno2').value;
-                const fechaNac = document.getElementById('fechaNac').value;
-                const tipoPago = document.getElementById('tipoPago').value;
-                const plan = document.getElementById('plan').value;
-
-                if (nombre && paterno && materno && fechaNac) {
-                    const newRow = aseguradosTable.insertRow();
-                    newRow.innerHTML = `
-                <td>${titulo} ${nombre} ${paterno} ${materno}</td>
-                <td>${fechaNac}</td>
-                <td>${plan}</td>
-                <td>${tipoPago}</td>
-                <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
-            `;
-
-                    // Clear input fields after adding
-                    document.getElementById('nombre2').value = '';
-                    document.getElementById('paterno2').value = '';
-                    document.getElementById('materno2').value = '';
-                    document.getElementById('fechaNac').value = '';
-
-                    // Add event listener to the new "Eliminar" button
-                    newRow.querySelector('.eliminar').addEventListener('click', function () {
-                        aseguradosTable.removeChild(newRow);
-                    });
+            planSelect.addEventListener('change', function() {
+                if (this.value === 'PAQUETE' || this.value === 'PAQUETE PLUS') {
+                    formularioBeneficiario2.classList.remove('d-none');
                 } else {
-                    alert('Por favor, complete todos los campos obligatorios.');
+                    formularioBeneficiario2.classList.add('d-none');
                 }
+            });
+
+            agregarBtn.addEventListener('click', function() {
+                const plan = planSelect.value;
+                const tipoPago = document.getElementById('tipoPago').value;
+                const beneficiarios = [];
+
+                // Collect data for beneficiario 1
+                beneficiarios.push({
+                    titulo: document.getElementById('titulo1').value,
+                    nombre: document.getElementById('nombre1').value,
+                    paterno: document.getElementById('paterno1').value,
+                    materno: document.getElementById('materno1').value,
+                    fechaNac: document.getElementById('fechaNac1').value,
+                    folio: document.getElementById('folio1').value
+                });
+
+                // If it's a package plan, collect data for beneficiario 2
+                if (plan === 'PAQUETE' || plan === 'PAQUETE PLUS') {
+                    beneficiarios.push({
+                        titulo: document.getElementById('titulo2').value,
+                        nombre: document.getElementById('nombre2').value,
+                        paterno: document.getElementById('paterno2').value,
+                        materno: document.getElementById('materno2').value,
+                        fechaNac: document.getElementById('fechaNac2').value,
+                        folio: document.getElementById('folio2').value
+                    });
+                }
+
+                // Check if we can add more beneficiaries
+                if (aseguradosTable.rows.length >= beneficiarios.length) {
+                    alert('No se pueden agregar más beneficiarios para este plan.');
+                    return;
+                }
+
+                // Add beneficiaries to the table
+                beneficiarios.forEach((beneficiario, index) => {
+                    if (beneficiario.nombre && beneficiario.paterno && beneficiario.materno && beneficiario.fechaNac) {
+                        const newRow = aseguradosTable.insertRow();
+                        newRow.innerHTML = `
+                            <td>${beneficiario.titulo} ${beneficiario.nombre} ${beneficiario.paterno} ${beneficiario.materno}</td>
+                            <td>${beneficiario.fechaNac}</td>
+                            <td>${plan}</td>
+                            <td>${tipoPago}</td>
+                            <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
+                        `;
+
+                        // Add event listener to the new "Eliminar" button
+                        newRow.querySelector('.eliminar').addEventListener('click', function() {
+                            aseguradosTable.removeChild(newRow);
+                        });
+
+                        // We're no longer clearing the input fields after adding
+                    } else {
+                        alert('Por favor, complete todos los campos obligatorios para el beneficiario ' + (index + 1));
+                    }
+                });
             });
 
             document.getElementById('continuarBtn').addEventListener('click', function () {

@@ -41,6 +41,22 @@ class scriptsSears extends HTMLElement {
         // Implementación del evento onMessageEvent
         this.api.onDataEvent('onMessageEvent', (data) => {
             console.log(`[${scriptsSears._WIDGETNAME}] Mensaje recibido desde el otro widget:`, data);
+            // Verificar si el mensaje contiene los campos que necesitamos
+            if (data && data.cuenta && data.tarjeta && data.nombre && data.motivo) {
+                // Guardamos los valores en variables
+                const cuenta = data.cuenta;
+                const tarjeta = data.tarjeta;
+                const nombre = data.nombre;
+                const motivo = data.motivo;
+
+                // Mostrar los valores recibidos
+                console.log(`[${scriptsSears._WIDGETNAME}] Mensaje recibido desde otro widget:`, data);
+                console.log(`Cuenta: ${cuenta}, Tarjeta: ${tarjeta}, Nombre: ${nombre}, Motivo: ${motivo}`);
+                
+                // Aquí puedes realizar lógica adicional con las variables si es necesario
+            } else {
+                console.warn('Mensaje recibido pero faltan algunos parámetros esperados:', data);
+            }
         });
     }
 
@@ -67,9 +83,7 @@ class scriptsSears extends HTMLElement {
                 if (data.state == "ALERTING" || data.state === "ACTIVE") {
                     console.log(`[${scriptsSears._WIDGETNAME}] onInteractionEvent`, data);
 
-                    let cuenta = data.contactId || 'No especificada';
-                    let motivo = data.intrinsics ? data.intrinsics.TOPIC_NAME : 'No especificado';
-                    let nombre = data.intrinsics ? data.intrinsics.CALLER_NAME : 'Cliente';
+                    let queue = data.intrinsics ? data.intrinsics.TOPIC_NAME : 'No especificado';
                     let telefono = data.intrinsics ? data.intrinsics.CALLER_NUMBER : 'No especificado';
 
                     const iframe = $container.find('#SCRIPTS-IFRAME');
@@ -78,7 +92,7 @@ class scriptsSears extends HTMLElement {
                         return;
                     }
 
-                    const url = `https://127.0.0.1/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=987654321&motivo=${encodeURIComponent(motivo)}&nombre=${encodeURIComponent(nombre)}&telefono=${encodeURIComponent(telefono)}&queue=CEAT%20Sears`;
+                    const url = `https://127.0.0.1/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=${encodeURIComponent(tarjeta)}&motivo=${encodeURIComponent(motivo)}&nombre=${encodeURIComponent(nombre)}&telefono=${encodeURIComponent(telefono)}&queue=${encodeURIComponent(queue)}`;
 
                     iframe.attr('src', url);
                     console.log("URL generada para el iframe:", url);
