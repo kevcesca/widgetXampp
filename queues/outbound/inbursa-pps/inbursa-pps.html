@@ -669,11 +669,8 @@
                     });
                 }
 
-                // Check if we can add more beneficiaries
-                if (aseguradosTable.rows.length >= beneficiarios.length) {
-                    alert('No se pueden agregar más beneficiarios para este plan.');
-                    return;
-                }
+                // Clear existing rows
+                aseguradosTable.innerHTML = '';
 
                 // Add beneficiaries to the table
                 beneficiarios.forEach((beneficiario, index) => {
@@ -691,8 +688,6 @@
                         newRow.querySelector('.eliminar').addEventListener('click', function() {
                             aseguradosTable.removeChild(newRow);
                         });
-
-                        // We're no longer clearing the input fields after adding
                     } else {
                         alert('Por favor, complete todos los campos obligatorios para el beneficiario ' + (index + 1));
                     }

@@ -307,7 +307,7 @@
                             <!-- <label for="coverageInfo" class="form-label">Información de Coberturas del Seguro:</label>
                             <select class="form-select" id="coverageInfo">
                                 <option selected>Seleccione una opción</option> -->
-                                <!-- Add more options here -->
+                            <!-- Add more options here -->
                             <!-- </select> -->
                         </div>
                         <div class="mb-3">
@@ -348,115 +348,144 @@
                         <h5 class="card-title">Sr./Srita SANDRA GUADALUPE ROMAN ROMAN podría darme sus datos para
                             efectuar
                             el alta por favor?</h5>
-                        <form id="customerForm">
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <label for="ci" class="form-label">Ciclo:</label>
-                                    <input type="text" class="form-control" id="ci" value="31" readonly>
+                            <form id="customerForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label for="ci" class="form-label">Ciclo:</label>
+                                        <input type="text" class="form-control" id="ci" value="31" readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="cuenta" class="form-label">Cuenta:</label>
+                                        <input type="text" class="form-control" id="cuenta" value="170564392" readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="rfc" class="form-label">RFC:</label>
+                                        <input type="text" class="form-control" id="rfc" value="BAGO681231" readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="telefono" class="form-label">Teléfono:</label>
+                                        <input type="text" class="form-control" id="telefono" value="8180131432" readonly>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="cuenta" class="form-label">Cuenta:</label>
-                                    <input type="text" class="form-control" id="cuenta" value="170564392" readonly>
+    
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="nombre" class="form-label">Nombre Titular:</label>
+                                        <input type="text" class="form-control" id="nombre" value="OMAR ALEJANDRO" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="paterno" class="form-label">Paterno:</label>
+                                        <input type="text" class="form-control" id="paterno" value="BALLEZA" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="materno" class="form-label">Materno:</label>
+                                        <input type="text" class="form-control" id="materno" value="GONZALEZ" readonly>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="rfc" class="form-label">RFC:</label>
-                                    <input type="text" class="form-control" id="rfc" value="BAGO681231" readonly>
+    
+                                <div class="mb-3">
+                                    <h6>Asegurados</h6>
+                                    <table class="table table-bordered" id="aseguradosTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Asegurados</th>
+                                                <th>Nacimiento</th>
+                                                <th>Plan</th>
+                                                <th>Tipo de Pago</th>
+                                                <th>Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Existing entries will be added here -->
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="telefono" class="form-label">Teléfono:</label>
-                                    <input type="text" class="form-control" id="telefono" value="8180131432" readonly>
+                                <div id="formularioBeneficiario1" class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label for="titulo1" class="form-label">Título:</label>
+                                        <select class="form-select" id="titulo1">
+                                            <option value="SR">SR</option>
+                                            <option value="SRA">SRA</option>
+                                            <option value="SRITA">SRITA</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="nombre1" class="form-label">Nombre:</label>
+                                        <input type="text" class="form-control" id="nombre1">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="paterno1" class="form-label">Paterno:</label>
+                                        <input type="text" class="form-control" id="paterno1">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="materno1" class="form-label">Materno:</label>
+                                        <input type="text" class="form-control" id="materno1">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="fechaNac1" class="form-label">Fecha Nac:</label>
+                                        <input type="date" class="form-control" id="fechaNac1">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="folio1" class="form-label">Folio:</label>
+                                        <input type="text" class="form-control" id="folio1">
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="nombre" class="form-label">Nombre Titular:</label>
-                                    <input type="text" class="form-control" id="nombre" value="SANDRA GUADALUPE"
-                                        readonly>
+    
+                                <div id="formularioBeneficiario2" class="row mb-3 d-none">
+                                    <div class="col-md-2">
+                                        <label for="titulo2" class="form-label">Título:</label>
+                                        <select class="form-select" id="titulo2">
+                                            <option value="SR">SR</option>
+                                            <option value="SRA">SRA</option>
+                                            <option value="SRITA">SRITA</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="nombre2" class="form-label">Nombre:</label>
+                                        <input type="text" class="form-control" id="nombre2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="paterno2" class="form-label">Paterno:</label>
+                                        <input type="text" class="form-control" id="paterno2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="materno2" class="form-label">Materno:</label>
+                                        <input type="text" class="form-control" id="materno2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="fechaNac2" class="form-label">Fecha Nac:</label>
+                                        <input type="date" class="form-control" id="fechaNac2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="folio2" class="form-label">Folio:</label>
+                                        <input type="text" class="form-control" id="folio2">
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="paterno" class="form-label">Paterno:</label>
-                                    <input type="text" class="form-control" id="paterno" value="ROMAN" readonly>
+    
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="tipoPago" class="form-label">Tipo de Pago:</label>
+                                        <select class="form-select" id="tipoPago">
+                                            <option value="MENSUAL" selected>MENSUAL</option>
+                                            <option value="ANUAL">ANUAL</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="plan" class="form-label">Plan:</label>
+                                        <select class="form-select" id="plan">
+                                            <option value="INDIVIDUAL" selected>INDIVIDUAL</option>
+                                            <option value="PAQUETE">PAQUETE</option>
+                                            <option value="INDIVIDUAL PLUS">INDIVIDUAL PLUS</option>
+                                            <option value="PAQUETE PLUS">PAQUETE PLUS</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="materno" class="form-label">Materno:</label>
-                                    <input type="text" class="form-control" id="materno" value="ROMAN" readonly>
+    
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="button" class="btn btn-primary me-2" id="agregarBtn">Agregar</button>
+                                    <button type="button" class="btn btn-success" id="continuarBtn">Continuar</button>
                                 </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <h6>Asegurados</h6>
-                                <table class="table table-bordered" id="aseguradosTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Asegurados</th>
-                                            <th>Nacimiento</th>
-                                            <th>Plan</th>
-                                            <th>Tipo de Pago</th>
-                                            <th>Eliminar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Existing entries will be added here -->
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-2">
-                                    <label for="titulo" class="form-label">Título:</label>
-                                    <select class="form-select" id="titulo">
-                                        <option value="SR">SR</option>
-                                        <option value="SRA">SRA</option>
-                                        <option value="SRITA">SRITA</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="nombre2" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" id="nombre2">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="paterno2" class="form-label">Paterno:</label>
-                                    <input type="text" class="form-control" id="paterno2">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="materno2" class="form-label">Materno:</label>
-                                    <input type="text" class="form-control" id="materno2">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="fechaNac" class="form-label">Fecha Nac:</label>
-                                    <input type="date" class="form-control" id="fechaNac">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="folio" class="form-label">Folio:</label>
-                                    <input type="text" class="form-control" id="folio">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="tipoPago" class="form-label">Tipo de Pago:</label>
-                                    <select class="form-select" id="tipoPago">
-                                        <option value="MENSUAL" selected>MENSUAL</option>
-                                        <option value="ANUAL">ANUAL</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="plan" class="form-label">Plan:</label>
-                                    <select class="form-select" id="plan">
-                                        <option value="INDIVIDUAL" selected>INDIVIDUAL</option>
-                                        <option value="PAQUETE">PAQUETE</option>
-                                        <option value="INDIVIDUAL PLUS">INDIVIDUAL PLUS</option>
-                                        <option value="PAQUETE PLUS">PAQUETE PLUS</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end mt-4">
-                                <button type="button" class="btn btn-primary me-2" id="agregarBtn">Agregar</button>
-                                <button type="button" class="btn btn-success" id="continuarBtn">Continuar</button>
-                            </div>
-                        </form>
+                            </form>
                     </div>
                 </div>
             </div>
@@ -540,7 +569,7 @@
             const acceptBtn = document.getElementById('acceptBtn');
             const rejectBtn = document.getElementById('rejectBtn');
             const rejectionOptions = document.getElementById('rejectionOptions');
-            const agregarBtn = document.querySelector('agregarBtn');
+            const agregarBtn = document.getElementById('agregarBtn');
             const continuarBtn = document.querySelector('#additionalInfoView .btn-success');
             const finishBtn = document.getElementById('finishBtn');
             const finishRejectionBtn = document.getElementById('finishRejectionBtn');
@@ -558,8 +587,12 @@
             const noTieneTiempoBtn = document.getElementById('noTieneTiempoBtn');
             const necesitaPensarlo = document.getElementById('necesitaPensarlo')
             const aseguradosTable = document.getElementById('aseguradosTable').getElementsByTagName('tbody')[0];
+            const planSelect = document.getElementById('plan');
+            const formularioBeneficiario2 = document.getElementById('formularioBeneficiario2');
+
 
             contactBtn.addEventListener('click', function () {
+                console.log('Botón Contacto presionado');
                 initialButtons.classList.add('d-none');
                 contactOptions.classList.remove('d-none');
             });
@@ -644,38 +677,66 @@
                 rejectionOptions.classList.remove('d-none');
             });
 
-            document.getElementById('agregarBtn').addEventListener('click', function () {
-                const titulo = document.getElementById('titulo').value;
-                const nombre = document.getElementById('nombre2').value;
-                const paterno = document.getElementById('paterno2').value;
-                const materno = document.getElementById('materno2').value;
-                const fechaNac = document.getElementById('fechaNac').value;
-                const tipoPago = document.getElementById('tipoPago').value;
-                const plan = document.getElementById('plan').value;
-
-                if (nombre && paterno && materno && fechaNac) {
-                    const newRow = aseguradosTable.insertRow();
-                    newRow.innerHTML = `
-                <td>${titulo} ${nombre} ${paterno} ${materno}</td>
-                <td>${fechaNac}</td>
-                <td>${plan}</td>
-                <td>${tipoPago}</td>
-                <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
-            `;
-
-                    // Clear input fields after adding
-                    document.getElementById('nombre2').value = '';
-                    document.getElementById('paterno2').value = '';
-                    document.getElementById('materno2').value = '';
-                    document.getElementById('fechaNac').value = '';
-
-                    // Add event listener to the new "Eliminar" button
-                    newRow.querySelector('.eliminar').addEventListener('click', function () {
-                        aseguradosTable.removeChild(newRow);
-                    });
+            planSelect.addEventListener('change', function () {
+                if (this.value === 'PAQUETE' || this.value === 'PAQUETE PLUS') {
+                    formularioBeneficiario2.classList.remove('d-none');
                 } else {
-                    alert('Por favor, complete todos los campos obligatorios.');
+                    formularioBeneficiario2.classList.add('d-none');
                 }
+                // Clear the table when plan changes
+                aseguradosTable.innerHTML = '';
+            });
+
+            agregarBtn.addEventListener('click', function () {
+                const plan = planSelect.value;
+                const tipoPago = document.getElementById('tipoPago').value;
+                const beneficiarios = [];
+
+                // Collect data for beneficiario 1
+                beneficiarios.push({
+                    titulo: document.getElementById('titulo1').value,
+                    nombre: document.getElementById('nombre1').value,
+                    paterno: document.getElementById('paterno1').value,
+                    materno: document.getElementById('materno1').value,
+                    fechaNac: document.getElementById('fechaNac1').value,
+                    folio: document.getElementById('folio1').value
+                });
+
+                // If it's a package plan, collect data for beneficiario 2
+                if (plan === 'PAQUETE' || plan === 'PAQUETE PLUS') {
+                    beneficiarios.push({
+                        titulo: document.getElementById('titulo2').value,
+                        nombre: document.getElementById('nombre2').value,
+                        paterno: document.getElementById('paterno2').value,
+                        materno: document.getElementById('materno2').value,
+                        fechaNac: document.getElementById('fechaNac2').value,
+                        folio: document.getElementById('folio2').value
+                    });
+                }
+
+                // Clear existing rows
+                aseguradosTable.innerHTML = '';
+
+                // Add beneficiaries to the table
+                beneficiarios.forEach((beneficiario, index) => {
+                    if (beneficiario.nombre && beneficiario.paterno && beneficiario.materno && beneficiario.fechaNac) {
+                        const newRow = aseguradosTable.insertRow();
+                        newRow.innerHTML = `
+                            <td>${beneficiario.titulo} ${beneficiario.nombre} ${beneficiario.paterno} ${beneficiario.materno}</td>
+                            <td>${beneficiario.fechaNac}</td>
+                            <td>${plan}</td>
+                            <td>${tipoPago}</td>
+                            <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
+                        `;
+
+                        // Add event listener to the new "Eliminar" button
+                        newRow.querySelector('.eliminar').addEventListener('click', function () {
+                            aseguradosTable.removeChild(newRow);
+                        });
+                    } else {
+                        alert('Por favor, complete todos los campos obligatorios para el beneficiario ' + (index + 1));
+                    }
+                });
             });
 
             continuarBtn.addEventListener('click', showConfirmationView);
