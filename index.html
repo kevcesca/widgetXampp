@@ -28,7 +28,7 @@
             const cuenta = params.get('cuenta') || 'N/A';
             const tarjeta = params.get('tarjeta') || 'N/A';
             const motivo = params.get('motivo') || 'N/A';
-            const nombre = params.get('nombre') || 'N/A';
+            const nombreCliente = params.get('nombreCliente') || 'N/A';
             const queue = params.get('queue') || 'N/A';
             const telefono = params.get('telefono') || 'N/A';
 
@@ -48,6 +48,7 @@
         // Función para redirigir a la URL según el valor del parámetro "queue"
         function redirectToQueue(queue) {
             const params = new URLSearchParams(window.location.search);
+            console.log("La queue actual es:", queue);
             let targetUrl = '';
 
             console.log('Redireccionando a la URL según el valor del parámetro "queue"', queue);
@@ -63,7 +64,7 @@
                 case 'CEAT Mix Up':
                     targetUrl = './queues/inbound/mixup/mixup.html';
                     break;
-                case 'CEAT ROBO Sears':
+                case 'CEAT Robo Sears':
                     targetUrl = './queues/inbound/robo/robo.html';
                     break;
                 default:
