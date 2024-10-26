@@ -8,7 +8,8 @@ class CentroAtencionMixup extends HTMLElement {
         const params = new URLSearchParams(window.location.search);
         const cuenta = params.get('cuenta') || 'No especificada';
         const motivo = params.get('motivo') || 'No especificado';
-        const nombre = params.get('nombre') || 'Cliente';
+        const nombreCliente = params.get('nombreCliente') || 'Cliente';
+        const nombreAgente = params.get('nombreAgente') || 'Cliente';
         const telefono = params.get('telefono') || 'No especificado';
 
         // Creamos el Shadow DOM
@@ -21,8 +22,8 @@ class CentroAtencionMixup extends HTMLElement {
             <!-- Contenido principal del Web Component -->
             <div id="main-content" class="neo-container container">
                 <h5>Centro de Atención Telefónica SEARS.</h5>
-                <p><span class="customer-info">Buenas Tardes, le atiende: <b>ABIGAIL NAJERA</b>.</span></p>
-                <p>¿Tengo el gusto con el Sr./Sra. <b>${nombre}</b>? ¿En qué puedo servirle?</p>
+                <p><span class="customer-info">Buenas Tardes, le atiende: <b>${nombreAgente}</b>.</span></p>
+                <p>¿Tengo el gusto con el Sr./Sra. <b>${nombreCliente}</b>? ¿En qué puedo servirle?</p>
 
                 <!-- Formulario de motivos -->
                 <div class="formrow">
@@ -106,7 +107,7 @@ class CentroAtencionMixup extends HTMLElement {
                 <form id="form-estado-cuenta">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" class="form-control" value="${nombre}">
+                        <input type="text" id="nombre" class="form-control" value="${nombreCliente}">
                     </div>
                     <div class="form-row">
                         <div class="form-group">

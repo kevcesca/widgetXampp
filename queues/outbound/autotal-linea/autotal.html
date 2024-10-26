@@ -14,7 +14,7 @@
     <div class="page-container">
         <main class="container mt-3 main-content">
             <div id="initialView">
-                <h6 class="mb-3">Buenas Tardes, ¿Hablo con el Sr/Srta. LIZBETH MARIZA ROBLES RAMIREZ?</h6>
+                <h6 class="mb-3">Buenas Tardes, ¿Hablo con el Sr/Srta. <b class="nombreCliente">Cliente</b>?</h6>
                 <form>
                     <div class="row g-2">
                         <div class="col-md-4">
@@ -66,7 +66,7 @@
 
                     <div id="clientMessage"
                         class="m-4 d-none d-flex flex-column justify-content-center align-items-center">
-                        <p><b>Mucho gusto Sr./Srita. LIZBETH MARIZA ROBLES RAMIREZ, mi nombre es ABIGAIL NAJERA de
+                        <p><b>Mucho gusto Sr./Srita. <b class="nombreCliente">Cliente</b>, mi nombre es <b id="nombreAgente">Agente</b> de
                                 Sears. Me
                                 comunico para brindarle asesoría sobre la contratación de su seguro de Auto, usted
                                 realizó
@@ -81,7 +81,7 @@
 
                     <div id="noContactoMessage"
                         class="m-4 d-none d-flex flex-column justify-content-center align-items-center">
-                        <p><b>Mucho gusto Sr./Srita., mi nombre es ABIGAIL NAJERA de Sears. El motivo de mi llamada es
+                        <p><b>Mucho gusto Sr./Srita., mi nombre es <b id="nombreAgente">Agente</b> de Sears. El motivo de mi llamada es
                                 para
                                 apoyarle con la contratación del seguro de su Auto en seguimiento a la cotización que
                                 realizó. ¿En qué horario se le puede localizar?</b></p>
@@ -109,8 +109,8 @@
             </div>
 
             <div id="confirmationView" class="d-none">
-                <h4 class="text-center mb-3">Nombre cliente: LIZBETH MARIZA ROBLES RAMIREZ</h4>
-                <p class="text-center">Núm. Cuenta: 9617027589?? - Central: HG83 - Fecha Cotización: 2023-11-13</p>
+                <h4 class="text-center mb-3"><b class="nombreCliente">Cliente</b></h4>
+                <p class="text-center">Núm. Cuenta: 9617027589?? - Central: HG83 - Fecha Cotización: 2024-25-10</p>
                 <p class="text-center">Tel. Casa: 7716990570 - Tel. Oficina: 7717107544</p>
                 <h5 class="mt-4 mb-3">Se requiere confirmar o solicitar la siguiente información:</h5>
                 <ul>
@@ -145,7 +145,7 @@
                         electrónico proporcionado (confirmar correo).</p>
                     <p>Sondear si necesita alguna asesoría adicional o información de la póliza.</p>
                     <p>Solicitar horario y día (manejar cita para segunda llamada).</p>
-                    <p>Agradezco haber tomado la llamada, mi nombre es ABIGAIL NAJERA de Sears. Que tenga una Excelente
+                    <p>Agradezco haber tomado la llamada, mi nombre es <b id="nombreAgenteDespedida">Agente</b> de Sears. Que tenga una Excelente
                         Tarde.</p>
                     <h6 class="mt-4 mb-3">Puntos a considerar:</h6>
                     <ul>
@@ -185,9 +185,10 @@
                 <h2>AUTOTAL EN LÍNEA</h2>
                 <i class="bi bi-telephone-fill ms-2"></i>
             </div>
-            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <label for="cuentaInput" class="form-label">No. Cuenta:</label>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta" id="cuentaInput">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Casa:" id="telefonoCasa">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Trabajo:" id="telefonoTrabajo">
 
             <div class="sidebar-buttons">
                 <button id="inicio" class="sidebar-button">
@@ -206,6 +207,37 @@
             <p class="mt-2 text-muted">Sin Promociones</p>
         </aside>
     </div>
+
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function obtenerParametroUrl(nombreParametro) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nombreParametro);
+        }
+
+        // Insertar los valores en el HTML
+        window.onload = function () {
+            // Obtener los valores de la URL
+            const nombreAgente = obtenerParametroUrl('nombreAgente') || 'Nombre del Agente';
+            const nombreAgenteDespedida = obtenerParametroUrl('nombreAgente') || 'Nombre del Agente';
+            const nombreCliente = obtenerParametroUrl('nombreCliente') || 'Nombre del Cliente';
+            const telefonoCasa = obtenerParametroUrl('telefono') || 'N/A';
+            const telefonoTrabajo = obtenerParametroUrl('telefono') || 'N/A';
+            const cuenta = obtenerParametroUrl('cuenta') || 'N/A';
+
+            // Insertar los valores en las etiquetas HTML correspondientes
+            document.getElementById('nombreAgente').textContent = nombreAgente;
+            document.getElementById('nombreAgenteDespedida').textContent = nombreAgente;
+            document.querySelectorAll('.nombreCliente').forEach(el => {
+                el.textContent = nombreCliente;
+            });
+            document.getElementById('telefonoCasa').value = telefonoCasa;
+            document.getElementById('telefonoTrabajo').value = telefonoTrabajo;
+            document.getElementById('cuentaInput').value = cuenta;
+
+        };
+    </script>
 
 
     <script>
@@ -267,18 +299,6 @@
             btnNoInteresa3.addEventListener('click', function () {
                 clientMessage.classList.add('d-none');
                 noInteresaView.classList.remove('d-none');
-            });
-
-            btnFinalizar.addEventListener('click', function () {
-                alert('Proceso finalizado. Gracias por su tiempo.');
-            });
-
-            btnFinalizarNoInteresa.addEventListener('click', function () {
-                alert('Proceso finalizado. Gracias por su tiempo.');
-            });
-
-            btnFinalizarNoContacto.addEventListener('click', function () {
-                alert('Proceso finalizado. Gracias por su tiempo.');
             });
 
             // Evento para regresar a la página inicial

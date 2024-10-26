@@ -17,9 +17,10 @@
             <div id="mainContent" class="container my-5">
                 <div class="card">
                     <div class="card-body">
-                        <p>Buenas Tardes, me podría comunicar con el Sr./Srita. <b> OMAR ALEJANDRO BALLEZA GONZALEZ</b>.
+                        <p>Buenas Tardes, me podría comunicar con el Sr./Srita. <b class="nombreCliente">Cliente</b>.
                         </p>
-                        <p class="mb-4"> Mi nombre es ABIGAIL NAJERA y estoy llamando de Seguros Inbursa</p>
+                        <p class="mb-4"> Mi nombre es <b id="nombreAgente">Agente</b> y estoy llamando de Seguros
+                            Inbursa</p>
 
                         <form>
                             <div class="row mb-3">
@@ -389,7 +390,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Finalizar Cotización</h2>
-                        <p><b>Sr. / Srita. Favor de enviar la documentación vía e-mail o fax que ampara los datos que
+                        <p><b>Sr. / Srita <b class="nombreCliente">Cliente</b>. Favor de enviar la documentación vía
+                                e-mail o fax que ampara los datos que
                                 proporcionó para la cotización:</b> </p>
                         <ol>
                             <li>Tarjeta de circulación</li>
@@ -422,7 +424,8 @@
                                 3737.</p>
                             <p>El número telefónico de Asistencia Inbursa para Siniestros es 01800 911 9090 y de Auxilio
                                 Mecánico Vial 01800 911 6000.</p>
-                            <p>Gracias por recibir nuestra llamada, le atendió ABIGAIL NAJERA de Seguros Inbursa.</p>
+                            <p>Gracias por recibir nuestra llamada, le atendió <b id="nombreAgenteDespedida">Agente</b>
+                                de Seguros Inbursa.</p>
                         </b>
                         <div class="d-flex justify-content-end mt-3">
                             <button type="button" class="btn btn-primary" id="finalizarBtn">Finalizar</button>
@@ -430,7 +433,6 @@
                     </div>
                 </div>
             </div>
-
         </main>
 
         <aside class="sidebar">
@@ -438,9 +440,10 @@
                 <h2>AUTOTAL</h2>
                 <i class="bi bi-telephone-fill ms-2"></i>
             </div>
-            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <label for="cuentaInput" class="form-label">No. Cuenta:</label>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta" id="cuentaInput">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Casa:" id="telefonoCasa">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Trabajo:" id="telefonoOficina">
 
             <div class="sidebar-buttons">
                 <button id="inicio" class="sidebar-button">
@@ -460,6 +463,75 @@
         </aside>
 
     </div>
+
+    <script>
+        // Listener para recibir datos desde el widget principal
+        window.addEventListener('message', (event) => {
+            const allowedOrigin = 'https://na-01.workspaces.avayacloud.com'; // Asegúrate de que coincida con el origen correcto
+            if (event.origin === allowedOrigin && event.data) {
+                // Almacenamos los datos en window.formularioDatos y actualizamos el formulario
+                window.formularioDatos = event.data;
+                cargarDatosFormulario(); // Llamada a cargar los datos en el formulario
+                console.log("Datos recibidos y cargados en el formulario:", window.formularioDatos);
+            } else {
+                console.warn("Origen no permitido o datos no válidos recibidos:", event.origin);
+            }
+        });
+
+        // Función para cargar datos en el formulario
+        function cargarDatosFormulario() {
+            if (window.formularioDatos) {
+                const datos = window.formularioDatos;
+                // Llenamos los campos del formulario
+                document.getElementById('nombre').value = datos.nombreCliente || '';
+                document.getElementById('paterno').value = datos.paterno || '';
+                document.getElementById('materno').value = datos.materno || '';
+                document.getElementById('cuenta').value = datos.cuenta || '';
+                document.getElementById('apertura').value = datos.apertura || '';
+                document.getElementById('corte').value = datos.corte || '';
+                document.getElementById('empleo').value = datos.empleo || '';
+                document.getElementById('rfc').value = datos.rfc || '';
+                document.getElementById('sexo').value = datos.sexo || '';
+                document.getElementById('direccion').value = datos.direccion || '';
+                document.getElementById('colonia').value = datos.colonia || '';
+                document.getElementById('ciudad').value = datos.ciudad || '';
+                document.getElementById('estado').value = datos.estado || '';
+                document.getElementById('cp').value = datos.cp || '';
+                document.getElementById('tel-casa').value = datos.telefonoCasa || '';
+                document.getElementById('tel-oficina').value = datos.telefonoOficina || '';
+                document.getElementById('tel-celular').value = datos.telefonoCelular || '';
+                document.getElementById('telefonoCasa').value = datos.telefonoCasa;
+                document.getElementById('telefonoOficina').value = datos.telefonoOficina;
+                document.getElementById('tel-o').value = datos.telefonoOtro || '';
+                document.getElementById('nombre-adicional').value = datos.nombreAdicional || '';
+                document.getElementById('paterno-adicional').value = datos.paternoAdicional || '';
+                document.getElementById('materno-adicional').value = datos.maternoAdicional || '';
+
+                // Actualizar todos los elementos con clase `nombreCliente`
+                document.querySelectorAll('.nombreCliente').forEach(el => {
+                    el.textContent = datos.nombreCliente || 'Cliente';
+                });
+            }
+        }
+
+        // Función para obtener parámetros de URL
+        function obtenerParametroUrl(nombreParametro) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nombreParametro);
+        }
+
+        // Cargar datos desde la URL o `window.formularioDatos`
+        window.onload = function () {
+            const nombreAgente = obtenerParametroUrl('nombreAgente') || 'Nombre del Agente';
+            document.getElementById('nombreAgente').textContent = nombreAgente;
+            document.getElementById('nombreAgenteDespedida').textContent = nombreAgente;
+
+            // Llamada para cargar el formulario usando `window.formularioDatos`, si está disponible
+            cargarDatosFormulario();
+        };
+    </script>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

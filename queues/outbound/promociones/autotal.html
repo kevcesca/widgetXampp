@@ -14,8 +14,8 @@
     <div class="page-container">
         <main class="container mt-3 main-content">
             <div id="seccion1">
-                <p class="mb-3"><b>Buenas Tardes. Habla ABIGAIL NAJERA de crédito SEARS.</b> </p>
-                <p><b>Me gustaría hablar con el Sr.(a) HORACIO MACIEL HERNANDEZ.</b></p>
+                <p class="mb-3">Buenas Tardes. Habla <b id="nombreAgente">Agente</b> de crédito SEARS.</p>
+                <p>Me gustaría hablar con el Sr.(a) <b class="nombreCliente">Cliente</b></p>
 
                 <div class="m-4 d-flex flex-column justify-content-center align-items-end">
                     <div class="m-2">
@@ -30,7 +30,7 @@
             <div id="seccionNoExitoso" class="hidden">
                 <h6 class="mb-3">Preguntar: ¿Con quién tengo el gusto?</h6>
                 <input type="text" class="form-control mb-3" placeholder="Persona en el teléfono...">
-                <p>Sra. ¿Es usted familiar del Sr(a) HORACIO MACIEL HERNANDEZ?</p>
+                <p>Sra. ¿Es usted familiar del Sr(a) <b class="nombreCliente">Cliente</b>?</p>
                 <p>Por favor, le puede informar que le llamamos del departamento de Promociones SEARS, le dejo el número
                     telefónico para que se comunique con nosotros, nuestros horarios son de lunes a viernes de 9 a 6 de
                     la tarde y los sábados de 9 a 2 de la tarde. Gracias.</p>
@@ -44,7 +44,7 @@
             <div id="seccionDespedida" class="hidden">
                 <h6 class="mb-3">Preguntar: ¿Con quién tengo el gusto?</h6>
                 <input type="text" class="form-control mb-3" placeholder="Persona en el teléfono...">
-                <p>Sra. ¿Es usted familiar del Sr(a) HORACIO MACIEL HERNANDEZ?</p>
+                <p>Sra. ¿Es usted familiar del Sr(a) <b class="nombreCliente">Cliente</b></p>
                 <p>Por favor, le puede informar que le llamamos del departamento de Promociones SEARS, le dejo el número
                     telefónico para que se comunique con nosotros, nuestros horarios son de lunes a viernes de 9 a 6 de
                     la tarde y los sábados de 9 a 2 de la tarde. Gracias.</p>
@@ -132,7 +132,9 @@
             </div>
 
             <div id="seccion3" class="hidden">
-                <h6 class="mb-3">Sr(a):HORACIO Hemos notado que no ha hecho uso de su tarjeta de Crédito SEARS
+                <h6 class="mb-3">Sr(a): <b class="nombreCliente">Cliente</b> Hemos notado que no ha hecho uso de su
+                    tarjeta
+                    de Crédito SEARS
                     últimamente,
                     por lo que el motivo de mi llamada es hacerle una cordial invitación a pasar por nuestras tiendas ya
                     que
@@ -233,9 +235,10 @@
                 <h2>CTAS L SEARS</h2>
                 <i class="bi bi-telephone-fill ms-2"></i>
             </div>
-            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <label for="cuenta" class="form-label">No. Cuenta:</label>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta" id="cuenta">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Casa:" id="telefonoCasa">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Trabajo:" id="telefonoTrabajo">
 
             <div class="sidebar-buttons">
                 <button id="inicio" class="sidebar-button">
@@ -263,25 +266,25 @@
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(nombreParametro);
         }
-    
+
         // Insertar los valores en el HTML
-        window.onload = function() {
+        window.onload = function () {
             // Obtener los valores de la URL
-            const nombreAgente = obtenerParametroUrl('nombreAgente') || 'ABIGAIL NAJERA';
-            const nombreCliente = obtenerParametroUrl('nombreCliente') || 'HORACIO MACIEL HERNANDEZ';
+            const nombreAgente = obtenerParametroUrl('nombreAgente') || 'Nombre del Agente';
+            const nombreCliente = obtenerParametroUrl('nombreCliente') || 'Nombre del Cliente';
+            const telefonoCasa = obtenerParametroUrl('telefono') || 'N/A';
+            const telefonoTrabajo = obtenerParametroUrl('telefono') || 'N/A';
             const cuenta = obtenerParametroUrl('cuenta') || 'N/A';
-            const tarjeta = obtenerParametroUrl('tarjeta') || 'N/A';
-            const telefono = obtenerParametroUrl('telefono') || 'N/A';
-            const motivo = obtenerParametroUrl('motivo') || 'N/A';
-    
+
             // Insertar los valores en las etiquetas HTML correspondientes
             document.getElementById('nombreAgente').textContent = nombreAgente;
-            document.getElementById('nombreCliente').textContent = nombreCliente;
-            // Si tienes más etiquetas para cuenta, tarjeta, etc., las puedes insertar de manera similar:
-            document.getElementById('cuenta').textContent = cuenta;
-            document.getElementById('tarjeta').textContent = tarjeta;
-            document.getElementById('telefono').textContent = telefono;
-            document.getElementById('motivo').textContent = motivo;
+            document.querySelectorAll('.nombreCliente').forEach(el => {
+                el.textContent = nombreCliente;
+            });
+            document.getElementById('telefonoCasa').value = telefonoCasa;
+            document.getElementById('telefonoTrabajo').value = telefonoTrabajo;
+            document.getElementById('cuenta').value = cuenta;
+
         };
     </script>
 
@@ -323,13 +326,12 @@
 
         // Listener para el modal
         document.getElementById('confirmFinalize').addEventListener('click', function () {
-            alert('Llamada finalizada');
-            // Reset to first section
+            // Reiniciar el widget
             document.querySelectorAll('.container > div').forEach(function (el) {
                 el.classList.add('hidden');
             });
             document.getElementById('seccion1').classList.remove('hidden');
-            // Hide the modal
+            // Esconder el modal
             var modal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
             modal.hide();
         });

@@ -22,13 +22,27 @@
         }
     </style>
     <script>
-        // Función para obtener los parámetros de la URL
+        // Agrega el listener para recibir datos del formulario desde el widget principal
+        window.addEventListener('message', (event) => {
+            const allowedOrigin = 'https://na-01.workspaces.avayacloud.com'; // Cambia esto al origen correcto del widget
+
+            if (event.origin === allowedOrigin && event.data) {
+                // Guarda los datos en window.formularioDatosRecibidos para su uso en otras rutas
+                window.formularioDatosRecibidos = event.data;
+                console.log("Datos recibidos y almacenados en window.formularioDatosRecibidos:", window.formularioDatosRecibidos);
+            } else {
+                console.warn("Origen no permitido o datos no válidos recibidos:", event.origin);
+            }
+        });
+
+        // Función para obtener los parámetros de la URL y actualizar el DOM
         function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
             const cuenta = params.get('cuenta') || 'N/A';
             const tarjeta = params.get('tarjeta') || 'N/A';
             const motivo = params.get('motivo') || 'N/A';
             const nombreCliente = params.get('nombreCliente') || 'N/A';
+            const nombreAgente = params.get('nombreAgente') || 'N/A';
             const queue = params.get('queue') || 'N/A';
             const telefono = params.get('telefono') || 'N/A';
 
@@ -36,7 +50,7 @@
             document.getElementById('cuenta').textContent = cuenta;
             document.getElementById('tarjeta').textContent = tarjeta;
             document.getElementById('motivo').textContent = motivo;
-            document.getElementById('nombre').textContent = nombre;
+            document.getElementById('nombre').textContent = nombreCliente;
             document.getElementById('telefono').textContent = telefono;
 
             // Redirigir si el parámetro "queue" está presente
@@ -146,7 +160,7 @@
                     </ul>
                 </div>
             </div>
-            <span><b>v 0.7.2</b></span>
+            <span><b>v 0.7.3</b></span>
         </div>
         
     </div>

@@ -1,5 +1,6 @@
 class scriptsSears extends HTMLElement {
     static _WIDGETNAME = 'scripts-sears';
+
     static _WIDGTEURL = 'https://127.0.0.1/widgets/';
 
     constructor() {
@@ -67,11 +68,13 @@ class scriptsSears extends HTMLElement {
                 // Obtenemos los datos desde 'data.intrinsics'
                 const queue = data.intrinsics ? data.intrinsics.TOPIC_NAME : 'No especificado';
                 const telefono = data.intrinsics ? data.intrinsics.CALLER_NUMBER : 'No especificado';
+                const nombreAgente = _API.getClientDetails().agentId;
 
                 // Guardamos los datos de 'onInteractionEvent' en la clase
                 this.dataFromInteractionEvent = {
                     queue: queue,
                     telefono: telefono,
+                    nombreAgente: nombreAgente
                 };
 
                 console.log('Datos guardados desde onInteractionEvent:', this.dataFromInteractionEvent);
@@ -113,14 +116,18 @@ class scriptsSears extends HTMLElement {
 
         const queue = this.dataFromInteractionEvent.queue || 'Nulo';
         const telefono = this.dataFromInteractionEvent.telefono || 'Nulo';
+        const nombreAgente = this.dataFromInteractionEvent.nombreAgente || 'Nulo';
+
+
 
         // Generamos la URL con los valores, usando "Nulo" en los valores que no estén disponibles
-        const url = `https://127.0.0.1/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=${encodeURIComponent(tarjeta)}&motivo=${encodeURIComponent(motivo)}&telefono=${encodeURIComponent(telefono)}&queue=CEAT%20Sears&nombreCliente=${encodeURIComponent(nombreCliente)}`;
+        const url = `https://127.0.0.1/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=${encodeURIComponent(tarjeta)}&motivo=${encodeURIComponent(motivo)}&telefono=${encodeURIComponent(telefono)}&queue=${encodeURIComponent(queue)}&nombreCliente=${encodeURIComponent(nombreCliente)}&nombreAgente=${encodeURIComponent(nombreAgente)}`;
 
         const iframe = $container.find('#SCRIPTS-IFRAME');
         if (iframe.length) {
             iframe.attr('src', url);
             console.log('URL generada para el iframe:', url);
+            console.log(nombreAgente)
         } else {
             console.error("No se encontró el iframe con el ID 'SCRIPTS-IFRAME'");
         }

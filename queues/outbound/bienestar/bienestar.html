@@ -16,9 +16,9 @@
             <div id="mainView" class="container my-5">
                 <div class="card">
                     <div class="card-body">
-                        <p>Buenas Tardes, me podría comunicar con el Sr./Srita. <b> OMAR ALEJANDRO BALLEZA GONZALEZ</b>.
+                        <p>Buenas Tardes, me podría comunicar con el Sr./Srita. <b class="nombreCliente">Cliente</b>.
                         </p>
-                        <p class="mb-4"> Mi nombre es ABIGAIL NAJERA y estoy llamando de SEARS</p>
+                        <p class="mb-4"> Mi nombre es <b id="nombreAgente">Agente</b> y estoy llamando de SEARS</p>
 
                         <form>
                             <div class="row mb-3">
@@ -283,7 +283,7 @@
             <div id="insuranceView" class="container my-5 d-none">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">SANDRA GUADALUPE NAVA ROMAN</h5>
+                        <h5 class="card-title"><b class="nombreCliente">Cliente</b></h5>
                         <p><strong>BIENESTAR SANBORNS</strong> Es un Seguro Exclusivo para Tarjetahabientes Sanborns, el
                             cual ofrece Coberturas especialmente elegidas para garantizar la tranquilidad del Asegurado,
                             que puede ser el mismo Tarjetahabiente o quién éste decida, por sólo 59.00 mensuales o 79.00
@@ -345,7 +345,7 @@
             <div id="additionalInfoView" class="container my-5 d-none">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Sr./Srita SANDRA GUADALUPE ROMAN ROMAN podría darme sus datos para
+                        <h5 class="card-title">Sr./Srita <b class="nombreCliente">Cliente</b> podría darme sus datos para
                             efectuar
                             el alta por favor?</h5>
                             <form id="customerForm">
@@ -493,7 +493,7 @@
             <div id="confirmationView" class="container my-5 d-none">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Sr(a) SANDRA GUADALUPE NAVA ROMAN, lo felicito por la decisión que acaba
+                        <h5 class="card-title">Sr(a) <b class="nombreCliente">Cliente</b>, lo felicito por la decisión que acaba
                             de
                             tomar, usted está asegurado a partir de este momento.</h5>
                         <p>Para hacer uso de las coberturas de Emergencias Médicas, Servicios Funerarios y Asistencia
@@ -501,7 +501,7 @@
                             estamos para servirle en el teléfono 01 800 713 2020 y para la cobertura de Muerte
                             accidental ,
                             diríjase a la oficina de Seguros Inbursa más cercana.</p>
-                        <p>Gracias por recibir nuestra llamada, le atendió ABIGAIL NAJERA de Seguros Inbursa.</p>
+                        <p>Gracias por recibir nuestra llamada, le atendió <b id="nombreAgenteDespedida">Agente</b>.</p>
                         <div class="d-flex justify-content-end mt-3">
                             <button type="button" class="btn btn-primary" id="finishBtn">Finalizar</button>
                         </div>
@@ -516,9 +516,10 @@
                 <h2>Bienestar</h2>
                 <i class="bi bi-telephone-fill ms-2"></i>
             </div>
-            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <label for="cuentaInput" class="form-label">No. Cuenta:</label>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta" id="cuentaInput">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Casa:" id="telefonoCasa">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Trabajo:" id="telefonoTrabajo">
 
             <div class="sidebar-buttons">
                 <button id="inicio" class="sidebar-button">
@@ -536,8 +537,36 @@
             </div> -->
             <p class="mt-2 text-muted">Sin Promociones</p>
         </aside>
-
     </div>
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function obtenerParametroUrl(nombreParametro) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nombreParametro);
+        }
+
+        // Insertar los valores en el HTML
+        window.onload = function () {
+            // Obtener los valores de la URL
+            const nombreAgente = obtenerParametroUrl('nombreAgente') || 'Nombre del Agente';
+            const nombreCliente = obtenerParametroUrl('nombreCliente') || 'Nombre del Cliente';
+            const telefonoCasa = obtenerParametroUrl('telefono') || 'N/A';
+            const telefonoTrabajo = obtenerParametroUrl('telefono') || 'N/A';
+            const cuenta = obtenerParametroUrl('cuenta') || 'N/A';
+
+            // Insertar los valores en las etiquetas HTML correspondientes
+            document.getElementById('nombreAgente').textContent = nombreAgente;
+            document.getElementById('nombreAgenteDespedida').textContent = nombreAgente;
+            document.querySelectorAll('.nombreCliente').forEach(el => {
+                el.textContent = nombreCliente;
+            });
+            document.getElementById('telefonoCasa').value = telefonoCasa;
+            document.getElementById('telefonoTrabajo').value = telefonoTrabajo;
+            document.getElementById('cuentaInput').value = cuenta;
+
+        };
+    </script>
 
     <script>
         function toggleInfoDisplay(hasInfo) {

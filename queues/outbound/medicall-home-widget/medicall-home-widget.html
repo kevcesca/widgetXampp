@@ -13,8 +13,8 @@
 <body>
     <div class="page-container">
         <main class="container mt-3 main-content">
-            <p>Buenas Tardes, me podría comunicar con el Sr./Srita. <b> OMAR ALEJANDRO BALLEZA GONZALEZ</b>.</p>
-            <p class="mb-4"> Mi nombre es ABIGAIL NAJERA y estoy llamando de SEARS</p>
+            <p>Buenas Tardes, me podría comunicar con el Sr./Srita. <b class="nombreCliente">Cliente</b>.</p>
+            <p class="mb-4"> Mi nombre es <b id="nombreAgente">Agente</b> y estoy llamando de SEARS</p>
             <form>
                 <div class="row mb-3">
                     <div class="col-md-4">
@@ -156,12 +156,13 @@
 
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2>CTAS L SEARS</h2>
+                <h2>SEARS</h2>
                 <i class="bi bi-telephone-fill ms-2"></i>
             </div>
-            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta: 700001090724">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
-            <input type="text" class="form-control sidebar-input" placeholder="5556552039">
+            <label for="cuenta" class="form-label">No. Cuenta:</label>
+            <input type="text" class="form-control sidebar-input" placeholder="No. Cuenta" id="cuenta">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Casa:" id="telefonoCasa">
+            <input type="text" class="form-control sidebar-input" placeholder="Telefono Trabajo:" id="telefonoTrabajo">
 
             <div class="sidebar-buttons">
                 <button id="inicio" class="sidebar-button">
@@ -180,6 +181,34 @@
             <p class="mt-2 text-muted">Sin Promociones</p>
         </aside>
     </div>
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function obtenerParametroUrl(nombreParametro) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nombreParametro);
+        }
+
+        // Insertar los valores en el HTML
+        window.onload = function () {
+            // Obtener los valores de la URL
+            const nombreAgente = obtenerParametroUrl('nombreAgente') || 'Nombre del Agente';
+            const nombreCliente = obtenerParametroUrl('nombreCliente') || 'Nombre del Cliente';
+            const telefonoCasa = obtenerParametroUrl('telefono') || 'N/A';
+            const telefonoTrabajo = obtenerParametroUrl('telefono') || 'N/A';
+            const cuenta = obtenerParametroUrl('cuenta') || 'N/A';
+
+            // Insertar los valores en las etiquetas HTML correspondientes
+            document.getElementById('nombreAgente').textContent = nombreAgente;
+            document.querySelectorAll('.nombreCliente').forEach(el => {
+                el.textContent = nombreCliente;
+            });
+            document.getElementById('telefonoCasa').value = telefonoCasa;
+            document.getElementById('telefonoTrabajo').value = telefonoTrabajo;
+            document.getElementById('cuenta').value = cuenta;
+
+        };
+    </script>
 
 
 
