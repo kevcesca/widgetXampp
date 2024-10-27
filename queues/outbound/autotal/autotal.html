@@ -370,7 +370,7 @@
                         <p><b>Motivo por el cual el cliente No Acepta el seguro</b></p>
                         <select class="form-select mb-3" id="motivoNoAcepta">
                             <option selected>Seleccione una opción</option>
-                            <option value="Costo">Costo</option>
+                            <option value="00163">Costo</option>
                             <option value="No cubre mis Necesidades">No cubre mis Necesidades</option>
                             <option value="No le interesa">No le interesa</option>
                             <option value="Ya Tiene Seguro">Ya Tiene Seguro</option>
@@ -531,7 +531,25 @@
         };
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Referencia al select de motivo de no aceptación
+            const motivoNoAceptaSelect = document.getElementById('motivoNoAcepta');
 
+            // Escuchar cambios en el select de motivo de no aceptación
+            motivoNoAceptaSelect.addEventListener('change', function () {
+                // Obtener el motivo seleccionado
+                const motivoSeleccionado = motivoNoAceptaSelect.value;
+
+                // Verificar que el motivo seleccionado sea válido (no sea el placeholder)
+                if (motivoSeleccionado !== 'Seleccione una opción') {
+                    // Enviar el motivo seleccionado al widget principal usando postMessage
+                    window.parent.postMessage({ motivo: motivoSeleccionado }, '*'); // Cambia '*' por el origen correcto si es necesario
+                    console.log("Motivo de no aceptación enviado:", motivoSeleccionado);
+                }
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -699,8 +717,6 @@
                 mainContent.classList.remove('d-none');
                 titularForm.classList.add('d-none');
                 cotizacionForm.classList.add('d-none');
-                propietarioForm.classList.add('d-none');
-                vehiculoForm.classList.add('d-none');
                 finalizarForm.classList.add('d-none');
                 noAceptaForm.classList.add('d-none');
                 initialButtons.classList.remove('d-none');

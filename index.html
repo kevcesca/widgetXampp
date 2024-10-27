@@ -24,7 +24,7 @@
     <script>
         // Agrega el listener para recibir datos del formulario desde el widget principal
         window.addEventListener('message', (event) => {
-            const allowedOrigin = 'https://na-01.workspaces.avayacloud.com'; // Cambia esto al origen correcto del widget
+            const allowedOrigin = 'https://na-01.workspaces.avayacloud.com'; // origen del widget
 
             if (event.origin === allowedOrigin && event.data) {
                 // Guarda los datos en window.formularioDatosRecibidos para su uso en otras rutas

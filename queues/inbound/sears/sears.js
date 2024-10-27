@@ -64,7 +64,7 @@ class CentroAtencionTelefonica extends HTMLElement {
 
                 <!-- Fila para finalizar la llamada -->
                 <div class="button-right">
-                    <p>Esperamos tener el placer de atenderlo próximamente.<br>Le atendió <b>ABIGAIL NAJERA</b>.</p>
+                    <p>Esperamos tener el placer de atenderlo próximamente.<br>Le atendió <b>${nombreAgente}</b>.</p>
                     <button class="btn custom-success">Finalizar</button>
                 </div>
 

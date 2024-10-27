@@ -38,23 +38,10 @@ class scriptsSears extends HTMLElement {
             }
         });
 
-        let control = 0;
-        do {
-            setTimeout(() => {
-                let interaccionPreview = window.interactionID;
-                if (interaccionPreview == null) {
-                    console.log("No se ha encontrado interacciónID");
-                } else {
-                    console.log(interaccionPreview); // Aqui comprobamos si ya hicimos la conexión con el otro widget
-                    control = 1;
-                }
-            }, 1000);
-        } while (control == 1);
+        this.interactionId = this.getAttribute("interactionid");
+        this.workRequestId = this.getAttribute("workrequestid");
+        this.api = this.workRequestId == null ? window.WS.widgetAPI() : window.WS.widgetAPI(this.interactionId);
 
-        console.log(this.api);
-        this.interactionId = this.getAttribute("interactionid") ? this.getAttribute("interactionid") : interaccionPreview; // Si no existe interaccion vamos a tomar la que nos pasa el otro widget
-        this.workRequestId = this.getAttribute("workrequestid") ? this.getAttribute("workrequestid") : interaccionPreview;
-        this.api = this.workRequestId == null ? window.WS.widgetAPI() : window.WS.widgetAPI(this.interactionId); // iniciamos la api 
     }
 
     handleSingleStepConference() {
@@ -73,7 +60,7 @@ class scriptsSears extends HTMLElement {
         const _API = $self.api;
         const $container = $(this);
 
-        // Aquí mantienes el evento 'onInteractionEvent' sears
+        // Aquí mantienes el evento 'onInteractionEvent'
         _API.onDataEvent('onInteractionEvent', (data) => {
             if (data.state == "ALERTING" || data.state === "ACTIVE") {
                 console.log(`[${scriptsSears._WIDGETNAME}] onInteractionEvent`, data);
@@ -83,7 +70,6 @@ class scriptsSears extends HTMLElement {
                 const telefono = data.intrinsics ? data.intrinsics.CALLER_NUMBER : 'No especificado';
                 const nombreAgente = _API.getClientDetails().displayName;
 
-
                 // Guardamos los datos de 'onInteractionEvent' en la clase
                 this.dataFromInteractionEvent = {
                     queue: queue,
@@ -92,32 +78,6 @@ class scriptsSears extends HTMLElement {
                 };
 
                 console.log('Datos guardados desde onInteractionEvent:', this.dataFromInteractionEvent);
-
-                // Guardamos los datos en el objeto `window.formularioDatos`
-                window.formularioDatos = {
-                    nombreCliente: "OMAR ALEJANDRO",
-                    paterno: "BALLEZA",
-                    materno: "GONZALEZ",
-                    cuenta: "31170542982",
-                    apertura: "2022-11-28",
-                    corte: "09",
-                    empleo: "SANBORNS",
-                    rfc: "BAGO681231",
-                    sexo: "M",
-                    direccion: "OCTAVIO PAZ 124",
-                    colonia: "ASTURIAS",
-                    ciudad: "APODACA",
-                    estado: "NL",
-                    cp: "66620",
-                    telefonoCasa: "8129427363",
-                    telefonoOficina: "8180131432",
-                    telefonoCelular: "8111132509",
-                    telefonoOtro: "8111132509",
-                    nombreAdicional: "",
-                    paternoAdicional: "",
-                    maternoAdicional: ""
-                };
-
 
                 // Intentamos generar la URL del iframe
                 this.generateIframeUrl($container);
@@ -148,7 +108,6 @@ class scriptsSears extends HTMLElement {
     }
 
     // Función para generar la URL y actualizar el iframe, sustituyendo valores faltantes por "Nulo"
-    // Función para generar la URL y actualizar el iframe, sustituyendo valores faltantes por "Nulo"
     generateIframeUrl($container) {
         const cuenta = this.dataFromMessageEvent.cuenta || 'Nulo';
         const tarjeta = this.dataFromMessageEvent.tarjeta || 'Nulo';
@@ -159,26 +118,16 @@ class scriptsSears extends HTMLElement {
         const telefono = this.dataFromInteractionEvent.telefono || 'Nulo';
         const nombreAgente = this.dataFromInteractionEvent.nombreAgente || 'Nulo';
 
+
+
         // Generamos la URL con los valores, usando "Nulo" en los valores que no estén disponibles
-        const url = `https://127.0.0.1/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=${encodeURIComponent(tarjeta)}&motivo=${encodeURIComponent(motivo)}&telefono=${encodeURIComponent(telefono)}&queue=bienestar&nombreCliente=${encodeURIComponent(nombreCliente)}&nombreAgente=${encodeURIComponent(nombreAgente)}`;
+        const url = `https://127.0.0.1/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=${encodeURIComponent(tarjeta)}&motivo=${encodeURIComponent(motivo)}&telefono=${encodeURIComponent(telefono)}&queue=${encodeURIComponent(queue)}&nombreCliente=${encodeURIComponent(nombreCliente)}&nombreAgente=${encodeURIComponent(nombreAgente)}`;
 
         const iframe = $container.find('#SCRIPTS-IFRAME');
         if (iframe.length) {
-            // Establecemos la URL del iframe
             iframe.attr('src', url);
             console.log('URL generada para el iframe:', url);
-
-            // Escuchamos el evento 'load' para asegurar que el iframe esté cargado antes de enviar los datos sears
-            iframe.on('load', () => {
-                // Verificamos que `window.formularioDatos` esté disponible
-                if (window.formularioDatos) {
-                    // Enviamos `formularioDatos` al iframe usando postMessage
-                    iframe[0].contentWindow.postMessage(window.formularioDatos, 'https://127.0.0.1');
-                    console.log("Datos enviados al iframe mediante postMessage:", window.formularioDatos);
-                } else {
-                    console.warn("formularioDatos no está definido.");
-                }
-            });
+            console.log(nombreAgente)
         } else {
             console.error("No se encontró el iframe con el ID 'SCRIPTS-IFRAME'");
         }
