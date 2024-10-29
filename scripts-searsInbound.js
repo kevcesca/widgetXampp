@@ -84,7 +84,7 @@ class scriptsSears extends HTMLElement {
             }
         });
 
-        // Aquí mantienes el evento 'onMessageEvent'
+        // Evento 'onMessageEvent'
         this.api.onDataEvent('onMessageEvent', (data) => {
             console.log(`[${scriptsSears._WIDGETNAME}] Mensaje recibido desde otro widget:`, data);
 
