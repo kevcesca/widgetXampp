@@ -54,7 +54,7 @@ export class EstadoCuenta {
                 }
 
             } catch (error) {
-                console.error("Error al obtener el estado de cuenta:", error);
+                alert("Error al obtener el estado de cuenta: " + error.message);
             }
         });
     }
@@ -78,10 +78,8 @@ export class EstadoCuenta {
 
         tokenRequest.authenticationCode = await this.generarAuthCode(tokenRequest);
 
-        console.log("Solicitando token con los datos:", tokenRequest);
-
         try {
-            const tokenResponse = await this.postURL("http://10.128.14.10:8080/SecureTockenAPI/TransactionGatewayAPI/SPB_SearsVisa/SecureTokenAPI/ConsultToken", tokenRequest);
+            const tokenResponse = await this.postURL("https://searsvisadesa.sears.com.mx:8443/SecureTockenAPI/TransactionGatewayAPI/SPB_SearsVisa/SecureTokenAPI/ConsultToken", tokenRequest);
 
             if (tokenResponse && tokenResponse.codigo === "00") {
                 return tokenResponse.token;
@@ -89,7 +87,7 @@ export class EstadoCuenta {
                 throw new Error("Error al obtener el token.");
             }
         } catch (error) {
-            console.error("Error en la solicitud del token:", error);
+            alert("Error en la solicitud del token: " + error.message);
             throw error;
         }
     }
@@ -109,10 +107,8 @@ export class EstadoCuenta {
 
         encriptaRequest.authenticationCode = await this.generarAuthCode(encriptaRequest);
 
-        console.log("Encriptando PAN con los datos:", encriptaRequest);
-
         try {
-            const encryPANResponse = await this.postURL("http://10.128.14.10:8080/EncryptPanAPI/TransactionGatewayAPI/SPB_SearsVisa/EncriptaPan", encriptaRequest);
+            const encryPANResponse = await this.postURL("https://searsvisadesa.sears.com.mx:8443/EncryptPanAPI/TransactionGatewayAPI/SPB_SearsVisa/EncriptaPan", encriptaRequest);
 
             if (encryPANResponse && encryPANResponse.codigo === "00") {
                 return encryPANResponse.panEncrypt;
@@ -120,12 +116,14 @@ export class EstadoCuenta {
                 throw new Error("Error al encriptar el PAN.");
             }
         } catch (error) {
-            console.error("Error en la encriptación del PAN:", error);
+            alert("Error en la encriptación del PAN: " + error.message);
             throw error;
         }
     }
 
     async solicitarEstadoCuenta(token, panEncriptado, fecha) {
+        const params = new URLSearchParams(window.location.search);
+        const telefono = params.get('telefono') || 'No especificado';
         const estadoCuentaRequest = {
             nombreServicio: "envioCuentaEmail",
             tipoCompania: "2",
@@ -133,7 +131,7 @@ export class EstadoCuenta {
             pan: panEncriptado,
             tipoPan: "2",
             email: this.form.querySelector('#correo').value,
-            numTelefono: "5519013832",
+            numTelefono: telefono,
             solicitadoPor: "5",
             fechaEstadoCuenta: this.formatearFecha(fecha), // Día 15 del mes correspondiente
             fechaTransaccion: this.formatearFecha(new Date()),
@@ -143,18 +141,17 @@ export class EstadoCuenta {
 
         estadoCuentaRequest.authenticationCode = await this.generarAuthCode(estadoCuentaRequest);
 
-        console.log("Solicitando estado de cuenta con los datos:", estadoCuentaRequest);
-
         try {
-            const response = await this.postURL("http://10.128.14.10:8080/spb-envio-cuenta-email/ServiciosSearsVisa/spb_services/EnvioCuentaEmail", estadoCuentaRequest);
+            const response = await this.postURL("https://searsvisadesa.sears.com.mx:8443/spb-envio-cuenta-email/ServiciosSearsVisa/spb_services/EnvioCuentaEmail", estadoCuentaRequest);
 
-            if (response && response.codigo === "00") {
+            if (response.codigo === "00") {
+                alert("Estado de cuenta del " + this.formatearFecha(fecha) + " enviado correctamente")
                 return response;
             } else {
                 throw new Error("Error al solicitar el estado de cuenta.");
             }
         } catch (error) {
-            console.error("Error en la solicitud del estado de cuenta:", error);
+            alert("Error en la solicitud del estado de cuenta: " + error.message);
             throw error;
         }
     }
@@ -211,7 +208,7 @@ export class EstadoCuenta {
             const data = await response.json();
             return data;
         } catch (error) {
-            console.error("Error en la solicitud POST:", error);
+            alert("Error en la solicitud POST: " + error.message);
             throw error;
         }
     }

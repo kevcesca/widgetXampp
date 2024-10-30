@@ -18,6 +18,9 @@ class CentroAtencionTelefonica extends HTMLElement {
         // Contenido HTML del Web Component con el sidebar incluido
         this.shadowRoot.innerHTML = `
         <link rel="stylesheet" href="sears.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
         <div class="widget-layout">
             <!-- Contenido principal del Web Component -->
             <div id="main-content" class="neo-container container">
@@ -352,7 +355,7 @@ class CentroAtencionTelefonica extends HTMLElement {
         const edoCuentaBtn = this.shadowRoot.getElementById('btn-edo-cuenta');
         const mainContent = this.shadowRoot.getElementById('main-content');
         const estadoCuentaForm = this.shadowRoot.getElementById('estado-cuenta-form');
-
+        
         edoCuentaBtn.addEventListener('click', () => {
             if (mainContent.style.display !== 'none') {
                 mainContent.style.display = 'none';

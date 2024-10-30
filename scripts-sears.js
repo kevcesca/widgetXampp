@@ -1,7 +1,7 @@
 class scriptsSears extends HTMLElement {
     static _WIDGETNAME = 'scripts-sears';
 
-    static _WIDGTEURL = 'https://127.0.0.1/widgets/';
+    static _WIDGTEURL = 'https://icobranza.sears.com.mx/widgets/';
 
     constructor() {
         super();
@@ -160,7 +160,7 @@ class scriptsSears extends HTMLElement {
         const nombreAgente = this.dataFromInteractionEvent.nombreAgente || 'Nulo';
 
         // Generamos la URL con los valores, usando "Nulo" en los valores que no estén disponibles
-        const url = `https://127.0.0.1/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=${encodeURIComponent(tarjeta)}&motivo=${encodeURIComponent(motivo)}&telefono=${encodeURIComponent(telefono)}&queue=bienestar&nombreCliente=${encodeURIComponent(nombreCliente)}&nombreAgente=${encodeURIComponent(nombreAgente)}`;
+        const url = `https://icobranza.sears.com.mx/widgets/scripts-sears/index.html?cuenta=${encodeURIComponent(cuenta)}&tarjeta=${encodeURIComponent(tarjeta)}&motivo=${encodeURIComponent(motivo)}&telefono=${encodeURIComponent(telefono)}&queue=${encodeURIComponent(queue)}&nombreCliente=${encodeURIComponent(nombreCliente)}&nombreAgente=${encodeURIComponent(nombreAgente)}`;
 
         const iframe = $container.find('#SCRIPTS-IFRAME');
         if (iframe.length) {
