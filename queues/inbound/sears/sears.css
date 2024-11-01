@@ -2,6 +2,12 @@ h2{
     text-align: center;
 }
 
+a{
+    font-style: normal;
+    text-decoration: none;
+    color: white;
+}
+
 .customer-info {
     font-weight: bold;
 }

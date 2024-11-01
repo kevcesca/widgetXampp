@@ -6,11 +6,31 @@ class CentroAtencionTelefonica extends HTMLElement {
 
         // Extraer los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
-        const cuenta = params.get('cuenta') || 'No especificada';
-        const motivo = params.get('motivo') || 'No especificado';
-        const nombreCliente = params.get('nombreCliente') || 'Cliente';
-        const nombreAgente = params.get('nombreAgente') || 'Cliente';
-        const telefono = params.get('telefono') || 'No especificado';
+        const cuenta = params.get('cuenta') || '';
+        const motivo = params.get('motivo') || '';
+        const nombreCliente = params.get('nombreCliente') || '';
+        const nombreAgente = params.get('nombreAgente') || 'Tu nombre';
+        let telefono = params.get('telefono') || '';
+        const queue = params.get('queue') || '';
+        // Definir el saludo del cliente
+        const saludoCliente = nombreCliente ? `¿Tengo el gusto con el Sr./Sra. <b>${nombreCliente}</b>?` : "¿En qué puedo servirle?";
+
+        // Definir el centro de atencion telefonica
+        let centroAtencion = "";
+        if (queue === "CEAT Sears" || queue === "CEAT Robo Sears") {
+            centroAtencion = "Sears";
+        }
+        if (queue === "CEAT Mixup" || queue === "CEAT Robo Mixup") {
+            centroAtencion = "Mixup";
+        }
+        if (queue === "CEAT Sanborns" || queue === "CEAT Robo Sanborns") {
+            centroAtencion = "Sanborns";
+        }
+
+        // Ajustar el teléfono a 10 caracteres si es mayor
+        if (telefono.length > 10) {
+            telefono = telefono.slice(-10); // Mantener los últimos 10 caracteres
+        }
 
         // Creamos el Shadow DOM
         this.attachShadow({ mode: 'open' });
@@ -24,9 +44,9 @@ class CentroAtencionTelefonica extends HTMLElement {
         <div class="widget-layout">
             <!-- Contenido principal del Web Component -->
             <div id="main-content" class="neo-container container">
-                <h5>Centro de Atención Telefónica SEARS.</h5>
+                <h5>Centro de Atención Telefónica ${centroAtencion}.</h5>
                 <p><span class="customer-info">Buenas Tardes, le atiende: <b>${nombreAgente}</b>.</span></p>
-                <p>¿Tengo el gusto con el Sr./Sra. <b>${nombreCliente}</b>? ¿En qué puedo servirle?</p>
+                <p>${saludoCliente}</p>
 
                 <!-- Formulario de motivos -->
                 <div class="formrow">
@@ -53,13 +73,14 @@ class CentroAtencionTelefonica extends HTMLElement {
                         <thead>
                             <tr>
                                 <th>Grupo</th>
-                                <th>Servicio</th>
+                                <th>Nombre de Servicio</th> 
+                                <th>Código de Servicio</th>  
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody id="motivos-body">
                             <tr id="no-info-row">
-                                <td colspan="3">Sin Información</td>
+                                <td colspan="4">Sin Información</td>
                             </tr>
                         </tbody>
                     </table>
@@ -68,7 +89,7 @@ class CentroAtencionTelefonica extends HTMLElement {
                 <!-- Fila para finalizar la llamada -->
                 <div class="button-right">
                     <p>Esperamos tener el placer de atenderlo próximamente.<br>Le atendió <b>${nombreAgente}</b>.</p>
-                    <button class="btn custom-success">Finalizar</button>
+                    <button class="btn custom-success">Calificar</button>
                 </div>
 
                 <!-- Barra de búsqueda -->
@@ -110,12 +131,12 @@ class CentroAtencionTelefonica extends HTMLElement {
                 <form id="form-estado-cuenta">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" class="form-control" value="${nombreCliente}">
+                        <input type="text" id="nombre" class="form-control" value="${nombreCliente}" disabled>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="cuenta">Número de Cuenta:</label>
-                            <input type="text" id="cuenta" class="form-control" placeholder="Número de Cuenta">
+                            <input type="text" id="cuenta" class="form-control" value="${cuenta}" disabled>
                         </div>
                     </div>
                     <div class="form-row">
@@ -139,9 +160,6 @@ class CentroAtencionTelefonica extends HTMLElement {
                             <label for="correo">Correo:</label>
                             <div class="input-group">
                                 <input type="email" id="correo" class="form-control">
-                                <div class="input-group-append">
-                                    <button type="button" class="btn-refresh">↻</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -159,7 +177,7 @@ class CentroAtencionTelefonica extends HTMLElement {
                 <div class="sidebar-content">
                     <!-- Información básica -->
                     <div class="sidebar-header">
-                        <h5>CEAT: SEARS 📞</h5>
+                        <h3>${queue}📞</h3>
                         <p class="text-danger">MOTIVO: ${motivo} - ${telefono}</p>
                         <p>Cuenta: ${cuenta}</p>
                     </div>
@@ -168,7 +186,7 @@ class CentroAtencionTelefonica extends HTMLElement {
                     <div class="sidebar-card">
                         <p>Tarjeta:</p>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" value="${params.get('tarjeta') || 'No especificada'}" aria-label="Tarjeta" disabled>
+                            <input type="text" class="form-control" value="${params.get('tarjeta') || ''}" aria-label="Tarjeta" disabled>
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">💳</button>
                             </div>
@@ -178,9 +196,9 @@ class CentroAtencionTelefonica extends HTMLElement {
                     <!-- Botones de acciones -->
                     <div class="sidebar-buttons">
                         <button id="btn-inicio" class="btn btn-warning btn-block mb-2">🏠 Inicio</button>
-                        <button id="btn-tips" class="btn btn-info btn-block mb-2">💡 Tips</button>
+                        <a href="../tips/tips.html"><button id="btn-tips" class="btn btn-info btn-block mb-2">💡 Tips</button></a>
                         <button id="btn-edo-cuenta" class="btn btn-danger btn-block mb-2">📊 Edo. Cuenta</button>
-                        <button id="btn-activar-nip" class="btn btn-success btn-block mb-2">🔑 Activar NIP</button>
+                        <button id="btn-activar-nip" class="btn btn-success btn-block mb-2" style="display: none;">🔑 Activar NIP</button>
                     </div>
                 </div>
             </div>
@@ -204,6 +222,12 @@ class CentroAtencionTelefonica extends HTMLElement {
             const currentUrl = window.location.href; // Obtener la URL actual
             window.location.href = currentUrl; // Recargar la página
         });
+
+        // Mostrar el botón solo si el motivo es "Activacion NIP Sears"
+        const btnActivarNip = this.shadowRoot.getElementById('btn-activar-nip');
+        if (motivo === "Activacion NIP Sears" || motivo === "Activacion NIP Sanborns") {
+            btnActivarNip.style.display = "block";
+        }
     }
 
     // Función para manejar el botón de Tips
@@ -223,63 +247,71 @@ class CentroAtencionTelefonica extends HTMLElement {
         const motivosBody = this.shadowRoot.getElementById('motivos-body');
         const noInfoRow = this.shadowRoot.getElementById('no-info-row');
 
-        // Variable para almacenar temporalmente el disposition
-        let currentDisposition = null;
+        // Array para almacenar múltiples disposiciones
+        const dispositions = [];
 
         addButton.addEventListener('click', () => {
             const grupo = grupoSelect.value;
+            const nombreMotivo = servicioSelect.options[servicioSelect.selectedIndex].text;
             const codigoMotivo = servicioSelect.value;
 
-            // Guardar el disposition actual de forma temporal
-            currentDisposition = { grupo, codigoMotivo };
+            const disposition = { grupo, nombreMotivo, codigoMotivo };
 
-            // Limpiar la tabla si ya tiene un disposition anterior
-            if (motivosBody.children.length > 0) {
-                motivosBody.innerHTML = '';
-            }
+            // Agregar el nuevo disposition al array
+            dispositions.push(disposition);
 
             // Eliminar la fila "Sin Información" si existe
             if (noInfoRow) {
                 noInfoRow.remove();
             }
 
-            // Agregar el nuevo disposition a la tabla
+            // Agregar la nueva disposición a la tabla visual
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-            <td>${grupo}</td>
-            <td>${codigoMotivo}</td>
-            <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
-        `;
+                <td>${grupo}</td>
+                <td>${nombreMotivo}</td>
+                <td>${codigoMotivo}</td>
+                <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
+            `;
             motivosBody.appendChild(newRow);
 
-            // Agregar funcionalidad para eliminar la fila
+            // Funcionalidad para eliminar la fila y el código del array
             const eliminarBtn = newRow.querySelector('.eliminar-btn');
             eliminarBtn.addEventListener('click', () => {
                 newRow.remove();
-                currentDisposition = null; // Limpiar el disposition temporal
+                const index = dispositions.findIndex(d => d.codigoMotivo === codigoMotivo);
+                if (index !== -1) dispositions.splice(index, 1);
 
-                // Mostrar "Sin Información" si la tabla está vacía
+                // Mostrar "Sin Información" si no hay disposiciones en la tabla
                 if (motivosBody.children.length === 0) {
                     const emptyRow = document.createElement('tr');
                     emptyRow.id = 'no-info-row';
-                    emptyRow.innerHTML = `<td colspan="3">Sin Información</td>`;
+                    emptyRow.innerHTML = `<td colspan="4">Sin Información</td>`;
                     motivosBody.appendChild(emptyRow);
                 }
             });
 
-            // Mostrar un mensaje indicando que el disposition está listo para ser enviado
-            console.log('El motivo ha sido agregado a la tabla. Presione "Finalizar" para enviarlo.');
+            console.log('Motivo agregado a la tabla. Presione "Calificar" para enviarlo.');
         });
 
-        // Lógica para el botón "Finalizar"
+        // Lógica para el botón "Calificar" que envía todos los códigos
         const finalizarButton = this.shadowRoot.querySelector('.btn.custom-success');
         finalizarButton.addEventListener('click', () => {
-            if (currentDisposition) {
-                // Enviar el motivo al widget principal al presionar "Finalizar"
-                window.parent.postMessage({ motivo: currentDisposition.codigoMotivo }, "*");
-                console.log('El motivo ha sido enviado exitosamente al finalizar la llamada.');
+            if (dispositions.length > 0) {
+                // Enviar cada motivo agregado al widget principal
+                dispositions.forEach(disposition => {
+                    window.parent.postMessage({ motivo: disposition.codigoMotivo }, "*");
+                    console.log(`Motivo ${disposition.codigoMotivo} enviado exitosamente.`);
+                });
+
+                // Vaciar el array después de enviar
+                dispositions.length = 0;
+                console.log("Todos los motivos han sido enviados.");
+
+                // Limpiar la tabla de motivos después de enviar
+                motivosBody.innerHTML = `<tr id="no-info-row"><td colspan="4">Sin Información</td></tr>`;
             } else {
-                console.log('No hay motivos pendientes para enviar.');
+                console.log("No hay motivos pendientes para enviar.");
             }
         });
     }
@@ -355,7 +387,7 @@ class CentroAtencionTelefonica extends HTMLElement {
         const edoCuentaBtn = this.shadowRoot.getElementById('btn-edo-cuenta');
         const mainContent = this.shadowRoot.getElementById('main-content');
         const estadoCuentaForm = this.shadowRoot.getElementById('estado-cuenta-form');
-        
+
         edoCuentaBtn.addEventListener('click', () => {
             if (mainContent.style.display !== 'none') {
                 mainContent.style.display = 'none';

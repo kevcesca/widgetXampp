@@ -22,37 +22,10 @@
         }
     </style>
     <script>
-        // Agrega el listener para recibir datos del formulario desde el widget principal
-        window.addEventListener('message', (event) => {
-            const allowedOrigin = 'https://na-01.workspaces.avayacloud.com'; // origen del widget
-
-            if (event.origin === allowedOrigin && event.data) {
-                // Guarda los datos en window.formularioDatosRecibidos para su uso en otras rutas
-                window.formularioDatosRecibidos = event.data;
-                console.log("Datos recibidos y almacenados en window.formularioDatosRecibidos:", window.formularioDatosRecibidos);
-            } else {
-                console.warn("Origen no permitido o datos no válidos recibidos:", event.origin);
-            }
-        });
-
         // Función para obtener los parámetros de la URL y actualizar el DOM
         function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
-            const cuenta = params.get('cuenta') || 'N/A';
-            const tarjeta = params.get('tarjeta') || 'N/A';
-            const motivo = params.get('motivo') || 'N/A';
-            const nombreCliente = params.get('nombreCliente') || 'N/A';
-            const nombreAgente = params.get('nombreAgente') || 'N/A';
             const queue = params.get('queue') || 'N/A';
-            const telefono = params.get('telefono') || 'N/A';
-
-            // Mostrar los valores en el HTML
-            document.getElementById('cuenta').textContent = cuenta;
-            document.getElementById('tarjeta').textContent = tarjeta;
-            document.getElementById('motivo').textContent = motivo;
-            document.getElementById('nombre').textContent = nombreCliente;
-            document.getElementById('telefono').textContent = telefono;
-
             // Redirigir si el parámetro "queue" está presente
             if (queue !== 'N/A') {
                 redirectToQueue(queue);
@@ -63,37 +36,10 @@
         function redirectToQueue(queue) {
             const params = new URLSearchParams(window.location.search);
             console.log("La queue actual es:", queue);
-            let targetUrl = '';
-
-            console.log('Redireccionando a la URL según el valor del parámetro "queue"', queue);
-
-            // Definir la URL de redirección según el valor de queue
-            switch (queue) {
-                case 'CEAT Sears':
-                    targetUrl = './queues/inbound/sears/sears.html';
-                    break;
-                case 'CEAT Sanborns':
-                    targetUrl = './queues/inbound/sanborns/sanborns.html';
-                    break;
-                case 'CEAT Mix Up':
-                    targetUrl = './queues/inbound/mixup/mixup.html';
-                    break;
-                case 'CEAT Robo Sears':
-                    targetUrl = './queues/inbound/robo/robo.html';
-                    break;
-                default:
-                    console.log('Queue no válida, permaneciendo en la página actual.', queue);
-                    return;
-            }
+            let targetUrl = './queues/inbound/sears/sears.html';
 
             // Redirigir manteniendo los parámetros originales
             window.location.href = `${targetUrl}?${params.toString()}`;
-        }
-
-        // Función para redirigir manteniendo los parámetros actuales
-        function redirectWithParams(url) {
-            const params = new URLSearchParams(window.location.search);
-            window.location.href = `${url}?${params.toString()}`;
         }
 
         window.onload = getQueryParams;
@@ -102,65 +48,9 @@
 <body>
     <div class="container py-5">
         <div class="menu-container p-4 p-md-5">
-            <h1 class="text-center mb-5">Bienvenido al Demo de widgets</h1>
+            <h1 class="text-center mb-5">Cargando...</h1>
 
-            <!-- Mostrar parámetros recibidos desde la URL -->
-            <div class="mb-4">
-                <h3>Parámetros recibidos</h3>
-                <ul>
-                    <li><strong>Cuenta:</strong> <span id="cuenta"></span></li>
-                    <li><strong>Tarjeta:</strong> <span id="tarjeta"></span></li>
-                    <li><strong>Motivo:</strong> <span id="motivo"></span></li>
-                    <li><strong>Nombre:</strong> <span id="nombre"></span></li>
-                    <li><strong>Teléfono:</strong> <span id="telefono"></span></li>
-                </ul>
-            </div>
-
-            <!-- Botones originales -->
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <h2 class="mb-3">Inbound</h2>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/inbound/sears/sears.html')" class="btn btn-warning w-100 menu-item">SEARS</button>
-                        </li>
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/inbound/sanborns/sanborns.html')" class="btn btn-primary w-100 menu-item">Sanborns</button>
-                        </li>
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/inbound/mixup/mixup.html')" class="btn btn-success w-100 menu-item">Mixup</button>
-                        </li>
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/inbound/robo/robo.html')" class="btn btn-danger w-100 menu-item">Robo</button>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-md-6">
-                    <h2 class="mb-3">Outbound</h2>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/outbound/autotal/index.html')" class="btn btn-warning w-100 menu-item">Autotal</button>
-                        </li>
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/outbound/autotal-linea/autotal.html')" class="btn btn-primary w-100 menu-item">Autotal en línea</button>
-                        </li>
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/outbound/bienestar/bienestar.html')" class="btn btn-success w-100 menu-item">Bienestar</button>
-                        </li>
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/outbound/inbursa-pps/inbursa-pps.html')" class="btn btn-danger w-100 menu-item">Inbursa PPS</button>
-                        </li>
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/outbound/medicall-home-widget/medicall-home-widget.html')" class="btn btn-info w-100 menu-item">Medicall</button>
-                        </li>
-                        <li class="mb-2">
-                            <button onclick="redirectWithParams('./queues/outbound/promociones/autotal.html')" class="btn btn-outline-primary w-100 menu-item">Promociones</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <span><b>v 0.7.8</b></span>
+            <h2><b>v 0.8.0</b></h2>
         </div>
         
     </div>

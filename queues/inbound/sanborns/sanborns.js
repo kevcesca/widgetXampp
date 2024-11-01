@@ -10,7 +10,13 @@ class CentroAtencionSanborns extends HTMLElement {
         const motivo = params.get('motivo') || 'No especificado';
         const nombreCliente = params.get('nombreCliente') || 'Cliente';
         const nombreAgente = params.get('nombreAgente') || 'Cliente';
-        const telefono = params.get('telefono') || 'No especificado';
+        let telefono = params.get('telefono') || 'No especificado';
+        const queue = params.get('queue') || 'No especificado';
+
+        // Ajustar el teléfono a 10 caracteres si es mayor
+        if (telefono.length > 10) {
+            telefono = telefono.slice(-10); // Mantener los últimos 10 caracteres
+        }
 
         // Creamos el Shadow DOM
         this.attachShadow({ mode: 'open' });
@@ -18,10 +24,13 @@ class CentroAtencionSanborns extends HTMLElement {
         // Contenido HTML del Web Component con el sidebar incluido
         this.shadowRoot.innerHTML = `
         <link rel="stylesheet" href="sanborns.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
         <div class="widget-layout">
             <!-- Contenido principal del Web Component -->
             <div id="main-content" class="neo-container container">
-                <h5>Centro de Atención Telefónica SEARS.</h5>
+                <h5>Centro de Atención Telefónica SANBORNS.</h5>
                 <p><span class="customer-info">Buenas Tardes, le atiende: <b>${nombreAgente}</b>.</span></p>
                 <p>¿Tengo el gusto con el Sr./Sra. <b>${nombreCliente}</b>? ¿En qué puedo servirle?</p>
 
@@ -50,13 +59,14 @@ class CentroAtencionSanborns extends HTMLElement {
                         <thead>
                             <tr>
                                 <th>Grupo</th>
-                                <th>Servicio</th>
+                                <th>Nombre de Servicio</th> 
+                                <th>Código de Servicio</th>  
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody id="motivos-body">
                             <tr id="no-info-row">
-                                <td colspan="3">Sin Información</td>
+                                <td colspan="4">Sin Información</td>
                             </tr>
                         </tbody>
                     </table>
@@ -65,7 +75,7 @@ class CentroAtencionSanborns extends HTMLElement {
                 <!-- Fila para finalizar la llamada -->
                 <div class="button-right">
                     <p>Esperamos tener el placer de atenderlo próximamente.<br>Le atendió <b>${nombreAgente}</b>.</p>
-                    <button class="btn custom-success">Finalizar</button>
+                    <button class="btn custom-success">Calificar</button>
                 </div>
 
                 <!-- Barra de búsqueda -->
@@ -107,12 +117,12 @@ class CentroAtencionSanborns extends HTMLElement {
                 <form id="form-estado-cuenta">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" class="form-control" value="${nombreCliente}">
+                        <input type="text" id="nombre" class="form-control" value="${nombreCliente}" disabled>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="cuenta">Número de Cuenta:</label>
-                            <input type="text" id="cuenta" class="form-control" placeholder="Número de Cuenta">
+                            <input type="text" id="cuenta" class="form-control" value="${cuenta}" disabled>
                         </div>
                     </div>
                     <div class="form-row">
@@ -136,9 +146,6 @@ class CentroAtencionSanborns extends HTMLElement {
                             <label for="correo">Correo:</label>
                             <div class="input-group">
                                 <input type="email" id="correo" class="form-control">
-                                <div class="input-group-append">
-                                    <button type="button" class="btn-refresh">↻</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,7 +163,7 @@ class CentroAtencionSanborns extends HTMLElement {
                 <div class="sidebar-content">
                     <!-- Información básica -->
                     <div class="sidebar-header">
-                        <h5>CEAT: SANBORNS 📞</h5>
+                        <h3>${queue}📞</h3>
                         <p class="text-danger">MOTIVO: ${motivo} - ${telefono}</p>
                         <p>Cuenta: ${cuenta}</p>
                     </div>
@@ -177,7 +184,7 @@ class CentroAtencionSanborns extends HTMLElement {
                         <button id="btn-inicio" class="btn btn-warning btn-block mb-2">🏠 Inicio</button>
                         <button id="btn-tips" class="btn btn-info btn-block mb-2">💡 Tips</button>
                         <button id="btn-edo-cuenta" class="btn btn-danger btn-block mb-2">📊 Edo. Cuenta</button>
-                        <button id="btn-activar-nip" class="btn btn-success btn-block mb-2">🔑 Activar NIP</button>
+                        <button id="btn-activar-nip" class="btn btn-success btn-block mb-2" style="display: none;">🔑 Activar NIP</button>
                     </div>
                 </div>
             </div>
@@ -201,6 +208,12 @@ class CentroAtencionSanborns extends HTMLElement {
             const currentUrl = window.location.href; // Obtener la URL actual
             window.location.href = currentUrl; // Recargar la página
         });
+
+        // Mostrar el botón solo si el motivo es "Activacion NIP Sears"
+        const btnActivarNip = this.shadowRoot.getElementById('btn-activar-nip');
+        if (motivo === "Activacion NIP Sanborns") {
+            btnActivarNip.style.display = "block";
+        }
     }
 
     // Función para manejar el botón de Tips
@@ -220,36 +233,72 @@ class CentroAtencionSanborns extends HTMLElement {
         const motivosBody = this.shadowRoot.getElementById('motivos-body');
         const noInfoRow = this.shadowRoot.getElementById('no-info-row');
 
+        // Array para almacenar múltiples disposiciones
+        const dispositions = [];
+
         addButton.addEventListener('click', () => {
             const grupo = grupoSelect.value;
+            const nombreMotivo = servicioSelect.options[servicioSelect.selectedIndex].text;
             const codigoMotivo = servicioSelect.value;
 
+            const disposition = { grupo, nombreMotivo, codigoMotivo };
+
+            // Agregar el nuevo disposition al array
+            dispositions.push(disposition);
+
+            // Eliminar la fila "Sin Información" si existe
             if (noInfoRow) {
                 noInfoRow.remove();
             }
 
+            // Agregar la nueva disposición a la tabla visual
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-            <td>${grupo}</td>
-            <td>${codigoMotivo}</td>
-            <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
+                <td>${grupo}</td>
+                <td>${nombreMotivo}</td>
+                <td>${codigoMotivo}</td>
+                <td><button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button></td>
             `;
             motivosBody.appendChild(newRow);
 
+            // Funcionalidad para eliminar la fila y el código del array
             const eliminarBtn = newRow.querySelector('.eliminar-btn');
             eliminarBtn.addEventListener('click', () => {
                 newRow.remove();
+                const index = dispositions.findIndex(d => d.codigoMotivo === codigoMotivo);
+                if (index !== -1) dispositions.splice(index, 1);
 
+                // Mostrar "Sin Información" si no hay disposiciones en la tabla
                 if (motivosBody.children.length === 0) {
                     const emptyRow = document.createElement('tr');
                     emptyRow.id = 'no-info-row';
-                    emptyRow.innerHTML = `<td colspan="3">Sin Información</td>`;
+                    emptyRow.innerHTML = `<td colspan="4">Sin Información</td>`;
                     motivosBody.appendChild(emptyRow);
                 }
             });
 
-            // Enviar el motivo al widget principal
-            window.parent.postMessage({ motivo: codigoMotivo }, "*");
+            console.log('Motivo agregado a la tabla. Presione "Calificar" para enviarlo.');
+        });
+
+        // Lógica para el botón "Calificar" que envía todos los códigos
+        const finalizarButton = this.shadowRoot.querySelector('.btn.custom-success');
+        finalizarButton.addEventListener('click', () => {
+            if (dispositions.length > 0) {
+                // Enviar cada motivo agregado al widget principal
+                dispositions.forEach(disposition => {
+                    window.parent.postMessage({ motivo: disposition.codigoMotivo }, "*");
+                    console.log(`Motivo ${disposition.codigoMotivo} enviado exitosamente.`);
+                });
+
+                // Vaciar el array después de enviar
+                dispositions.length = 0;
+                console.log("Todos los motivos han sido enviados.");
+
+                // Limpiar la tabla de motivos después de enviar
+                motivosBody.innerHTML = `<tr id="no-info-row"><td colspan="4">Sin Información</td></tr>`;
+            } else {
+                console.log("No hay motivos pendientes para enviar.");
+            }
         });
     }
 
