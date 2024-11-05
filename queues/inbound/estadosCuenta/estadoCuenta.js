@@ -36,22 +36,25 @@ export class EstadoCuenta {
                 const token = await this.solicitarToken();
                 const panEncriptado = await this.encriptarPAN(token, cuenta);
 
-                // Generar solicitudes para el día 15 de cada mes en el rango
+                // Generar el arreglo de fechas para el día 15 de cada mes en el rango
                 let mesActual = mesInicial;
                 let añoActual = añoInicial;
+                const fechasEstadoCuenta = [];
 
                 for (let i = 0; i <= diferenciaMeses; i++) {
-                    const fechaSolicitud = new Date(Date.UTC(añoActual, mesActual, 15)); // Día 15 del mes correspondiente en UTC
-                    const resultado = await this.solicitarEstadoCuenta(token, panEncriptado, fechaSolicitud);
-                    console.log(`Estado de cuenta para ${fechaSolicitud.getMonth() + 1}/${fechaSolicitud.getFullYear()} obtenido:`, resultado);
+                    const fechaSolicitud = new Date(Date.UTC(añoActual, mesActual, 15)); // Día 15 en UTC
+                    fechasEstadoCuenta.push(this.formatearFecha(fechaSolicitud));
 
-                    // Incrementar el mes y manejar el cambio de año
                     mesActual++;
                     if (mesActual > 11) { // Si el mes supera diciembre, reiniciar a enero y aumentar el año
                         mesActual = 0;
                         añoActual++;
                     }
                 }
+
+                // Realizar una solicitud con todas las fechas en el arreglo
+                const resultado = await this.solicitarEstadoCuenta(token, panEncriptado, fechasEstadoCuenta);
+                console.log("Estados de cuenta enviados:", resultado);
 
             } catch (error) {
                 alert("Error al obtener el estado de cuenta: " + error.message);
@@ -121,9 +124,10 @@ export class EstadoCuenta {
         }
     }
 
-    async solicitarEstadoCuenta(token, panEncriptado, fecha) {
+    async solicitarEstadoCuenta(token, panEncriptado, fechasEstadoCuenta) {
         const params = new URLSearchParams(window.location.search);
         const telefono = params.get('telefono') || 'No especificado';
+        
         const estadoCuentaRequest = {
             nombreServicio: "envioCuentaEmail",
             tipoCompania: "2",
@@ -133,7 +137,7 @@ export class EstadoCuenta {
             email: this.form.querySelector('#correo').value,
             numTelefono: telefono,
             solicitadoPor: "5",
-            fechaEstadoCuenta: this.formatearFecha(fecha), // Día 15 del mes correspondiente
+            fechasEstadoCuenta: fechasEstadoCuenta, // Arreglo de fechas
             fechaTransaccion: this.formatearFecha(new Date()),
             horaTransaccion: this.formatearHora(new Date()),
             ipOrigen: "10.115.29.6"
@@ -142,16 +146,16 @@ export class EstadoCuenta {
         estadoCuentaRequest.authenticationCode = await this.generarAuthCode(estadoCuentaRequest);
 
         try {
-            const response = await this.postURL("https://searsvisadesa.sears.com.mx:8443/spb-envio-cuenta-email/ServiciosSearsVisa/spb_services/EnvioCuentaEmail", estadoCuentaRequest);
+            const response = await this.postURL("https://searsvisadesa.sears.com.mx:8443/spb-envio-cuenta-email/ServiciosSearsVisa/spb_services/EnviosCuentasEmail", estadoCuentaRequest);
 
             if (response.codigo === "00") {
-                alert("Estado de cuenta del " + this.formatearFecha(fecha) + " enviado correctamente")
+                alert("Estados de cuenta enviados correctamente");
                 return response;
             } else {
-                throw new Error("Error al solicitar el estado de cuenta.");
+                throw new Error("Error al solicitar los estados de cuenta.");
             }
         } catch (error) {
-            alert("Error en la solicitud del estado de cuenta: " + error.message);
+            alert("Error en la solicitud de estados de cuenta: " + error.message);
             throw error;
         }
     }
