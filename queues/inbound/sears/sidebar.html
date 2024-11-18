@@ -1,0 +1,25 @@
+<!-- sidebar.html -->
+<div class="sidebar-container">
+    <div class="sidebar-content">
+        <div class="sidebar-header">
+            <h3>${queue}📞</h3>
+            <p class="text-danger">MOTIVO: ${motivo} - ${telefono}</p>
+            <p>Cuenta: ${cuenta}</p>
+        </div>
+        <div class="sidebar-card">
+            <p>Tarjeta:</p>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" value="${params.get('tarjeta') || ''}" aria-label="Tarjeta" disabled>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">💳</button>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-buttons">
+            <button id="btn-inicio" class="btn btn-warning btn-block mb-2">🏠 Inicio</button>
+            <a href="../tips/tips.html"><button id="btn-tips" class="btn btn-info btn-block mb-2">💡 Tips</button></a>
+            <button id="btn-edo-cuenta" class="btn btn-danger btn-block mb-2">📊 Edo. Cuenta</button>
+            <button id="btn-activar-nip" class="btn btn-success btn-block mb-2" style="display: none;">🔑 Activar NIP</button>
+        </div>
+    </div>
+</div>
